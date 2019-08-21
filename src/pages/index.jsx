@@ -104,17 +104,17 @@ class Index extends Component {
         <Hero>
           <HeroInner>
             <h1>{homepage.data.title.text}</h1>
-            <HeroText dangerouslySetInnerHTML={{ __html: homepage.data.content.html }} />
+            {/* <HeroText dangerouslySetInnerHTML={{ __html: homepage.data.content.html }} />
             <Social>
               {social.nodes.map((s, index) => (
                 <li data-name={`social-entry-${index}`} key={s.primary.label.text}>
                   <a href={s.primary.link.url}>{s.primary.label.text}</a>
                 </li>
               ))}
-            </Social>
+            </Social> */}
           </HeroInner>
         </Hero>
-        <IndexWrapper id={website.skipNavId} style={{ paddingTop: '2rem', paddingBottom: '2rem' }}>
+        {/* <IndexWrapper id={website.skipNavId} style={{ paddingTop: '2rem', paddingBottom: '2rem' }}>
           <Title style={{ marginTop: '4rem' }}>Recent posts</Title>
           <Listing posts={posts.nodes} />
           <Title style={{ marginTop: '8rem' }}>Recent projects</Title>
@@ -125,7 +125,7 @@ class Index extends Component {
               </li>
             ))}
           </ProjectListing>
-        </IndexWrapper>
+        </IndexWrapper> */}
       </Layout>
     )
   }
@@ -158,58 +158,11 @@ Index.propTypes = {
 }
 
 export const pageQuery = graphql`
-  query IndexQuery {
+  query {
     homepage: prismicHomepage {
       data {
         title {
           text
-        }
-        content {
-          html
-        }
-      }
-    }
-    social: allPrismicHeroLinksBodyLinkItem {
-      nodes {
-        primary {
-          label {
-            text
-          }
-          link {
-            url
-          }
-        }
-      }
-    }
-    posts: allPrismicPost(sort: { fields: [data___date], order: DESC }) {
-      nodes {
-        uid
-        data {
-          title {
-            text
-          }
-          date(formatString: "DD.MM.YYYY")
-          categories {
-            category {
-              document {
-                data {
-                  name
-                }
-              }
-            }
-          }
-        }
-      }
-    }
-    projects: allPrismicProjectsBodyLinkItem {
-      nodes {
-        primary {
-          label {
-            text
-          }
-          link {
-            url
-          }
         }
       }
     }

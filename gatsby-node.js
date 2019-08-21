@@ -18,21 +18,32 @@ exports.createPages = async ({ graphql, actions }) => {
   const result = await wrapper(
     graphql(`
       {
-        allPrismicPost {
+        allPrismicBlogPost {
           edges {
             node {
               id
               uid
               data {
-                categories {
-                  category {
-                    document {
-                      data {
-                        name
-                      }
-                    }
-                  }
+                blog_image {
+                  url
+                  alt
+                  copyright
                 }
+                body {
+                  html
+                }
+                title {
+                  text
+                }
+              }
+            }
+          }
+        }
+        categories: allPrismicCategory {
+          edges {
+            node {
+              data {
+                tag
               }
             }
           }
@@ -42,11 +53,13 @@ exports.createPages = async ({ graphql, actions }) => {
   )
 
   const categorySet = new Set()
-  const postsList = result.data.allPrismicPost.edges
+  console.log(result)
+  const postsList = result.data.allPrismicBlogPost.edges
 
   // Double check that the post has a category assigned
   postsList.forEach(edge => {
-    if (edge.node.data.categories[0].category) {
+    console.log(edge)
+    if (edge.node.data.categories.category.tag.text) {
       edge.node.data.categories.forEach(cat => {
         categorySet.add(cat.category.document[0].data.name)
       })

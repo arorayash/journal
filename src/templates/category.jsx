@@ -68,33 +68,10 @@ Category.propTypes = {
 }
 
 export const pageQuery = graphql`
-  query CategoryPage($category: String!) {
-    posts: allPrismicPost(
-      sort: { fields: [data___date], order: DESC }
-      filter: {
-        data: {
-          categories: { elemMatch: { category: { document: { elemMatch: { data: { name: { eq: $category } } } } } } }
-        }
-      }
-    ) {
-      totalCount
-      nodes {
-        uid
-        data {
-          title {
-            text
-          }
-          date(formatString: "DD.MM.YYYY")
-          categories {
-            category {
-              document {
-                data {
-                  name
-                }
-              }
-            }
-          }
-        }
+  query {
+    prismicCategory {
+      data {
+        tag
       }
     }
   }
