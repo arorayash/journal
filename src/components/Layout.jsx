@@ -22,6 +22,7 @@ const globalStyle = css`
     color: ${theme.colors.black};
   }
   html {
+    font-size: 10px;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }

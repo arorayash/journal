@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import styled from '@emotion/styled'
 import { graphql } from 'gatsby'
+import { Input, Icon } from 'knit-ui'
 import { Layout, Listing, Wrapper, Title } from '../components'
 import website from '../../config/website'
 
@@ -10,17 +11,19 @@ const IndexWrapper = Wrapper.withComponent('main')
 const HomepageHeader = styled.div`
   display: flex;
   flex-direction: column;
-  width: 50vw;
+  width: 30vw;
   flex: 1 0 auto;
   align-items: start;
   .topImages {
     margin-bottom: 40px;
   }
-  input {
-    margin-top: 40px;
-    border: 1px solid #9b8964;
-    border-radius: 2px;
+  .about {
+    font-size: 1.4rem;
+    line-height: 2rem;
+  }
+  .search-wrapper {
     width: 100%;
+    margin-top: 40px;
   }
 `
 
@@ -36,12 +39,14 @@ class Index extends Component {
             <img src={homepage.data.logo.url} alt="" />
             <img src={homepage.data.journal.url} alt="" />
           </span>
-          <span>
+          <span className="about">
             A space where our team’s thoughts and explorations are logged in. We regularly jot down about our projects,
             product updates, business; breaking down our processes and findings to share them with you. - your friends
             at Clarisights
           </span>
-          <input type="text" placeholder="🔍 Search for a post"/>
+          <span className="search-wrapper">
+            <Input placeholder="Search for a post" addonBefore={<Icon type="oSearch" />} />
+          </span>
         </HomepageHeader>
       </Layout>
     )
