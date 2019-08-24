@@ -5,8 +5,8 @@ import Typography from 'typography'
 
 const typography = new Typography({
   title: 'Clarisights Journal',
-  baseFontSize: '18px',
-  baseLineHeight: 1.45,
+  baseFontSize: '10px',
+  baseLineHeight: 2,
   headerFontFamily: [
     'Lora',
     '-apple-system',
@@ -20,19 +20,7 @@ const typography = new Typography({
     'Segoe UI Emoji',
     'Segoe UI Symbol',
   ],
-  bodyFontFamily: [
-    'Lora',
-    '-apple-system',
-    'BlinkMacSystemFont',
-    'Segoe UI',
-    'Roboto',
-    'Helvetica',
-    'Arial',
-    'sans-serif',
-    'Apple Color Emoji',
-    'Segoe UI Emoji',
-    'Segoe UI Symbol',
-  ],
+  bodyFontFamily: ['Inter'],
   scaleRatio: 3.157,
   headerWeight: 700,
   overrideStyles: () => ({

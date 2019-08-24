@@ -4,6 +4,7 @@ import styled from '@emotion/styled'
 import { graphql } from 'gatsby'
 import { Input, Icon } from 'knit-ui'
 import { Layout, Listing, Wrapper, Title } from '../components'
+import { Categories } from '../components/Listing'
 import website from '../../config/website'
 
 const IndexWrapper = Wrapper.withComponent('main')
@@ -30,7 +31,7 @@ const HomepageHeader = styled.div`
 class Index extends Component {
   render() {
     const {
-      data: { homepage },
+      data: { homepage, categories },
     } = this.props
     return (
       <Layout>
@@ -48,6 +49,7 @@ class Index extends Component {
             <Input placeholder="Search for a post" addonBefore={<Icon type="oSearch" />} />
           </span>
         </HomepageHeader>
+        <Categories categories={categories.nodes} />
       </Layout>
     )
   }
@@ -92,6 +94,19 @@ export const pageQuery = graphql`
         journal {
           url
         }
+      }
+    }
+    categories: allPrismicCategory {
+      nodes {
+        data {
+          description {
+            text
+          }
+          title {
+            text
+          }
+        }
+        uid
       }
     }
   }

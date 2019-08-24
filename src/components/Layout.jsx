@@ -13,8 +13,7 @@ import SEO from './SEO'
 import SkipNavLink from './SkipNavLink'
 import { theme, reset } from '../styles'
 
-import 'typeface-lora'
-import 'typeface-source-sans-pro'
+import 'typeface-inter'
 
 const globalStyle = css`
   ${reset}

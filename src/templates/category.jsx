@@ -71,7 +71,9 @@ export const pageQuery = graphql`
   query {
     prismicCategory {
       data {
-        tag
+        title {
+          text
+        }
       }
     }
   }
