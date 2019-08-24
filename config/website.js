@@ -14,7 +14,7 @@ module.exports = {
   shortName: 'Clarisights', // shortname for manifest. MUST be shorter than 12 characters
   author: 'anshumanv', // Author for schemaORGJSONLD
   themeColor: '#3D63AE',
-  backgroundColor: '#EBEDF2',
+  backgroundColor: '#F7F7F7',
 
   twitter: '@clarisights', // Twitter Username
   facebook: 'ClarisightsOfficial', // Facebook Site Name

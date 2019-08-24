@@ -26,6 +26,8 @@ const globalStyle = css`
     -moz-osx-font-smoothing: grayscale;
   }
   body {
+    font-family: Inter;
+    padding: 125px;
     color: ${theme.colors.greyDarker};
     background-color: ${theme.colors.bg};
   }
