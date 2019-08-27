@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import styled from '@emotion/styled'
 import { graphql } from 'gatsby'
-import { Input, Icon } from 'knit-ui'
+import { Input, Icon, Button } from 'knit-ui'
 import { Layout, Listing, Wrapper, Title } from '../components'
 import { Categories } from '../components/Listing'
 import website from '../../config/website'
@@ -28,11 +28,68 @@ const HomepageHeader = styled.div`
   }
 `
 
+const Underline = styled.span`
+  text-decoration-line: underline;
+`
+
+const ColumnWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+`
+
+const SectionTitle = styled.div`
+  margin: 10rem 0 2rem 0;
+  font-size: 2.4rem;
+  line-height: 2.8rem;
+  color: #4c4c4c;
+`
+
+const EventsWrapper = styled.div`
+  max-width: 40vw;
+  color: #4c4c4c;
+  .event-card {
+    display: flex;
+    justify-content: space-between;
+    &-title {
+      font-weight: bold;
+      font-style: normal;
+      font-size: 1.6rem;
+      line-height: 1.9rem;
+    }
+  }
+`
+
+const NewsletterWrapper = styled.div`
+  width: 40vw;
+  font-size: 2.4rem;
+  color: #4c4c4c;
+  margin-top: 4rem;
+  line-height: 2.9rem;
+  span {
+    margin-top: 2rem;
+    height: 3.4rem;
+    display: flex;
+    font-size: 1.4rem;
+    line-height: 2rem;
+    input {
+      height: 3.4rem;
+      margin-right: 0.5rem;
+    }
+    button {
+      background-color: #9B8964;
+      border-radius: 2px;
+      color: white;
+    }
+  }
+`
+
 class Index extends Component {
   render() {
     const {
-      data: { homepage, categories },
+      data: { homepage, categories, events },
     } = this.props
+    console.log(events)
     return (
       <Layout>
         <HomepageHeader>
@@ -50,6 +107,23 @@ class Index extends Component {
           </span>
         </HomepageHeader>
         <Categories categories={categories.nodes} />
+        <NewsletterWrapper>
+          Get the latest news and views from Clarisights delivered to your inbox. No spam, only quality content.
+          <span>
+            <Input placeholder="Your Email address" size="large" />
+            <button>Subscribe</button>
+          </span>
+        </NewsletterWrapper>
+        <SectionTitle>What's on</SectionTitle>
+        <EventsWrapper>
+          {events.nodes.map(event => <span className="event-card">
+            <span className="event-card-title">{event.data.title.text}</span>
+            <ColumnWrapper>
+              <span><Icon type="oLocationOn" /><Underline>{event.data.location.text}</Underline></span>
+              <span>{event.data.time}</span>
+            </ColumnWrapper>
+          </span>)}
+        </EventsWrapper>
       </Layout>
     )
   }
@@ -107,6 +181,19 @@ export const pageQuery = graphql`
           }
         }
         uid
+      }
+    }
+    events: allPrismicEvents {
+      nodes {
+        data {
+          title {
+            text
+          }
+          location {
+            text
+          }
+          time(formatString: "Do MMMM, YYYY")
+        }
       }
     }
   }

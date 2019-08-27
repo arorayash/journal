@@ -8,22 +8,20 @@ import CategoryCard from './CategoryCard.jsx'
 const CategoriesWrapper = styled.div`
   display: flex;
   margin-top: 8rem;
+  border-bottom: #c4c4c4;
+  
 `
 
-export default class Categories extends Component {
-  render() {
-    const { categories } = this.props
-    console.log(categories)
-    return <>
-      <CategoriesWrapper>
-        {categories.map((c, index) => (
-          <CategoryCard data={c} index={index} />
-        ))}
-      </CategoriesWrapper>
-    </>
-  }
-}
+const Categories = ({ categories }) => <>
+    <CategoriesWrapper>
+      {categories.map((category, index) => (
+        <CategoryCard data={category} index={index} />
+      ))}
+    </CategoriesWrapper>
+  </>
 
 Categories.propTypes = {
   categories: PropTypes.array.isRequired,
 }
+
+export default Categories;

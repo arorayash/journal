@@ -49,7 +49,7 @@ const CategoryCard = ({ data, index }) => {
   const {
     data: { title, description },
   } = data
-  // console.log(data, 'data asdasd', title, description)
+  console.log(data, 'data asdasd', title, description)
   return (
     <CardWrapper>
       <CardContent>
