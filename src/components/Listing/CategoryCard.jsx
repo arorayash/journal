@@ -4,10 +4,10 @@ import styled from '@emotion/styled'
 const CardWrapper = styled.div`
     position: relative;
     display: flex;
-    justify-content: flex-end;
-    width: 364px;
+    width: 38rem;
+    margin-bottom: 4rem;
     margin-right: 2.8rem;
-    height: 390px;
+    height: 40rem;
     background: #EBE7E0;
     border-radius: 2px;
   }

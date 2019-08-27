@@ -86,7 +86,7 @@ const NewsletterWrapper = styled.div`
 
 class Index extends Component {
   render() {
-    const {
+    let {
       data: { homepage, categories, events },
     } = this.props
     console.log(events)

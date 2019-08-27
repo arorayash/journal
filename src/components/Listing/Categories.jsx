@@ -7,9 +7,9 @@ import CategoryCard from './CategoryCard.jsx'
 
 const CategoriesWrapper = styled.div`
   display: flex;
-  margin-top: 8rem;
-  border-bottom: #c4c4c4;
-  
+  margin: 8rem 0 8rem 0;
+  border-bottom: 1px solid #c4c4c4;
+  flex-wrap: wrap;
 `
 
 const Categories = ({ categories }) => <>
