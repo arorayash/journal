@@ -27,7 +27,6 @@ const globalStyle = css`
   }
   body {
     font-family: Inter;
-    padding: 125px;
     color: ${theme.colors.greyDarker};
     background-color: ${theme.colors.bg};
   }
@@ -80,10 +79,7 @@ const PureLayout = ({ children, data, customSEO }) => (
       <SkipNavLink />
       {!customSEO && <SEO />}
       {children}
-      <Footer>
-        asdasd
-        {/* <div dangerouslySetInnerHTML={{ __html: data.prismicHomepage.data.footer.html || '' }} /> */}
-      </Footer>
+      <Footer />
     </>
   </ThemeProvider>
 )

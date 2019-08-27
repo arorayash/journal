@@ -1,23 +1,34 @@
-import React, { Component } from 'react'
-import PropTypes from 'prop-types'
+import React from 'react'
 import styled from '@emotion/styled'
 
 const StyledFooter = styled.footer`
-  max-width: ${props => props.theme.maxWidth};
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 1.4rem;
+  line-height: 20rem;
+  padding: 0 14rem 0 14rem;
+  height: 26rem;
+  color: #fff;
+  width: 100vw;
   margin: 6rem auto 0 auto;
-  padding: 2rem;
-  color: ${props => props.theme.colors.grey};
+  background-color: black;
 `
 
-class Footer extends Component {
-  render() {
-    const { children } = this.props
-    return <StyledFooter>{children}</StyledFooter>
+const RightSection = styled.span`
+  span {
+    padding: 5rem;
   }
+`
+
+const Footer = () => {
+  return <StyledFooter>
+    <span>Careers</span>
+    <RightSection>
+      <span>Privacy Policy</span>
+      <span>© Clarisights 2019 </span>    
+    </RightSection>
+  </StyledFooter>
 }
 
-export default Footer
-
-Footer.propTypes = {
-  children: PropTypes.node.isRequired,
-}
+export default Footer;

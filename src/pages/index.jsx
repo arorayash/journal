@@ -7,8 +7,6 @@ import { Layout, Listing, Wrapper, Title } from '../components'
 import { Categories } from '../components/Listing'
 import website from '../../config/website'
 
-const IndexWrapper = Wrapper.withComponent('main')
-
 const HomepageHeader = styled.div`
   display: flex;
   flex-direction: column;
@@ -60,6 +58,10 @@ const EventsWrapper = styled.div`
   }
 `
 
+const IndexWrapper = styled.div`
+  padding: 125px;
+`
+
 const NewsletterWrapper = styled.div`
   width: 40vw;
   font-size: 2.4rem;
@@ -92,6 +94,8 @@ class Index extends Component {
     console.log(events)
     return (
       <Layout>
+        <IndexWrapper>
+
         <HomepageHeader>
           <span className="topImages">
             <img src={homepage.data.logo.url} alt="" />
@@ -124,6 +128,7 @@ class Index extends Component {
             </ColumnWrapper>
           </span>)}
         </EventsWrapper>
+        </IndexWrapper>
       </Layout>
     )
   }
