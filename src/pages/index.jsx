@@ -4,13 +4,13 @@ import styled from '@emotion/styled'
 import { graphql } from 'gatsby'
 import { Input, Icon, Button } from 'knit-ui'
 import { Layout, Listing, Wrapper, Title } from '../components'
-import { Categories } from '../components/Listing'
+import { Categories, Featured } from '../components/Listing'
 import website from '../../config/website'
 
 const HomepageHeader = styled.div`
   display: flex;
   flex-direction: column;
-  width: 30vw;
+  width: 35vw;
   flex: 1 0 auto;
   align-items: start;
   .topImages {
@@ -79,7 +79,7 @@ const NewsletterWrapper = styled.div`
       margin-right: 0.5rem;
     }
     button {
-      background-color: #9B8964;
+      background-color: #9b8964;
       border-radius: 2px;
       color: white;
     }
@@ -89,45 +89,51 @@ const NewsletterWrapper = styled.div`
 class Index extends Component {
   render() {
     let {
-      data: { homepage, categories, events },
+      data: { homepage, categories, events, featured_posts },
     } = this.props
-    console.log(events)
+    console.log(featured_posts)
     return (
       <Layout>
         <IndexWrapper>
-
-        <HomepageHeader>
-          <span className="topImages">
-            <img src={homepage.data.logo.url} alt="" />
-            <img src={homepage.data.journal.url} alt="" />
-          </span>
-          <span className="about">
-            A space where our team’s thoughts and explorations are logged in. We regularly jot down about our projects,
-            product updates, business; breaking down our processes and findings to share them with you. - your friends
-            at Clarisights
-          </span>
-          <span className="search-wrapper">
-            <Input placeholder="Search for a post" addonBefore={<Icon type="oSearch" />} />
-          </span>
-        </HomepageHeader>
-        <Categories categories={categories.nodes} />
-        <NewsletterWrapper>
-          Get the latest news and views from Clarisights delivered to your inbox. No spam, only quality content.
-          <span>
-            <Input placeholder="Your Email address" size="large" />
-            <button>Subscribe</button>
-          </span>
-        </NewsletterWrapper>
-        <SectionTitle>What's on</SectionTitle>
-        <EventsWrapper>
-          {events.nodes.map(event => <span className="event-card">
-            <span className="event-card-title">{event.data.title.text}</span>
-            <ColumnWrapper>
-              <span><Icon type="oLocationOn" /><Underline>{event.data.location.text}</Underline></span>
-              <span>{event.data.time}</span>
-            </ColumnWrapper>
-          </span>)}
-        </EventsWrapper>
+          <HomepageHeader>
+            <span className="topImages">
+              <img src={homepage.data.logo.url} alt="" />
+              <img src={homepage.data.journal.url} alt="" />
+            </span>
+            <span className="about">
+              A space where our team’s thoughts and explorations are logged in. We regularly jot down about our
+              projects, product updates, business; breaking down our processes and findings to share them with you. -
+              your friends at Clarisights
+            </span>
+            <span className="search-wrapper">
+              <Input placeholder="Search for a post" addonBefore={<Icon type="oSearch" />} />
+            </span>
+          </HomepageHeader>
+          <Categories categories={categories.nodes} />
+          <SectionTitle>Featured Topics</SectionTitle>
+          <Featured featured={featured_posts.nodes[0].data.featured_blogs} />
+          <NewsletterWrapper>
+            Get the latest news and views from Clarisights delivered to your inbox. No spam, only quality content.
+            <span>
+              <Input placeholder="Your Email address" size="large" />
+              <button>Subscribe</button>
+            </span>
+          </NewsletterWrapper>
+          <SectionTitle>What's on</SectionTitle>
+          <EventsWrapper>
+            {events.nodes.map(event => (
+              <span className="event-card">
+                <span className="event-card-title">{event.data.title.text}</span>
+                <ColumnWrapper>
+                  <span>
+                    <Icon type="oLocationOn" />
+                    <Underline>{event.data.location.text}</Underline>
+                  </span>
+                  <span>{event.data.time}</span>
+                </ColumnWrapper>
+              </span>
+            ))}
+          </EventsWrapper>
         </IndexWrapper>
       </Layout>
     )
@@ -198,6 +204,37 @@ export const pageQuery = graphql`
             text
           }
           time(formatString: "Do MMMM, YYYY")
+        }
+      }
+    }
+    featured_posts: allPrismicFeatured {
+      nodes {
+        data {
+          featured_blogs {
+            blog {
+              document {
+                data {
+                  author {
+                    document {
+                      data {
+                        author_name {
+                          text
+                        }
+                      }
+                    }
+                  }
+                  published_on(formatString: "MMM D, YYYY")
+                  blog_image {
+                    alt
+                    url
+                  }
+                  title {
+                    text
+                  }
+                }
+              }
+            }
+          }
         }
       }
     }

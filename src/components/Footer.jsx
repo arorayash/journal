@@ -1,5 +1,6 @@
 import React from 'react'
 import styled from '@emotion/styled'
+import { Link } from 'gatsby'
 
 const StyledFooter = styled.footer`
   display: flex;
@@ -21,14 +22,16 @@ const RightSection = styled.span`
   }
 `
 
-const Footer = () => {
-  return <StyledFooter>
-    <span>Careers</span>
+const Footer = () => (
+  <StyledFooter>
+    <span>
+      <Link to="/careers">Careers</Link>
+    </span>
     <RightSection>
       <span>Privacy Policy</span>
-      <span>© Clarisights 2019 </span>    
+      <span>© Clarisights 2019 </span>
     </RightSection>
   </StyledFooter>
-}
+)
 
-export default Footer;
+export default Footer

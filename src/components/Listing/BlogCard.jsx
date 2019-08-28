@@ -1,24 +1,11 @@
 import React from 'react'
 import styled from '@emotion/styled'
+import { Image } from 'knit-ui'
 
 const CardWrapper = styled.div`
-    position: relative;
-    display: flex;
-    justify-content: flex-end;
-    width: 364px;
-    margin-right: 2.8rem;
-    height: 390px;
-    background: #EBE7E0;
-    border-radius: 2px;
-  }
-  &:before {
-    content: "";
-    position: absolute;
-    top: 0;
-    right: 0;
-    border-width: 0 130px 130px 0;
-    border-style: solid;
-    border-color: #FCD06E #f4f2ed;
+  display: flex;
+  flex-wrap: wrap;
+  flex: 0 0 48%;
 `
 
 const CardContent = styled.div`
@@ -26,39 +13,71 @@ const CardContent = styled.div`
   flex-direction: column;
   justify-content: flex-end;
   padding: 40px;
-
-  .index {
-    font-size: 9rem;
-    line-height: 9rem;
-  }
-  .title {
+  .post-title {
     font-size: 2.4rem;
     line-height: 2.9rem;
-    font-weight: bold;
-    margin-bottom: 1rem;
+    font-weight: 600;
+    margin-top: 2rem;
+    color: #1a1a1a;
+    border-bottom: 1px solid #e5e5e5;
+    width: fit-content;
   }
-  .desc {
-    color: #666666;
-    opacity: 0.8;
+  .post-info {
+    color: #808080;
     font-size: 1.4rem;
     line-height: 2rem;
+    margin-top: 0.5rem;
   }
 `
 
-const CategoryCard = ({ data, index }) => {
-  const {
-    data: { title, description },
-  } = data
-  console.log(data, 'data asdasd', title, description)
+const ImageWrapper = styled.span`
+  position: relative;
+  img {
+    height: 28rem;
+  }
+  .tag-wrapper {
+    border: 1px solid #FCD06E;
+    float: left;
+    position: absolute;
+    left: 0px;
+    bottom: 0px;
+    border-radius: 4px;
+    z-index: 1000;
+    background-color: #FCD06E;
+    font-size: 1.4rem;
+    line-height: 1rem;
+    padding: 1rem 0.4rem;
+    span {
+      color: #1a1a1a;
+      opacity: 0.6;
+    }
+  }
+`
+
+const BlogCard = ({ post }) => {
+  const data = post.blog.document[0].data
+  
+  const { title, published_on, blog_image } = data
+  const { author_name } = data.author.document[0].data
+  
+  console.log(post)
   return (
     <CardWrapper>
       <CardContent>
-        <span className="index">{index + 1 < 10 ? `0${index + 1}` : index + 1}.</span>
-        <span className="title">{title.text}</span>
-        <span className="desc">{description.text}</span>
+        <ImageWrapper>
+          <img alt={blog_image.alt} src={blog_image.url} />
+          <span className="tag-wrapper">
+            <span>#Engineering</span>
+          </span>
+        </ImageWrapper>
+        <span className="post-title">
+          {title.text}
+        </span>
+        <span className="post-info">By {author_name.text} | {published_on}</span>
+
       </CardContent>
     </CardWrapper>
   )
 }
 
-export default CategoryCard
+export default BlogCard

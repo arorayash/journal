@@ -25,7 +25,7 @@ const CardContent = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
-  padding: 40px;
+  padding: 4rem;
 
   .index {
     font-size: 9rem;
