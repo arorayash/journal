@@ -19,10 +19,6 @@ const BlogInfoWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-self: center;
-  .blog-image {
-    height: 38rem;
-    width: fit-content;
-  }
   .author-image {
     border: 50%;
     height: 2.8rem;
@@ -35,6 +31,13 @@ const BlogInfoWrapper = styled.div`
   }
 `
 
+const BlogHeader = styled.div`
+  height: 38rem;
+  widht: 100$;
+  display: flex;
+  justify-content: center;
+`
+
 const StyledTitle = styled.h1`
   line-height: 3.4rem;
   font-weight: 600;
@@ -45,6 +48,30 @@ const StyledTitle = styled.h1`
 const BlogContent = styled.div`
   width: 47vw;
   margin-top: 5rem;
+`
+
+const ImageWrapper = styled.span`
+  position: relative;
+  img {
+    height: 28rem;
+  }
+  .tag-wrapper {
+    border: 1px solid #fcd06e;
+    float: left;
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    border-radius: 4px;
+    z-index: 1000;
+    background-color: #fcd06e;
+    font-size: 1.4rem;
+    line-height: 1rem;
+    padding: 1rem 0.4rem;
+    span {
+      color: #1a1a1a;
+      opacity: 0.6;
+    }
+  }
 `
 
 const Post = ({ data: { prismicPost }, location }) => {
@@ -61,7 +88,14 @@ const Post = ({ data: { prismicPost }, location }) => {
         article
       />
       <PostWrapper>
-        <img className="blog-image" src={blog_image.url} alt={blog_image.alt} />
+        <BlogHeader>
+          <ImageWrapper>
+            <img className="blog-image" src={blog_image.url} alt={blog_image.alt} />
+            <span className="tag-wrapper">
+              <span>#Engineering</span>
+            </span>
+          </ImageWrapper>
+        </BlogHeader>
         <BlogInfoWrapper>
           <StyledTitle>{title.text}</StyledTitle>
           <img className="author-image" src={author_image.url} alt={author_name.text} />
