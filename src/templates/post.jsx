@@ -2,21 +2,50 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { graphql } from 'gatsby'
 import styled from '@emotion/styled'
-import { Layout, Listing, Wrapper, SliceZone, Title, SEO } from '../components'
+import { Layout, Wrapper, SliceZone, Title, SEO } from '../components'
 import Categories from '../components/Listing/Categories'
 import website from '../../config/website'
 
-const PostWrapper = Wrapper.withComponent('main')
+const PostWrapper = styled(Wrapper.withComponent('main'))`
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  .blog-image {
+    height: 38rem;
+  }
+`
 
 const BlogInfoWrapper = styled.div`
   display: flex;
   flex-direction: column;
-
+  align-self: center;
+  .blog-image {
+    height: 38rem;
+    width: fit-content;
+  }
+  .author-image {
+    border: 50%;
+    height: 2.8rem;
+    width: 2.8rem;
+  }
+  .blog-meta {
+    font-size: 1.4rem;
+    line-height: 2rem;
+    color: #808080;
+  }
 `
 
-const renderContent = html => {
-  return {__html: html}
-}
+const StyledTitle = styled.h1`
+  line-height: 3.4rem;
+  font-weight: 600;
+  font-size: 2.4rem;
+  margin-bottom: 1rem;
+`
+
+const BlogContent = styled.div`
+  width: 47vw;
+  margin-top: 5rem;
+`
 
 const Post = ({ data: { prismicPost }, location }) => {
   console.log(prismicPost.data)
@@ -32,12 +61,13 @@ const Post = ({ data: { prismicPost }, location }) => {
         article
       />
       <PostWrapper>
-        <img src={blog_image.url} alt={blog_image.alt} />
+        <img className="blog-image" src={blog_image.url} alt={blog_image.alt} />
         <BlogInfoWrapper>
-          <h1>{title.text}</h1>
-          <img src={author_image.url} alt={author_name.text} />
-          <span>{`${author_name.text}, ${author_position.text}`}</span>
-          <div dangerouslySetInnerHTML={{__html: body.html}} />
+          <StyledTitle>{title.text}</StyledTitle>
+          <img className="author-image" src={author_image.url} alt={author_name.text} />
+          <span className="blog-meta">{`${author_name.text}, ${author_position.text}`}</span>
+          <span className="blog-meta">{published_on}</span>
+          <BlogContent dangerouslySetInnerHTML={{__html: body.html}} />
         </BlogInfoWrapper>
       </PostWrapper>
       {/* <PostWrapper id={website.skipNavId}>
@@ -68,7 +98,7 @@ export const pageQuery = graphql`
   query BlogPostBySlug($slug: String!) {
     prismicPost: prismicBlogPost(slugs: { eq: $slug }) {
       data {
-        published_on
+        published_on(formatString: "MMM D, YYYY")
         title {
           text
         }

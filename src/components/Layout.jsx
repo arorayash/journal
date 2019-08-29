@@ -18,7 +18,7 @@ import 'typeface-inter'
 const globalStyle = css`
   ${reset}
   h1, h2, h3, h4, h5, h6 {
-    color: ${theme.colors.black};
+    color: ${theme.colors.title};
   }
   html {
     font-size: 10px;
@@ -52,7 +52,7 @@ const globalStyle = css`
   }
   @media (max-width: ${theme.breakpoints.s}) {
     h1 {
-      font-size: 2.369rem !important;
+      font-size: 2.8rem !important;
     }
     h2 {
       font-size: 1.777rem !important;
