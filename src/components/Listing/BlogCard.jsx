@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from '@emotion/styled'
-import { Link } from 'gatsby'
+import { StyledLink } from '../Wrappers'
 
 const CardWrapper = styled.div`
   display: flex;
@@ -53,11 +53,6 @@ const ImageWrapper = styled.span`
       opacity: 0.6;
     }
   }
-`
-
-const StyledLink = styled(Link)`
-  text-decoration: none !important;
-  font: inherit;
 `
 
 const BlogCard = ({ post }) => {

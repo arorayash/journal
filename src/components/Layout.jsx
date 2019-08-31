@@ -79,7 +79,7 @@ const PureLayout = ({ children, data, customSEO }) => (
       <SkipNavLink />
       {!customSEO && <SEO />}
       {children}
-      <Footer />
+      <Footer categories={data.allPrismicCategory.nodes} />
     </>
   </ThemeProvider>
 )
@@ -90,10 +90,13 @@ class Layout extends Component {
       <StaticQuery
         query={graphql`
           query LayoutQuery {
-            prismicHomepage {
-              data {
-                title {
-                  text
+            allPrismicCategory {
+              nodes {
+                slugs
+                data {
+                  title {
+                    text
+                  }
                 }
               }
             }

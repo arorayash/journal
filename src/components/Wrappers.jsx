@@ -1,4 +1,5 @@
 import styled from '@emotion/styled'
+import { Link } from 'gatsby'
 
 export const ImageWrapper = styled.span`
   position: relative;
@@ -22,4 +23,10 @@ export const ImageWrapper = styled.span`
       opacity: 0.6;
     }
   }
+`
+
+export const StyledLink = styled(Link)`
+  text-decoration: none !important;
+  font: inherit;
+  color: inherit;
 `
