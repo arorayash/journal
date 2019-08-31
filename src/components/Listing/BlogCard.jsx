@@ -60,8 +60,7 @@ const BlogCard = ({ post }) => {
   const slug = post.blog.document[0].slugs[0]
   const { title, published_on, blog_image } = data
   const { author_name } = data.author.document[0].data
-  
-  console.log({ post, slug })
+
   return (
     <StyledLink to={slug}>
       <CardWrapper>

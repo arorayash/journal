@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from '@emotion/styled'
-import { StyledLink } from '../components/Wrappers'
+import { StyledLink } from "./Wrappers"
 
 const StyledFooter = styled.footer`
   display: flex;
@@ -17,11 +17,15 @@ const StyledFooter = styled.footer`
   flex-shrink: 0;
 `
 
+const isSingle = (props) => {
+  return props.left && props.path === '/'
+}
 
-const RightSection = styled.span`
-  flex: 1;
+const Section = styled.span`
+  flex: 1 0;
   display: flex;
-  justify-content: space-around;
+  justify-content: ${props => (isSingle(props) ? 'start' : 'space-around')};
+  margin-left: ${props => (isSingle(props) ? '14rem' : '0')};
 `
 
 const CategoriesWrapper = styled.span`
@@ -32,25 +36,27 @@ const CategoriesWrapper = styled.span`
   color: #a6a6a6;
   span {
     margin-top: 1rem;
-    color: #fff
+    color: #fff;
   }
 `
 
-const Footer = ({ categories }) => (
+const Footer = ({ categories, path }) => (
   <StyledFooter>
-    <RightSection>
+    <Section left path={path}>
       <StyledLink to="/careers">Careers</StyledLink>
-      <CategoriesWrapper>
-        Journal
-        {categories.map(cat => (
-          <span>/ {cat.data.title.text}</span>
-        ))}
-      </CategoriesWrapper>
-    </RightSection>
-    <RightSection>
+      {path !== '/' && (
+        <CategoriesWrapper>
+          Journal
+          {categories.map(cat => (
+            <span>/ {cat.data.title.text}</span>
+          ))}
+        </CategoriesWrapper>
+      )}
+    </Section>
+    <Section>
       <span>Privacy Policy</span>
       <span>© Clarisights 2019 </span>
-    </RightSection>
+    </Section>
   </StyledFooter>
 )
 

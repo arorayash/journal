@@ -76,12 +76,12 @@ const ImageWrapper = styled.span`
   }
 `
 
-const Post = ({ data: { prismicPost }, location }) => {
+const Post = ({ data: { prismicPost }, location, path }) => {
   console.log(prismicPost.data)
   const { author, blog_image, body, published_on, title } = prismicPost.data
   const { author_image, author_name, author_position } = author.document[0].data
   return (
-    <Layout customSEO>
+    <Layout customSEO path={path}>
       <SEO
         title={`${title.text} | ${website.titleAlt}`}
         pathname={location.pathname}

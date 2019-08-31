@@ -88,12 +88,13 @@ const NewsletterWrapper = styled.div`
 
 class Index extends Component {
   render() {
-    let {
+    const {
       data: { homepage, categories, events, featured_posts },
+      path,
     } = this.props
-    console.log(featured_posts)
+    console.log(path)
     return (
-      <Layout>
+      <Layout path={path}>
         <IndexWrapper>
           <HomepageHeader>
             <span className="topImages">

@@ -72,14 +72,14 @@ const globalStyle = css`
   }
 `
 
-const PureLayout = ({ children, data, customSEO }) => (
+const PureLayout = ({ children, data, customSEO, path }) => (
   <ThemeProvider theme={theme}>
     <>
       <Global styles={globalStyle} />
       <SkipNavLink />
       {!customSEO && <SEO />}
       {children}
-      <Footer categories={data.allPrismicCategory.nodes} />
+      <Footer path={path} categories={data.allPrismicCategory.nodes} />
     </>
   </ThemeProvider>
 )

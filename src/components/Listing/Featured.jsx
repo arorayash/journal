@@ -10,7 +10,6 @@ const ArticlesWrapper = styled.div`
 `
 
 const Featured = ({ featured }) => {
-  console.log({featured})
   return (
     <ArticlesWrapper>
       {featured.map(post => <BlogCard post={post} />)}
