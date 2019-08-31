@@ -19,6 +19,7 @@ const BlogInfoWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-self: center;
+  margin-top: 6rem;
   .author-image {
     border: 50%;
     height: 2.8rem;
@@ -33,7 +34,7 @@ const BlogInfoWrapper = styled.div`
 
 const BlogHeader = styled.div`
   height: 38rem;
-  widht: 100$;
+  widht: 100%;
   display: flex;
   justify-content: center;
 `
@@ -52,9 +53,10 @@ const BlogContent = styled.div`
 
 const ImageWrapper = styled.span`
   position: relative;
-  img {
-    height: 28rem;
-  }
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   .tag-wrapper {
     border: 1px solid #fcd06e;
     float: left;

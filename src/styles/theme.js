@@ -10,7 +10,7 @@ const theme = {
     greyDark: '#303643',
     greyDarker: '#1c252b',
   },
-  maxWidth: '1000px',
+  maxWidth: '80vw',
   maxWidthText: '720px',
   breakpoints: {
     xs: '400px',
