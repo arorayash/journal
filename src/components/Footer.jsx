@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from '@emotion/styled'
-import { StyledLink } from "./Wrappers"
+import { StyledLink } from './Wrappers'
 
 const StyledFooter = styled.footer`
   display: flex;
@@ -17,9 +17,7 @@ const StyledFooter = styled.footer`
   flex-shrink: 0;
 `
 
-const isSingle = (props) => {
-  return props.left && props.path === '/'
-}
+const isSingle = props => props.left && props.path === '/'
 
 const Section = styled.span`
   flex: 1 0;

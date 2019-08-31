@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 import styled from '@emotion/styled'
 import { graphql } from 'gatsby'
@@ -14,7 +14,10 @@ const HomepageHeader = styled.div`
   flex: 1 0 auto;
   align-items: start;
   .topImages {
-    margin-bottom: 40px;
+    margin-bottom: 4rem;
+    img:last-child {
+      margin-top: 2rem;
+    }
   }
   .about {
     font-size: 1.4rem;
@@ -23,6 +26,10 @@ const HomepageHeader = styled.div`
   .search-wrapper {
     width: 100%;
     margin-top: 40px;
+    input {
+      background: transparent;
+      border: 1px solid #1a1a1a;
+    }
   }
 `
 
@@ -76,6 +83,8 @@ const NewsletterWrapper = styled.div`
     line-height: 2rem;
     input {
       height: 3.4rem;
+      background: transparent;
+      border: 1px solid #1a1a1a;
       margin-right: 0.5rem;
     }
     button {
@@ -86,30 +95,38 @@ const NewsletterWrapper = styled.div`
   }
 `
 
-class Index extends Component {
-  render() {
-    const {
-      data: { homepage, categories, events, featured_posts },
-      path,
-    } = this.props
-    console.log(path)
-    return (
-      <Layout path={path}>
-        <IndexWrapper>
-          <HomepageHeader>
-            <span className="topImages">
-              <img src={homepage.data.logo.url} alt="" />
-              <img src={homepage.data.journal.url} alt="" />
-            </span>
-            <span className="about">
-              A space where our team’s thoughts and explorations are logged in. We regularly jot down about our
-              projects, product updates, business; breaking down our processes and findings to share them with you. -
-              your friends at Clarisights
-            </span>
-            <span className="search-wrapper">
-              <Input placeholder="Search for a post" addonBefore={<Icon type="oSearch" />} />
-            </span>
-          </HomepageHeader>
+const ContentWrapper = styled.div`
+  filter: blur(${props => (props.blur ? 1 : 0)}px);
+`
+
+const Index = props => {
+  const {
+    data: { homepage, categories, events, featured_posts },
+    path,
+  } = props
+  const [search, setSearch] = useState('')
+  return (
+    <Layout path={path}>
+      <IndexWrapper>
+        <HomepageHeader>
+          <span className="topImages">
+            <img src={homepage.data.logo.url} alt="" />
+            <img src={homepage.data.journal.url} alt="" />
+          </span>
+          <span className="about">
+            A space where our team’s thoughts and explorations are logged in. We regularly jot down about our projects,
+            product updates, business; breaking down our processes and findings to share them with you. - your friends
+            at Clarisights
+          </span>
+          <span className="search-wrapper">
+            <Input
+              onChange={e => setSearch(e.target.value)}
+              placeholder="Search for a post"
+              addonBefore={<Icon type="oSearch" />}
+            />
+          </span>
+        </HomepageHeader>
+        <ContentWrapper blur={search !== ''}>
           <Categories categories={categories.nodes} />
           <SectionTitle>Featured Topics</SectionTitle>
           <Featured featured={featured_posts.nodes[0].data.featured_blogs} />
@@ -135,10 +152,10 @@ class Index extends Component {
               </span>
             ))}
           </EventsWrapper>
-        </IndexWrapper>
-      </Layout>
-    )
-  }
+        </ContentWrapper>
+      </IndexWrapper>
+    </Layout>
+  )
 }
 
 export default Index
