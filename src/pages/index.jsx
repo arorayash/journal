@@ -232,6 +232,7 @@ export const pageQuery = graphql`
                     text
                   }
                 }
+                slugs
               }
             }
           }

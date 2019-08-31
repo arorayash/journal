@@ -106,11 +106,6 @@ const Post = ({ data: { prismicPost }, location }) => {
           <BlogContent dangerouslySetInnerHTML={{__html: body.html}} />
         </BlogInfoWrapper>
       </PostWrapper>
-      {/* <PostWrapper id={website.skipNavId}>
-        <SliceZone allSlices={data.body} />
-        <Title style={{ marginTop: '4rem' }}>Recent posts</Title>
-        <Listing posts={posts.nodes} />
-      </PostWrapper> */}
     </Layout>
   )
 }

@@ -1,9 +1,10 @@
 import React from 'react'
 import styled from '@emotion/styled'
-import { Image } from 'knit-ui'
+import { Link } from 'gatsby'
 
 const CardWrapper = styled.div`
   display: flex;
+  text-decoration: none;
   flex-wrap: wrap;
   flex: 0 0 48%;
 `
@@ -54,29 +55,36 @@ const ImageWrapper = styled.span`
   }
 `
 
+const StyledLink = styled(Link)`
+  text-decoration: none !important;
+  font: inherit;
+`
+
 const BlogCard = ({ post }) => {
   const data = post.blog.document[0].data
-  
+  const slug = post.blog.document[0].slugs[0]
   const { title, published_on, blog_image } = data
   const { author_name } = data.author.document[0].data
   
-  console.log(post)
+  console.log({ post, slug })
   return (
-    <CardWrapper>
-      <CardContent>
-        <ImageWrapper>
-          <img alt={blog_image.alt} src={blog_image.url} />
-          <span className="tag-wrapper">
-            <span>#Engineering</span>
+    <StyledLink to={slug}>
+      <CardWrapper>
+        <CardContent>
+          <ImageWrapper>
+            <img alt={blog_image.alt} src={blog_image.url} />
+            <span className="tag-wrapper">
+              <span>#Engineering</span>
+            </span>
+          </ImageWrapper>
+          <span className="post-title">
+            {title.text}
           </span>
-        </ImageWrapper>
-        <span className="post-title">
-          {title.text}
-        </span>
-        <span className="post-info">By {author_name.text} | {published_on}</span>
+          <span className="post-info">By {author_name.text} | {published_on}</span>
 
-      </CardContent>
-    </CardWrapper>
+        </CardContent>
+      </CardWrapper>
+    </StyledLink>
   )
 }
 
