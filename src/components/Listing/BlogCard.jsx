@@ -20,7 +20,7 @@ const CardContent = styled.div`
     font-weight: 600;
     margin-top: 2rem;
     color: #1a1a1a;
-    border-bottom: 1px solid #e5e5e5;
+    border-bottom: 0.2rem solid #e5e5e5;
     width: fit-content;
   }
   .post-info {
@@ -28,6 +28,11 @@ const CardContent = styled.div`
     font-size: 1.4rem;
     line-height: 2rem;
     margin-top: 0.5rem;
+  }
+  &:hover {
+    .post-title {
+      border-bottom: 0.2rem solid #1a1a1a;
+    }
   }
 `
 

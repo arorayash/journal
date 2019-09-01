@@ -26,7 +26,10 @@ export const ImageWrapper = styled.span`
 `
 
 export const StyledLink = styled(Link)`
-  text-decoration: none !important;
+  text-decoration: none;
   font: inherit;
   color: inherit;
+  &:hover {
+    text-decoration: ${props => (props.underline ? 'underline' : 'none')}
+  }
 `

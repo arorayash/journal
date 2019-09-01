@@ -91,12 +91,15 @@ const NewsletterWrapper = styled.div`
       background-color: #9b8964;
       border-radius: 2px;
       color: white;
+      &:hover {
+        background: #1a1a1a;
+      }
     }
   }
 `
 
 const ContentWrapper = styled.div`
-  filter: blur(${props => (props.blur ? 1 : 0)}px);
+  filter: blur(${props => (props.blur ? 1 : 0)}rem);
 `
 
 const Index = props => {

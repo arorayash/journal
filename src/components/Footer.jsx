@@ -41,7 +41,7 @@ const CategoriesWrapper = styled.span`
 const Footer = ({ categories, path }) => (
   <StyledFooter>
     <Section left path={path}>
-      <StyledLink to="/careers">Careers</StyledLink>
+      <StyledLink underline to="/careers">Careers</StyledLink>
       {path !== '/' && (
         <CategoriesWrapper>
           Journal
