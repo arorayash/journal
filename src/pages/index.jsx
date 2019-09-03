@@ -56,11 +56,15 @@ const EventsWrapper = styled.div`
   .event-card {
     display: flex;
     justify-content: space-between;
+    padding: 1rem 0 1rem 0;
     &-title {
-      font-weight: bold;
+      font-weight: normal;
       font-style: normal;
       font-size: 1.6rem;
       line-height: 1.9rem;
+    }
+    &:not(:last-child) {
+      border-bottom: 1px solid #c4c4c4;
     }
   }
 `
