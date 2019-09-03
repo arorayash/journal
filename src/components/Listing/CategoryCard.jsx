@@ -1,5 +1,6 @@
 import React from 'react'
 import styled from '@emotion/styled'
+import { Icon } from 'knit-ui'
 
 const CardWrapper = styled.div`
     position: relative;
@@ -10,15 +11,34 @@ const CardWrapper = styled.div`
     height: 40rem;
     background: #EBE7E0;
     border-radius: 2px;
+    cursor: pointer;
   }
   &:before {
     content: "";
     position: absolute;
     top: 0;
     right: 0;
-    border-width: 0 130px 130px 0;
+    border-width: 0 13rem 13rem 0;
     border-style: solid;
     border-color: #FCD06E #f4f2ed;
+  }
+  .arrow-icon {
+    display: none;
+  }
+  &:hover {
+    background-color: #E1DBD1;
+    &:before {
+      border-width: 0 11rem 11rem 0;
+      transition: all 0.5s;
+    }
+    .arrow-icon {
+      display: inline;
+      svg {
+        transform: rotate(-135deg);
+        fill: #fff;
+      }
+    }
+  }
 `
 
 const CardContent = styled.div`
@@ -53,7 +73,10 @@ const CategoryCard = ({ data, index }) => {
     <CardWrapper>
       <CardContent>
         <span className="index">{index + 1 < 10 ? `0${index + 1}` : index + 1}.</span>
-        <span className="title">{title.text}</span>
+        <span className="title">
+          {title.text}
+          <Icon height="20px" type="oArrowDownward" className="arrow-icon" />
+        </span>
         <span className="desc">{description.text}</span>
       </CardContent>
     </CardWrapper>

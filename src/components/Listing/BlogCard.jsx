@@ -6,7 +6,8 @@ const CardWrapper = styled.div`
   display: flex;
   text-decoration: none;
   flex-wrap: wrap;
-  flex: 0 0 48%;
+  flex: 1 0 48%;
+  max-width: 50%;
 `
 
 const CardContent = styled.div`
@@ -38,18 +39,20 @@ const CardContent = styled.div`
 
 const ImageWrapper = styled.span`
   position: relative;
+  display: flex;
+  justify-content: center;
   img {
     height: 28rem;
   }
   .tag-wrapper {
-    border: 1px solid #FCD06E;
+    border: 1px solid #fcd06e;
     float: left;
     position: absolute;
     left: 0px;
     bottom: 0px;
     border-radius: 4px;
     z-index: 1000;
-    background-color: #FCD06E;
+    background-color: #fcd06e;
     font-size: 1.4rem;
     line-height: 1rem;
     padding: 1rem 0.4rem;
@@ -60,15 +63,19 @@ const ImageWrapper = styled.span`
   }
 `
 
+const BlogLink = styled(StyledLink)`
+  width: 100%;
+`
+
 const BlogCard = ({ post }) => {
-  const data = post.blog.document[0].data
+  const {data} = post.blog.document[0]
   const slug = post.blog.document[0].slugs[0]
   const { title, published_on, blog_image } = data
   const { author_name } = data.author.document[0].data
 
   return (
-    <StyledLink to={slug}>
-      <CardWrapper>
+    <CardWrapper>
+      <BlogLink to={slug}>
         <CardContent>
           <ImageWrapper>
             <img alt={blog_image.alt} src={blog_image.url} />
@@ -76,14 +83,13 @@ const BlogCard = ({ post }) => {
               <span>#Engineering</span>
             </span>
           </ImageWrapper>
-          <span className="post-title">
-            {title.text}
+          <span className="post-title">{title.text}</span>
+          <span className="post-info">
+            By {author_name.text} | {published_on}
           </span>
-          <span className="post-info">By {author_name.text} | {published_on}</span>
-
         </CardContent>
-      </CardWrapper>
-    </StyledLink>
+      </BlogLink>
+    </CardWrapper>
   )
 }
 
