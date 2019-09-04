@@ -13,7 +13,7 @@ export const ImageWrapper = styled.span`
     left: 0px;
     top: 0px;
     border-radius: 4px;
-    z-index: 1000;
+    z-index: 2;
     background-color: #fcd06e;
     font-size: 1.4rem;
     line-height: 1rem;
