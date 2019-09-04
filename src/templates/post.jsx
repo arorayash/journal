@@ -1,10 +1,11 @@
-import React from 'react'
+import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 import { graphql } from 'gatsby'
 import styled from '@emotion/styled'
 import { Layout, Wrapper, SliceZone, Title, SEO } from '../components'
 import Categories from '../components/Listing/Categories'
 import website from '../../config/website'
+import drawer from '../assets/drawer.svg'
 
 const PostWrapper = styled(Wrapper.withComponent('main'))`
   display: flex;
@@ -76,8 +77,16 @@ const ImageWrapper = styled.span`
   }
 `
 
+const DrawerIcon = styled.span`
+  position: fixed;
+  top: 2.8rem;
+  left: 2.4rem;
+  cursor: pointer;
+`
+
 const Post = ({ data: { prismicPost }, location, path }) => {
-  console.log(prismicPost.data)
+  const [showSidebar, setShowSidebar] = useState(false)
+
   const { author, blog_image, body, published_on, title } = prismicPost.data
   const { author_image, author_name, author_position } = author.document[0].data
   return (
@@ -89,7 +98,10 @@ const Post = ({ data: { prismicPost }, location, path }) => {
         node={prismicPost}
         article
       />
-      <PostWrapper>
+      <PostWrapper className="posts">
+        <DrawerIcon onClick={() => setShowSidebar(!showSidebar)}>
+          <img src={drawer} alt="drawer icon"/>
+        </DrawerIcon>
         <BlogHeader>
           <ImageWrapper>
             <img className="blog-image" src={blog_image.url} alt={blog_image.alt} />
