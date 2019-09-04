@@ -1,11 +1,12 @@
-import React, { useState } from 'react'
-import PropTypes from 'prop-types'
-import { graphql } from 'gatsby'
-import styled from '@emotion/styled'
-import { Layout, Wrapper, SliceZone, Title, SEO } from '../components'
-import Categories from '../components/Listing/Categories'
-import website from '../../config/website'
-import drawer from '../assets/drawer.svg'
+import React, { useState } from 'react';
+import PropTypes from 'prop-types';
+import { graphql } from 'gatsby';
+import styled from '@emotion/styled';
+import { Layout, Wrapper, SliceZone, Title, SEO } from '../components';
+import Categories from '../components/Listing/Categories';
+import website from '../../config/website';
+import drawer from '../assets/drawer.svg';
+import Sidebar from '../components/Sidebar';
 
 const PostWrapper = styled(Wrapper.withComponent('main'))`
   display: flex;
@@ -65,7 +66,7 @@ const ImageWrapper = styled.span`
     left: 0px;
     top: 0px;
     border-radius: 4px;
-    z-index: 1000;
+    z-index: 2;
     background-color: #fcd06e;
     font-size: 1.4rem;
     line-height: 1rem;
@@ -90,35 +91,37 @@ const Post = ({ data: { prismicPost }, location, path }) => {
   const { author, blog_image, body, published_on, title } = prismicPost.data
   const { author_image, author_name, author_position } = author.document[0].data
   return (
-    <Layout customSEO path={path}>
-      <SEO
-        title={`${title.text} | ${website.titleAlt}`}
-        pathname={location.pathname}
-        desc={title.text}
-        node={prismicPost}
-        article
-      />
-      <PostWrapper className="posts">
-        <DrawerIcon onClick={() => setShowSidebar(!showSidebar)}>
-          <img src={drawer} alt="drawer icon"/>
-        </DrawerIcon>
-        <BlogHeader>
-          <ImageWrapper>
-            <img className="blog-image" src={blog_image.url} alt={blog_image.alt} />
-            <span className="tag-wrapper">
-              <span>#Engineering</span>
-            </span>
-          </ImageWrapper>
-        </BlogHeader>
-        <BlogInfoWrapper>
-          <StyledTitle>{title.text}</StyledTitle>
-          <img className="author-image" src={author_image.url} alt={author_name.text} />
-          <span className="blog-meta">{`${author_name.text}, ${author_position.text}`}</span>
-          <span className="blog-meta">{published_on}</span>
-          <BlogContent dangerouslySetInnerHTML={{__html: body.html}} />
-        </BlogInfoWrapper>
-      </PostWrapper>
-    </Layout>
+    <Sidebar open={showSidebar}>
+      <Layout customSEO path={path}>
+        <SEO
+          title={`${title.text} | ${website.titleAlt}`}
+          pathname={location.pathname}
+          desc={title.text}
+          node={prismicPost}
+          article
+        />
+        <PostWrapper className="posts">
+          <DrawerIcon onClick={() => setShowSidebar(!showSidebar)}>
+            <img src={drawer} alt="drawer icon" />
+          </DrawerIcon>
+          <BlogHeader>
+            <ImageWrapper>
+              <img className="blog-image" src={blog_image.url} alt={blog_image.alt} />
+              <span className="tag-wrapper">
+                <span>#Engineering</span>
+              </span>
+            </ImageWrapper>
+          </BlogHeader>
+          <BlogInfoWrapper>
+            <StyledTitle>{title.text}</StyledTitle>
+            <img className="author-image" src={author_image.url} alt={author_name.text} />
+            <span className="blog-meta">{`${author_name.text}, ${author_position.text}`}</span>
+            <span className="blog-meta">{published_on}</span>
+            <BlogContent dangerouslySetInnerHTML={{ __html: body.html }} />
+          </BlogInfoWrapper>
+        </PostWrapper>
+      </Layout>
+    </Sidebar>
   )
 }
 
