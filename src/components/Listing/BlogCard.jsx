@@ -1,12 +1,19 @@
 import React from 'react'
 import styled from '@emotion/styled'
 import { StyledLink } from '../Wrappers'
+import { theme } from '../../styles'
+
+const { breakpoints } = theme
 
 const CardWrapper = styled.div`
   display: flex;
   text-decoration: none;
   flex-wrap: wrap;
   flex: 1 0 48%;
+  @media (min-width: ${breakpoints.s}) {
+    flex-basis: 100%;
+    border: 2p solid red;
+  }
   max-width: 50%;
 `
 

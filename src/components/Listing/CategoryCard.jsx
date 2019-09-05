@@ -7,7 +7,9 @@ const CardWrapper = styled.div`
     display: flex;
     width: 38rem;
     margin-bottom: 4rem;
-    margin-right: 2.8rem;
+    &:not(:last-child) {
+      margin-right: 2.8rem;
+    }
     height: 40rem;
     background: #EBE7E0;
     border-radius: 2px;

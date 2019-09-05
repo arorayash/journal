@@ -5,7 +5,10 @@ import { graphql } from 'gatsby'
 import { Input, Icon, Button } from 'knit-ui'
 import { Layout, Listing, Wrapper, Title } from '../components'
 import { Categories, Featured } from '../components/Listing'
-import website from '../../config/website'
+import { theme } from '../styles'
+// import website from '../../config/website'
+
+const { breakpoints } = theme
 
 const HomepageHeader = styled.div`
   display: flex;
@@ -14,6 +17,9 @@ const HomepageHeader = styled.div`
   flex: 1 0 auto;
   align-items: start;
   .topImages {
+    display: flex;
+    flex-direction: column;
+    align-items: end;
     margin-bottom: 4rem;
     img:last-child {
       margin-top: 2rem;
@@ -30,6 +36,12 @@ const HomepageHeader = styled.div`
       background: transparent;
       border: 1px solid #1a1a1a;
     }
+  }
+  @media (max-width: ${breakpoints.m}) {
+    width: 60%;
+  }
+  @media (max-width: ${breakpoints.s}) {
+    width: 100%;
   }
 `
 
@@ -51,7 +63,7 @@ const SectionTitle = styled.div`
 `
 
 const EventsWrapper = styled.div`
-  max-width: 40vw;
+  width: 50%;
   color: #4c4c4c;
   .event-card {
     display: flex;
@@ -67,10 +79,20 @@ const EventsWrapper = styled.div`
       border-bottom: 1px solid #c4c4c4;
     }
   }
+  @media (max-width: ${breakpoints.md}) {
+    width: 100%;
+  }
 `
 
 const IndexWrapper = styled.div`
-  padding: 125px;
+  padding: 12.5rem;
+  @media (max-width: ${breakpoints.m}) {
+    padding: 5rem;
+  }
+  @media (max-width: ${breakpoints.s}) {
+    padding: 2.6rem;
+    margin-top: 7.5rem;
+  }
 `
 
 const NewsletterWrapper = styled.div`
@@ -99,6 +121,9 @@ const NewsletterWrapper = styled.div`
         background: #1a1a1a;
       }
     }
+  }
+  @media (max-width: ${breakpoints.md}) {
+    width: 100%;
   }
 `
 

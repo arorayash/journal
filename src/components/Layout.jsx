@@ -45,11 +45,6 @@ const globalStyle = css`
       text-decoration: underline;
     }
   }
-  @media (max-width: ${theme.breakpoints.m}) {
-    html {
-      font-size: 16px !important;
-    }
-  }
   @media (max-width: ${theme.breakpoints.s}) {
     h1 {
       font-size: 2.8rem !important;
