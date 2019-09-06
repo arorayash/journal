@@ -34,7 +34,7 @@ const HomepageHeader = styled.div`
     margin-top: 40px;
     input {
       background: transparent;
-      border: 1px solid #1a1a1a;
+      border: #1px solid #9B8964;
     }
   }
   @media (max-width: ${breakpoints.m}) {

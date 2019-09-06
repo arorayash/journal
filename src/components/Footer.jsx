@@ -1,6 +1,11 @@
 import React from 'react'
 import styled from '@emotion/styled'
+import { Link } from 'gatsby'
 import { StyledLink } from './Wrappers'
+import { theme } from '../styles'
+import clarisightsLogo from '../assets/white-logo.svg'
+
+const { breakpoints } = theme
 
 const StyledFooter = styled.footer`
   display: flex;
@@ -15,6 +20,12 @@ const StyledFooter = styled.footer`
   margin: 6rem auto 0 auto;
   background-color: black;
   flex-shrink: 0;
+  @media (max-width: ${breakpoints.s}) {
+    flex-direction: column;
+    align-items: start;
+    padding: 2.6rem 2.6rem 5rem 2.6rem;
+    height: 20rem;
+  }
 `
 
 const isSingle = props => props.left && props.path === '/'
@@ -22,8 +33,13 @@ const isSingle = props => props.left && props.path === '/'
 const Section = styled.span`
   flex: 1 0;
   display: flex;
+  width: 100%;
   justify-content: ${props => (isSingle(props) ? 'start' : 'space-around')};
   margin-left: ${props => (isSingle(props) ? '14rem' : '0')};
+  @media (max-width: ${breakpoints.s}) {
+    margin-left: 0;
+    flex-direction: column;
+  }
 `
 
 const CategoriesWrapper = styled.span`
@@ -38,10 +54,30 @@ const CategoriesWrapper = styled.span`
   }
 `
 
+const SpacedFlex = styled.div`
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+`
+
+
 const Footer = ({ categories, path }) => (
   <StyledFooter>
     <Section left path={path}>
-      <StyledLink underline to="/careers">Careers</StyledLink>
+      {window.innerWidth < 600 ? (
+        <SpacedFlex>
+          <StyledLink underline to="/careers">
+            Careers
+          </StyledLink>
+          <Link to="/">
+              <img src={clarisightsLogo} alt="" />
+            </Link>
+        </SpacedFlex>
+      ): (
+        <StyledLink underline to="/careers">
+          Careers
+        </StyledLink>
+      )}
       {path !== '/' && (
         <CategoriesWrapper>
           Journal
