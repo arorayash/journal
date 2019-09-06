@@ -24,7 +24,6 @@ const StyledFooter = styled.footer`
     flex-direction: column;
     align-items: start;
     padding: 2.6rem 2.6rem 5rem 2.6rem;
-    height: 20rem;
   }
 `
 
@@ -39,6 +38,9 @@ const Section = styled.span`
   @media (max-width: ${breakpoints.s}) {
     margin-left: 0;
     flex-direction: column;
+    &:not(:last-child) {
+      padding-bottom: 5rem;
+    }
   }
 `
 
@@ -52,6 +54,9 @@ const CategoriesWrapper = styled.span`
     margin-top: 1rem;
     color: #fff;
   }
+  @media (max-width: ${breakpoints.s}) {
+    margin-top: 2rem;
+  }
 `
 
 const SpacedFlex = styled.div`
@@ -62,7 +67,7 @@ const SpacedFlex = styled.div`
 
 
 const Footer = ({ categories, path }) => (
-  <StyledFooter>
+  <StyledFooter path={path}>
     <Section left path={path}>
       {window.innerWidth < 600 ? (
         <SpacedFlex>

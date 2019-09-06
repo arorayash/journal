@@ -1,12 +1,15 @@
-import React, { useState } from 'react';
-import PropTypes from 'prop-types';
-import { graphql } from 'gatsby';
-import styled from '@emotion/styled';
-import { Layout, Wrapper, SliceZone, Title, SEO } from '../components';
-import Categories from '../components/Listing/Categories';
-import website from '../../config/website';
-import drawer from '../assets/drawer.svg';
-import Sidebar from '../components/Sidebar';
+import React, { useState } from 'react'
+import PropTypes from 'prop-types'
+import { graphql } from 'gatsby'
+import styled from '@emotion/styled'
+import { Layout, Wrapper, SliceZone, Title, SEO } from '../components'
+import Categories from '../components/Listing/Categories'
+import website from '../../config/website'
+import drawer from '../assets/drawer.svg'
+import Sidebar from '../components/Sidebar'
+import { theme } from '../styles'
+
+const { breakpoints } = theme
 
 const PostWrapper = styled(Wrapper.withComponent('main'))`
   display: flex;
@@ -32,6 +35,9 @@ const BlogInfoWrapper = styled.div`
     line-height: 2rem;
     color: #808080;
   }
+  @media (max-width: ${breakpoints.s}) {
+    width: 100%;
+  }
 `
 
 const BlogHeader = styled.div`
@@ -51,6 +57,9 @@ const StyledTitle = styled.h1`
 const BlogContent = styled.div`
   width: 47vw;
   margin-top: 5rem;
+  @media (max-width: ${breakpoints.s}) {
+    width: 100%;
+  }
 `
 
 const ImageWrapper = styled.span`
@@ -60,6 +69,7 @@ const ImageWrapper = styled.span`
   flex-direction: column;
   justify-content: center;
   .tag-wrapper {
+    display: ${props => (props.hideTag ? 'none' : 'block')};
     border: 1px solid #fcd06e;
     float: left;
     position: absolute;
@@ -87,7 +97,6 @@ const DrawerIcon = styled.span`
 
 const Post = ({ data: { prismicPost }, location, path }) => {
   const [showSidebar, setShowSidebar] = useState(false)
-
   const { author, blog_image, body, published_on, title } = prismicPost.data
   const { author_image, author_name, author_position } = author.document[0].data
   return (
@@ -105,7 +114,7 @@ const Post = ({ data: { prismicPost }, location, path }) => {
             <img src={drawer} alt="drawer icon" />
           </DrawerIcon>
           <BlogHeader>
-            <ImageWrapper>
+            <ImageWrapper hideTag={window.innerWidth < 600}>
               <img className="blog-image" src={blog_image.url} alt={blog_image.alt} />
               <span className="tag-wrapper">
                 <span>#Engineering</span>
