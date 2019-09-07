@@ -70,7 +70,7 @@ const Footer = ({ categories, path }) => (
     <Section left path={path}>
       {window.innerWidth < 600 ? (
         <SpacedFlex>
-          <StyledLink underline to="/careers">
+          <StyledLink underline={true} to="/careers">
             Careers
           </StyledLink>
           <Link to="/">
@@ -78,7 +78,7 @@ const Footer = ({ categories, path }) => (
           </Link>
         </SpacedFlex>
       ) : (
-        <StyledLink underline to="/careers">
+        <StyledLink underline={true} to="/careers">
           Careers
         </StyledLink>
       )}
@@ -86,7 +86,7 @@ const Footer = ({ categories, path }) => (
         <CategoriesWrapper>
           Journal
           {categories.map(cat => (
-            <span>/ {cat.data.title.text}</span>
+            <span key={cat.data.title.text}>/ {cat.data.title.text}</span>
           ))}
         </CategoriesWrapper>
       )}

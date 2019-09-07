@@ -81,6 +81,7 @@ const PureLayout = ({ children, data, customSEO, path }) => (
 
 class Layout extends Component {
   render() {
+    console.log('rendered')
     return (
       <StaticQuery
         query={graphql`
@@ -89,6 +90,30 @@ class Layout extends Component {
               nodes {
                 slugs
                 data {
+                  title {
+                    text
+                  }
+                }
+              }
+            }
+            allPrismicBlogPost {
+              nodes {
+                slugs
+                data {
+                  published_on
+                  author {
+                    document {
+                      data {
+                        author_name {
+                          text
+                        }
+                      }
+                    }
+                  }
+                  blog_image {
+                    alt
+                    url
+                  }
                   title {
                     text
                   }

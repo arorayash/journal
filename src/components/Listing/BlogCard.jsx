@@ -10,24 +10,25 @@ const CardWrapper = styled.div`
   text-decoration: none;
   flex-wrap: wrap;
   flex: 1 0 48%;
+  margin-bottom: ${props => props.sidebar ? '2': '0'}rem;
   @media (max-width: ${breakpoints.md}) {
     flex: 1 0 100%;
     flex-direction: column;
     max-width: 100%;
   }
-  max-width: 50%;
+  max-width: ${props => (props.sidebar ? '100': '50')}%;
 `
 
 const CardContent = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
-  padding: 40px;
+  padding: ${props => props.sidebar ? '0': '4'}rem;
   .post-title {
-    font-size: 2.4rem;
+    font-size: ${props => props.sidebar ? '2': '2.4'}rem;
     line-height: 2.9rem;
     font-weight: 600;
-    margin-top: 2rem;
+    margin-top: ${props => props.sidebar ? '0': '2'}rem;
     color: #1a1a1a;
     border-bottom: 0.2rem solid #e5e5e5;
     width: fit-content;
@@ -50,7 +51,9 @@ const ImageWrapper = styled.span`
   display: flex;
   justify-content: center;
   img {
-    height: 28rem;
+    height: ${props => props.sidebar ? '16': '28'}rem;
+    object-fit: cover;
+    width: 100%;
   }
   .tag-wrapper {
     border: 1px solid #fcd06e;
@@ -75,17 +78,17 @@ const BlogLink = styled(StyledLink)`
   width: 100%;
 `
 
-const BlogCard = ({ post }) => {
-  const { data } = post.blog.document[0]
-  const slug = post.blog.document[0].slugs[0]
-  const { title, published_on, blog_image } = data
-  const { author_name } = data.author.document[0].data
+const BlogCard = ({ post, sidebar = false }) => {
+  console.log(post, sidebar)
+  const slug = post.slugs[0]
+  const { title, published_on, blog_image } = post.data
+  const { author_name } = post.data.author.document[0].data
 
   return (
-    <CardWrapper>
+    <CardWrapper sidebar={sidebar}>
       <BlogLink to={slug}>
-        <CardContent>
-          <ImageWrapper>
+        <CardContent sidebar={sidebar}>
+          <ImageWrapper sidebar={sidebar}>
             <img alt={blog_image.alt} src={blog_image.url} />
             <span className="tag-wrapper">
               <span>#Engineering</span>

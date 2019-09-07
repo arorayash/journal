@@ -16,7 +16,7 @@ const Categories = ({ categories }) => (
   <>
     <CategoriesWrapper>
       {categories.map((category, index) => (
-        <CategoryCard data={category} index={index} />
+        <CategoryCard key={category.data.title.text} data={category} index={index} />
       ))}
     </CategoriesWrapper>
   </>

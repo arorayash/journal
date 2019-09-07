@@ -22,11 +22,9 @@ const VertFlex = styled.div`
   font-size: 1.4rem;
   line-height: 2rem;
   height: 100%;
-  span:not(:last-child) {
-    margin-bottom: 1.4rem;
-  }
   .search-wrapper {
     width: 100%;
+    margin-bottom: 2.7rem;
     input {
       background: transparent;
       border: 1px solid #1a1a1a;
@@ -40,9 +38,20 @@ const VertFlex = styled.div`
 
 const CategoryItem = styled.span`
   width: fit-content;
+  &:not(:last-child) {
+    margin-bottom: 1.4rem;
+  }
 `
 
-const SidebarContent = () => {
+const BlogsList = styled.div`
+  overflow: scroll;
+  .blog {
+    margin-bottom: 2rem;
+  }
+`
+
+const SidebarContent = ({ allPosts }) => {
+  const posts = allPosts.nodes
   const [search, setSearch] = useState('')
   const categories = ['All', 'Engineering', 'Business & Growth', 'Product & Design', 'Archives'] // mock, swap this from gql data
 
@@ -64,13 +73,21 @@ const SidebarContent = () => {
             addonBefore={<Icon type="oSearch" />}
           />
         </span>
+        <BlogsList>
+          {posts.map(post => <BlogCard className="blog" sidebar post={post} />)
+          }
+        </BlogsList>
       </VertFlex>
     </SidebarWrapper>
   )
 }
 
 const Drawer = props => (
-  <Sidebar sidebar={<SidebarContent />} open={props.open} styles={{ sidebar: { background: '#f4f2ee', zIndex: 3 } }}>
+  <Sidebar
+    sidebar={<SidebarContent allPosts={props.allPosts} />}
+    open={props.open}
+    styles={{ sidebar: { background: '#f4f2ee', zIndex: 3 } }}
+  >
     {props.children}
   </Sidebar>
 )

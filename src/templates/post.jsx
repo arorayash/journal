@@ -110,12 +110,13 @@ const DrawerIcon = styled.span`
   }
 `
 
-const Post = ({ data: { prismicPost }, location, path }) => {
+const Post = ({ data: { prismicPost, allPosts }, location, path }) => {
   const [showSidebar, setShowSidebar] = useState(false)
   const { author, blog_image, body, published_on, title } = prismicPost.data
   const { author_image, author_name, author_position } = author.document[0].data
+  document.addEventListener('click', e => console.log(e.target))
   return (
-    <Sidebar open={showSidebar}>
+    <Sidebar allPosts={allPosts} open={showSidebar}>
       <Layout customSEO path={path}>
         <SEO
           title={`${title.text} | ${website.titleAlt}`}
@@ -193,6 +194,30 @@ export const pageQuery = graphql`
                 text
               }
             }
+          }
+        }
+      }
+    }
+    allPosts: allPrismicBlogPost {
+      nodes {
+        slugs
+        data {
+          published_on
+          author {
+            document {
+              data {
+                author_name {
+                  text
+                }
+              }
+            }
+          }
+          blog_image {
+            alt
+            url
+          }
+          title {
+            text
           }
         }
       }

@@ -12,7 +12,7 @@ const ArticlesWrapper = styled.div`
 const Featured = ({ featured }) => (
   <ArticlesWrapper>
     {featured.map(post => (
-      <BlogCard post={post} />
+      <BlogCard sidebar={false} key={post.blog.document[0].slugs[0]} post={post.blog.document[0]} />
     ))}
   </ArticlesWrapper>
 )

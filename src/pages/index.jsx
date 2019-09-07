@@ -127,6 +127,13 @@ const NewsletterWrapper = styled.div`
   }
 `
 
+const SearchResults = styled.div`
+  display: flex;
+  flex-direction: column;
+  z-index: 2;
+  position: absolute;
+`
+
 const ContentWrapper = styled.div`
   filter: blur(${props => (props.blur ? 1 : 0)}rem);
 `
@@ -156,6 +163,7 @@ const Index = props => {
               placeholder="Search for a post"
               addonBefore={<Icon type="oSearch" />}
             />
+            {search !== '' && <SearchResults>asd</SearchResults>}
           </span>
         </HomepageHeader>
         <ContentWrapper blur={search !== ''}>
@@ -172,7 +180,7 @@ const Index = props => {
           <SectionTitle>What's on</SectionTitle>
           <EventsWrapper>
             {events.nodes.map(event => (
-              <span className="event-card">
+              <span key={event.data.title.text} className="event-card">
                 <span className="event-card-title">{event.data.title.text}</span>
                 <ColumnWrapper>
                   <span>
