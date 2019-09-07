@@ -22,7 +22,7 @@ const CardWrapper = styled.div`
     right: 0;
     border-width: 0 13rem 13rem 0;
     border-style: solid;
-    border-color: #FCD06E #f4f2ed;
+    border-color: ${props => categoryColors[props.uid]} #f4f2ed;
   }
   .arrow-icon {
     display: none;
@@ -67,12 +67,19 @@ const CardContent = styled.div`
   }
 `
 
+const categoryColors = {
+  'engineering': '#FCD06E',
+  'business-and-growth': '#025C52',
+  'product-and-design': '#813A4C',
+}
+
 const CategoryCard = ({ data, index }) => {
+  console.log(data)
   const {
     data: { title, description },
   } = data
   return (
-    <CardWrapper>
+    <CardWrapper uid={data.uid}>
       <CardContent>
         <span className="index">{index + 1 < 10 ? `0${index + 1}` : index + 1}.</span>
         <span className="title">

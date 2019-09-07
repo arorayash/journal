@@ -4,7 +4,6 @@ import styled from '@emotion/styled'
 import { Link } from 'gatsby'
 import BlogCard from './BlogCard.jsx'
 
-
 const FeaturedWrapper = styled.div`
   display: flex;
   margin-top: 10rem;

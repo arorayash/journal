@@ -75,7 +75,7 @@ const BlogLink = styled(StyledLink)`
 `
 
 const BlogCard = ({ post }) => {
-  const {data} = post.blog.document[0]
+  const { data } = post.blog.document[0]
   const slug = post.blog.document[0].slugs[0]
   const { title, published_on, blog_image } = data
   const { author_name } = data.author.document[0].data

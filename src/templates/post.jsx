@@ -26,9 +26,10 @@ const BlogInfoWrapper = styled.div`
   align-self: center;
   margin-top: 6rem;
   .author-image {
-    border: 50%;
+    border-radius: 50%;
     height: 2.8rem;
     width: 2.8rem;
+    margin-bottom: 1rem;
   }
   .blog-meta {
     font-size: 1.4rem;
@@ -57,6 +58,9 @@ const StyledTitle = styled.h1`
 const BlogContent = styled.div`
   width: 47vw;
   margin-top: 5rem;
+  font-size: 1.8rem;
+  line-height: 2.6rem;
+  color: #333333;
   @media (max-width: ${breakpoints.s}) {
     width: 100%;
   }

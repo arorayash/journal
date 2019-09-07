@@ -65,7 +65,6 @@ const SpacedFlex = styled.div`
   width: 100%;
 `
 
-
 const Footer = ({ categories, path }) => (
   <StyledFooter path={path}>
     <Section left path={path}>
@@ -75,10 +74,10 @@ const Footer = ({ categories, path }) => (
             Careers
           </StyledLink>
           <Link to="/">
-              <img src={clarisightsLogo} alt="" />
-            </Link>
+            <img src={clarisightsLogo} alt="" />
+          </Link>
         </SpacedFlex>
-      ): (
+      ) : (
         <StyledLink underline to="/careers">
           Careers
         </StyledLink>

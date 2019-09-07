@@ -30,6 +30,6 @@ export const StyledLink = styled(Link)`
   font: inherit;
   color: inherit;
   &:hover {
-    text-decoration: ${props => (props.underline ? 'underline' : 'none')}
+    text-decoration: ${props => (props.underline ? 'underline' : 'none')};
   }
 `

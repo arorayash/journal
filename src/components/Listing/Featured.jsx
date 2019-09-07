@@ -9,12 +9,12 @@ const ArticlesWrapper = styled.div`
   flex-wrap: wrap;
 `
 
-const Featured = ({ featured }) => {
-  return (
-    <ArticlesWrapper>
-      {featured.map(post => <BlogCard post={post} />)}
-    </ArticlesWrapper>
-  )
-}
+const Featured = ({ featured }) => (
+  <ArticlesWrapper>
+    {featured.map(post => (
+      <BlogCard post={post} />
+    ))}
+  </ArticlesWrapper>
+)
 
-export default Featured;
+export default Featured

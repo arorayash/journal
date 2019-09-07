@@ -12,16 +12,18 @@ const CategoriesWrapper = styled.div`
   flex-wrap: wrap;
 `
 
-const Categories = ({ categories }) => <>
+const Categories = ({ categories }) => (
+  <>
     <CategoriesWrapper>
       {categories.map((category, index) => (
         <CategoryCard data={category} index={index} />
       ))}
     </CategoriesWrapper>
   </>
+)
 
 Categories.propTypes = {
   categories: PropTypes.array.isRequired,
 }
 
-export default Categories;
+export default Categories

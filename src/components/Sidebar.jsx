@@ -52,7 +52,7 @@ const SidebarContent = () => {
         {categories.map(cat => (
           <CategoryItem>{cat}</CategoryItem>
         ))}
-        <Link to='/' className="logo">
+        <Link to="/" className="logo">
           <img src={clarisightsLogo} alt="Clarisights logo" />
         </Link>
       </VertFlex>
