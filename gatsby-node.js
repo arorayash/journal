@@ -26,17 +26,17 @@ exports.createPages = async ({ graphql, actions }) => {
     `)
   )
 
-  const postsList = result.data.allPrismicBlogPost.nodes[0].slugs
-
+  const postsList = result.data.allPrismicBlogPost.nodes
+  console.log(postsList)
   // Double check that the post has a category assigned
   postsList.forEach(edge => {
     // The uid you assigned in Prismic is the slug!
     createPage({
-      path: `/${edge}`,
+      path: `/${edge.slugs[0]}`,
       component: postTemplate,
       context: {
         // Pass the unique ID (uid) through context so the template can filter by it
-        slug: edge,
+        slug: edge.slugs[0],
       },
     })
   })

@@ -10,9 +10,10 @@ const CardWrapper = styled.div`
   text-decoration: none;
   flex-wrap: wrap;
   flex: 1 0 48%;
-  @media (min-width: ${breakpoints.s}) {
-    flex-basis: 100%;
-    border: 2p solid red;
+  @media (max-width: ${breakpoints.md}) {
+    flex: 1 0 100%;
+    flex-direction: column;
+    max-width: 100%;
   }
   max-width: 50%;
 `

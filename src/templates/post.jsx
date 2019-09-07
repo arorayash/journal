@@ -17,6 +17,10 @@ const PostWrapper = styled(Wrapper.withComponent('main'))`
   flex-direction: column;
   .blog-image {
     height: 38rem;
+    object-fit: cover;
+    @media (max-width: ${breakpoints.s}) {
+      height: 30rem;
+    }
   }
 `
 
@@ -46,6 +50,9 @@ const BlogHeader = styled.div`
   widht: 100%;
   display: flex;
   justify-content: center;
+  @media (max-width: ${breakpoints.s}) {
+    height: 30rem;
+  }
 `
 
 const StyledTitle = styled.h1`
@@ -72,6 +79,7 @@ const ImageWrapper = styled.span`
   display: flex;
   flex-direction: column;
   justify-content: center;
+  object-fit: cover;
   .tag-wrapper {
     display: ${props => (props.hideTag ? 'none' : 'block')};
     border: 1px solid #fcd06e;
@@ -97,6 +105,9 @@ const DrawerIcon = styled.span`
   top: 2.8rem;
   left: 2.4rem;
   cursor: pointer;
+  @media (max-width: ${breakpoints.s}) {
+    display: 30rem;
+  }
 `
 
 const Post = ({ data: { prismicPost }, location, path }) => {
