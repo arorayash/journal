@@ -6,6 +6,8 @@ import { Input, Icon, Button } from 'knit-ui'
 import { Layout, Listing, Wrapper, Title } from '../components'
 import { Categories, Featured } from '../components/Listing'
 import { theme } from '../styles'
+import { searchBlogs } from '../utils/search'
+import { StyledLink } from '../components/Wrappers'
 // import website from '../../config/website'
 
 const { breakpoints } = theme
@@ -132,6 +134,16 @@ const SearchResults = styled.div`
   flex-direction: column;
   z-index: 2;
   position: absolute;
+  font-size: 1.4rem;
+  line-height: 2rem;
+  color: #1a1a1a;
+  padding-left: 2.8rem;
+  margin-top: 1rem;
+  a {
+    width: fit-content;
+    cursor: pointer;
+    margin-bottom: 2rem;
+  }
 `
 
 const ContentWrapper = styled.div`
@@ -140,10 +152,11 @@ const ContentWrapper = styled.div`
 
 const Index = props => {
   const {
-    data: { homepage, categories, events, featured_posts },
+    data: { homepage, categories, events, featured_posts, allPosts },
     path,
   } = props
   const [search, setSearch] = useState('')
+  const filteredPosts = searchBlogs(allPosts.nodes, search)
   return (
     <Layout path={path}>
       <IndexWrapper>
@@ -163,7 +176,9 @@ const Index = props => {
               placeholder="Search for a post"
               addonBefore={<Icon type="oSearch" />}
             />
-            {search !== '' && <SearchResults>asd</SearchResults>}
+            {search !== '' && <SearchResults>
+              {filteredPosts.map(post => <StyledLink to={post.slugs[0]}>{post.data.title.text}</StyledLink>)}
+            </SearchResults>}
           </span>
         </HomepageHeader>
         <ContentWrapper blur={search !== ''}>
@@ -262,6 +277,16 @@ export const pageQuery = graphql`
             text
           }
           time(formatString: "Do MMMM, YYYY")
+        }
+      }
+    }
+    allPosts: allPrismicBlogPost {
+      nodes {
+        slugs
+        data {
+          title {
+            text
+          }
         }
       }
     }
