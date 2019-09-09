@@ -56,19 +56,19 @@ const ImageWrapper = styled.span`
     width: 100%;
   }
   .tag-wrapper {
-    border: 1px solid #fcd06e;
     float: left;
     position: absolute;
     left: 0px;
     bottom: 0px;
     border-radius: 4px;
     z-index: 2;
-    background-color: #fcd06e;
+    background-color: ${props => categoryColors[props.categorySlug].bg};
+    color: ${props => categoryColors[props.categorySlug].text};
     font-size: 1.4rem;
     line-height: 1rem;
-    padding: 1rem 0.4rem;
+    padding: 0.4rem 1rem;
+    line-height: 2rem;
     span {
-      color: #1a1a1a;
       opacity: 0.6;
     }
   }
@@ -78,20 +78,36 @@ const BlogLink = styled(StyledLink)`
   width: 100%;
 `
 
+const categoryColors = {
+  'engineering': {
+    bg: '#FCD06E',
+    text: '#1a1a1a',
+  },
+  'business--growth': {
+    bg: '#025C52',
+    text: '#f7f7f7',
+  },
+  'product--design': {
+    bg: '#813A4C',
+    text: '#ffffff',
+  },
+}
+
 const BlogCard = ({ post, sidebar = false }) => {
-  console.log(post, sidebar)
+  console.log(post)
   const slug = post.slugs[0]
   const { title, published_on, blog_image } = post.data
   const { author_name } = post.data.author.document[0].data
-
+  const category = post.data.category.document[0].data.title.text
+  const categorySlug = post.data.category.document[0].slugs[0]
   return (
     <CardWrapper sidebar={sidebar}>
       <BlogLink to={slug}>
         <CardContent sidebar={sidebar}>
-          <ImageWrapper sidebar={sidebar}>
+          <ImageWrapper categorySlug={categorySlug} sidebar={sidebar}>
             <img alt={blog_image.alt} src={blog_image.url} />
             <span className="tag-wrapper">
-              <span>#Engineering</span>
+              <span>#{category}</span>
             </span>
           </ImageWrapper>
           <span className="post-title">{title.text}</span>

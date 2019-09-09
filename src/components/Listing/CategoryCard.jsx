@@ -74,7 +74,6 @@ const categoryColors = {
 }
 
 const CategoryCard = ({ data, index }) => {
-  console.log(data)
   const {
     data: { title, description },
   } = data

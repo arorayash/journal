@@ -176,9 +176,13 @@ const Index = props => {
               placeholder="Search for a post"
               addonBefore={<Icon type="oSearch" />}
             />
-            {search !== '' && <SearchResults>
-              {filteredPosts.map(post => <StyledLink to={post.slugs[0]}>{post.data.title.text}</StyledLink>)}
-            </SearchResults>}
+            {search !== '' && (
+              <SearchResults>
+                {filteredPosts.map(post => (
+                  <StyledLink to={post.slugs[0]}>{post.data.title.text}</StyledLink>
+                ))}
+              </SearchResults>
+            )}
           </span>
         </HomepageHeader>
         <ContentWrapper blur={search !== ''}>
@@ -313,6 +317,16 @@ export const pageQuery = graphql`
                   }
                   title {
                     text
+                  }
+                  category {
+                    document {
+                      slugs
+                      data {
+                        title {
+                          text
+                        }
+                      }
+                    }
                   }
                 }
                 slugs

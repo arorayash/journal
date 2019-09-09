@@ -17,7 +17,7 @@ export const ImageWrapper = styled.span`
     background-color: #fcd06e;
     font-size: 1.4rem;
     line-height: 1rem;
-    padding: 1rem 0.4rem;
+    padding: 0.4rem 1rem;
     span {
       color: #1a1a1a;
       opacity: 0.6;

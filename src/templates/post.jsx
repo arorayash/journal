@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import PropTypes from 'prop-types'
 import { graphql } from 'gatsby'
 import styled from '@emotion/styled'
@@ -82,23 +82,37 @@ const ImageWrapper = styled.span`
   object-fit: cover;
   .tag-wrapper {
     display: ${props => (props.hideTag ? 'none' : 'block')};
-    border: 1px solid #fcd06e;
     float: left;
     position: absolute;
+    line-height: 2rem;
     left: 0px;
     top: 0px;
     border-radius: 4px;
     z-index: 2;
-    background-color: #fcd06e;
+    background-color: ${props => categoryColors[props.categorySlug].bg};
     font-size: 1.4rem;
-    line-height: 1rem;
-    padding: 1rem 0.4rem;
+    padding: 0.4rem 1rem;
     span {
-      color: #1a1a1a;
+      color: ${props => categoryColors[props.categorySlug].text};
       opacity: 0.6;
     }
   }
 `
+
+const categoryColors = {
+  'engineering': {
+    bg: '#FCD06E',
+    text: '#1a1a1a',
+  },
+  'business--growth': {
+    bg: '#025C52',
+    text: '#f7f7f7',
+  },
+  'product--design': {
+    bg: '#813A4C',
+    text: '#ffffff',
+  },
+}
 
 const DrawerIcon = styled.span`
   position: fixed;
@@ -112,9 +126,18 @@ const DrawerIcon = styled.span`
 
 const Post = ({ data: { prismicPost, allPosts }, location, path }) => {
   const [showSidebar, setShowSidebar] = useState(false)
-  const { author, blog_image, body, published_on, title } = prismicPost.data
+  const { author, blog_image, body, published_on, title, category } = prismicPost.data
   const { author_image, author_name, author_position } = author.document[0].data
-  document.addEventListener('click', e => console.log(e.target))
+  console.log({prismicPost})
+  // useEffect(() => {
+  //   document.addEventListener('click', e => {
+  //     e.stopImmediatePropagation()
+  //     console.log(e.target)
+  //   })
+  //   return () => {
+  //     document.removeEventListener('click')
+  //   };
+  // }, [])
   return (
     <Sidebar allPosts={allPosts} open={showSidebar}>
       <Layout customSEO path={path}>
@@ -130,10 +153,10 @@ const Post = ({ data: { prismicPost, allPosts }, location, path }) => {
             <img src={drawer} alt="drawer icon" />
           </DrawerIcon>
           <BlogHeader>
-            <ImageWrapper hideTag={window.innerWidth < 600}>
+            <ImageWrapper categorySlug={category.document[0].slugs[0]} hideTag={window.innerWidth < 600}>
               <img className="blog-image" src={blog_image.url} alt={blog_image.alt} />
               <span className="tag-wrapper">
-                <span>#Engineering</span>
+                <span>#{category.document[0].data.title.text}</span>
               </span>
             </ImageWrapper>
           </BlogHeader>
@@ -180,6 +203,16 @@ export const pageQuery = graphql`
           alt
           url
         }
+        category {
+          document {
+            slugs
+            data {
+              title {
+                text
+              }
+            }
+          }
+        }
         author {
           document {
             data {
@@ -207,6 +240,16 @@ export const pageQuery = graphql`
             document {
               data {
                 author_name {
+                  text
+                }
+              }
+            }
+          }
+          category {
+            document {
+              slugs
+              data {
+                title {
                   text
                 }
               }

@@ -5,6 +5,7 @@ import { Input, Icon } from 'knit-ui'
 import { Link } from 'gatsby'
 import clarisightsLogo from '../assets/logo.svg'
 import BlogCard from './Listing/BlogCard'
+import { searchBlogs } from '../utils/search'
 
 const SidebarWrapper = styled.div`
   width: 50vw;
@@ -54,6 +55,7 @@ const SidebarContent = ({ allPosts }) => {
   const posts = allPosts.nodes
   const [search, setSearch] = useState('')
   const categories = ['All', 'Engineering', 'Business & Growth', 'Product & Design', 'Archives'] // mock, swap this from gql data
+  const filteredPosts = searchBlogs(posts, search)
 
   return (
     <SidebarWrapper>
@@ -74,7 +76,7 @@ const SidebarContent = ({ allPosts }) => {
           />
         </span>
         <BlogsList>
-          {posts.map(post => <BlogCard className="blog" sidebar post={post} />)
+          {filteredPosts.map(post => <BlogCard className="blog" sidebar post={post} />)
           }
         </BlogsList>
       </VertFlex>

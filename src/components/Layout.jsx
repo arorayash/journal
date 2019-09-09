@@ -81,7 +81,6 @@ const PureLayout = ({ children, data, customSEO, path }) => (
 
 class Layout extends Component {
   render() {
-    console.log('rendered')
     return (
       <StaticQuery
         query={graphql`

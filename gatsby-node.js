@@ -27,7 +27,6 @@ exports.createPages = async ({ graphql, actions }) => {
   )
 
   const postsList = result.data.allPrismicBlogPost.nodes
-  console.log(postsList)
   // Double check that the post has a category assigned
   postsList.forEach(edge => {
     // The uid you assigned in Prismic is the slug!
