@@ -153,7 +153,7 @@ const Post = ({ data: { prismicPost, allPosts }, location, path }) => {
             <img src={drawer} alt="drawer icon" />
           </DrawerIcon>
           <BlogHeader>
-            <ImageWrapper categorySlug={category.document[0].slugs[0]} hideTag={window.innerWidth < 600}>
+            <ImageWrapper categorySlug={category.document[0].slugs[0]} hideTag={window && window.innerWidth < 600}>
               <img className="blog-image" src={blog_image.url} alt={blog_image.alt} />
               <span className="tag-wrapper">
                 <span>#{category.document[0].data.title.text}</span>

@@ -68,7 +68,7 @@ const SpacedFlex = styled.div`
 const Footer = ({ categories, path }) => (
   <StyledFooter path={path}>
     <Section left path={path}>
-      {window.innerWidth < 600 ? (
+      {window && window.innerWidth < 600 ? (
         <SpacedFlex>
           <StyledLink underline={true} to="/careers">
             Careers
