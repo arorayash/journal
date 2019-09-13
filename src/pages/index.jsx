@@ -157,6 +157,8 @@ const Index = props => {
   } = props
   const [search, setSearch] = useState('')
   const filteredPosts = searchBlogs(allPosts.nodes, search)
+
+  const featuredBlogs = featured_posts.nodes[0].data.featured_blogs;
   return (
     <Layout path={path}>
       <IndexWrapper>
@@ -188,7 +190,7 @@ const Index = props => {
         <ContentWrapper blur={search !== ''}>
           <Categories categories={categories.nodes} />
           <SectionTitle>Featured Topics</SectionTitle>
-          <Featured featured={featured_posts.nodes[0].data.featured_blogs} />
+          <Featured featured={featuredBlogs} />
           <NewsletterWrapper>
             Get the latest news and views from Clarisights delivered to your inbox. No spam, only quality content.
             <span>

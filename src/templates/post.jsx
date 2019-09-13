@@ -3,7 +3,6 @@ import PropTypes from 'prop-types'
 import { graphql } from 'gatsby'
 import styled from '@emotion/styled'
 import { Layout, Wrapper, SliceZone, Title, SEO } from '../components'
-import Categories from '../components/Listing/Categories'
 import website from '../../config/website'
 import drawer from '../assets/drawer.svg'
 import Sidebar from '../components/Sidebar'
@@ -128,7 +127,7 @@ const Post = ({ data: { prismicPost, allPosts }, location, path }) => {
   const [showSidebar, setShowSidebar] = useState(false)
   const { author, blog_image, body, published_on, title, category } = prismicPost.data
   const { author_image, author_name, author_position } = author.document[0].data
-  console.log({prismicPost})
+  const categorySlug = category.document[0].slugs[0]
   // useEffect(() => {
   //   document.addEventListener('click', e => {
   //     e.stopImmediatePropagation()
@@ -153,7 +152,10 @@ const Post = ({ data: { prismicPost, allPosts }, location, path }) => {
             <img src={drawer} alt="drawer icon" />
           </DrawerIcon>
           <BlogHeader>
-            <ImageWrapper categorySlug={category.document[0].slugs[0]} hideTag={typeof window !== 'undefined' && window.innerWidth < 600}>
+            <ImageWrapper
+              categorySlug={categorySlug}
+              hideTag={typeof window !== 'undefined' && window.innerWidth < 600}
+            >
               <img className="blog-image" src={blog_image.url} alt={blog_image.alt} />
               <span className="tag-wrapper">
                 <span>#{category.document[0].data.title.text}</span>

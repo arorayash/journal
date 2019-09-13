@@ -1,6 +1,7 @@
 import React from 'react'
 import styled from '@emotion/styled'
 import { Icon } from 'knit-ui'
+import { firstCategory, secondCategory, thirdCategory } from '../../assets'
 
 const CardWrapper = styled.div`
     position: relative;
@@ -48,16 +49,15 @@ const CardContent = styled.div`
   flex-direction: column;
   justify-content: flex-end;
   padding: 4rem;
-
-  .index {
-    font-size: 9rem;
-    line-height: 9rem;
-  }
   .title {
     font-size: 2.4rem;
     line-height: 2.9rem;
     font-weight: bold;
     margin-bottom: 1rem;
+  }
+  .num {
+    width: fit-content;
+    line-height: 9rem;
   }
   .desc {
     color: #666666;
@@ -73,6 +73,12 @@ const categoryColors = {
   'product-and-design': '#813A4C',
 }
 
+const categoryIndex = {
+  '0': firstCategory,
+  '1': secondCategory,
+  '2': thirdCategory,
+}
+
 const CategoryCard = ({ data, index }) => {
   const {
     data: { title, description },
@@ -80,7 +86,9 @@ const CategoryCard = ({ data, index }) => {
   return (
     <CardWrapper uid={data.uid}>
       <CardContent>
-        <span className="index">{index + 1 < 10 ? `0${index + 1}` : index + 1}.</span>
+        <span className="num">
+          <img src={categoryIndex[index]} alt=""/>
+        </span>
         <span className="title">
           {title.text}
           <Icon height="20px" type="oArrowDownward" className="arrow-icon" />
