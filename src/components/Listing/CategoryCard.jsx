@@ -6,11 +6,11 @@ import { firstCategory, secondCategory, thirdCategory } from '../../assets'
 const CardWrapper = styled.div`
     position: relative;
     display: flex;
-    width: 38rem;
+    max-width: 38rem;
+    min-width: 32rem;
+    flex: 1;
     margin-bottom: 4rem;
-    &:not(:last-child) {
-      margin-right: 2.8rem;
-    }
+    margin-right: 2.8rem;
     height: 40rem;
     background: #EBE7E0;
     border-radius: 2px;
@@ -69,8 +69,8 @@ const CardContent = styled.div`
 
 const categoryColors = {
   'engineering': '#FCD06E',
-  'business-and-growth': '#025C52',
-  'product-and-design': '#813A4C',
+  'business--growth': '#025C52',
+  'product--design': '#813A4C',
 }
 
 const categoryIndex = {

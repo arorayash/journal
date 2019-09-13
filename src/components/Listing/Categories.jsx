@@ -1,8 +1,7 @@
-import React, { Component } from 'react'
+import React from 'react'
 import PropTypes from 'prop-types'
 import styled from '@emotion/styled'
-import { Link } from 'gatsby'
-import kebabCase from 'lodash/kebabCase'
+import { StyledLink } from '../Wrappers'
 import CategoryCard from './CategoryCard.jsx'
 
 const CategoriesWrapper = styled.div`
@@ -12,15 +11,24 @@ const CategoriesWrapper = styled.div`
   flex-wrap: wrap;
 `
 
-const Categories = ({ categories }) => (
-  <>
-    <CategoriesWrapper>
-      {categories.map((category, index) => (
-        <CategoryCard key={category.data.title.text} data={category} index={index} />
-      ))}
-    </CategoriesWrapper>
-  </>
-)
+const getFirstCategory = (allPosts, category) =>
+  allPosts.nodes.find(post => post.data.category.slug === category).slugs[0]
+
+const Categories = ({ categories, allPosts }) => {
+  console.log({ allPosts, categories })
+
+  return (
+    <>
+      <CategoriesWrapper>
+        {categories.map((category, index) => (
+          <StyledLink to={getFirstCategory(allPosts, category.uid)}>
+            <CategoryCard key={category.data.title.text} data={category} index={index} />
+          </StyledLink>
+        ))}
+      </CategoriesWrapper>
+    </>
+  )
+}
 
 Categories.propTypes = {
   categories: PropTypes.array.isRequired,

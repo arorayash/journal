@@ -188,7 +188,7 @@ const Index = props => {
           </span>
         </HomepageHeader>
         <ContentWrapper blur={search !== ''}>
-          <Categories categories={categories.nodes} />
+          <Categories allPosts={allPosts} categories={categories.nodes} />
           <SectionTitle>Featured Topics</SectionTitle>
           <Featured featured={featuredBlogs} />
           <NewsletterWrapper>
@@ -286,12 +286,15 @@ export const pageQuery = graphql`
         }
       }
     }
-    allPosts: allPrismicBlogPost {
+    allPosts: allPrismicBlogPost(sort: { order: ASC, fields: first_publication_date }) {
       nodes {
         slugs
         data {
           title {
             text
+          }
+          category {
+            slug
           }
         }
       }
