@@ -24,7 +24,7 @@ const StyledFooter = styled.footer`
   @media (max-width: ${breakpoints.s}) {
     flex-direction: column;
     align-items: start;
-    height: 33rem;
+    height: 43rem;
     padding: 2.6rem 2.6rem 5rem 2.6rem;
   }
 `
@@ -67,15 +67,28 @@ const SpacedFlex = styled.div`
   width: 100%;
 `
 
-const CarersLink = styled.a`
+const Column = styled.div`
+  display: flex;
+  flex-direction: column;
+  &:last-child {
+    margin-top: 3rem;
+  }
+`
+
+const ExternLink = styled.a`
   text-decoration: none;
   color: #fff;
   font-style: normal;
   font-weight: normal;
   font-size: 14px;
   line-height: 20px;
+  margin-bottom: 0.5rem;
   height: fit-content;
-  &:hover {
+  width: fit-content;
+  &:hover,
+  &:active,
+  &:visited,
+  &:focus {
     text-decoration: none;
   }
 `
@@ -85,7 +98,7 @@ const Footer = ({ categories, path, allPosts }) => (
     <Section left path={path}>
       {typeof window !== 'undefined' && window.innerWidth < 600 ? (
         <SpacedFlex>
-          <StyledLink underline={true} to="/careers">
+          <StyledLink underline to="/careers">
             Careers
           </StyledLink>
           <Link to="/">
@@ -93,9 +106,9 @@ const Footer = ({ categories, path, allPosts }) => (
           </Link>
         </SpacedFlex>
       ) : (
-        <CarersLink target="_blank" href="https://clarisights.com/careers">
+        <ExternLink target="_blank" href="https://clarisights.com/careers">
           Careers
-        </CarersLink>
+        </ExternLink>
       )}
       {path !== '/' && (
         <CategoriesWrapper>
@@ -109,8 +122,26 @@ const Footer = ({ categories, path, allPosts }) => (
       )}
     </Section>
     <Section>
-      <span>Privacy Policy</span>
-      <span>© Clarisights 2019 </span>
+      <Column>
+        <ExternLink target="_blank" href="https://github.com/clarisights">
+          GitHub
+        </ExternLink>
+        <ExternLink target="_blank" href="https://twitter.com/clarisights">
+          Twitter
+        </ExternLink>
+        <ExternLink target="_blank" href="https://www.linkedin.com/company/clarisights/">
+          LinkedIn
+        </ExternLink>
+        <ExternLink target="_blank" href="https://www.dribble.com/clarisights">
+          Dribble
+        </ExternLink>
+      </Column>
+      <Column>
+        <span>© Clarisights 2019</span>
+        <ExternLink target="_blank" href="https://clarisights.com/privacy-policy">
+          Privacy Policy
+        </ExternLink>
+      </Column>
     </Section>
   </StyledFooter>
 )
