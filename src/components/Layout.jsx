@@ -74,7 +74,7 @@ const PureLayout = ({ children, data, customSEO, path }) => (
       <SkipNavLink />
       {!customSEO && <SEO />}
       {children}
-      <Footer path={path} categories={data.allPrismicCategory.nodes} />
+      <Footer path={path} categories={data.allPrismicCategory.nodes} allPosts={data.allPosts} />
     </>
   </ThemeProvider>
 )
@@ -88,6 +88,7 @@ class Layout extends Component {
             allPrismicCategory {
               nodes {
                 slugs
+                uid
                 data {
                   title {
                     text
@@ -95,26 +96,15 @@ class Layout extends Component {
                 }
               }
             }
-            allPrismicBlogPost {
+            allPosts: allPrismicBlogPost(sort: { order: ASC, fields: first_publication_date }) {
               nodes {
                 slugs
                 data {
-                  published_on
-                  author {
-                    document {
-                      data {
-                        author_name {
-                          text
-                        }
-                      }
-                    }
-                  }
-                  blog_image {
-                    alt
-                    url
-                  }
                   title {
                     text
+                  }
+                  category {
+                    slug
                   }
                 }
               }

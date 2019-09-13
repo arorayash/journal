@@ -3,6 +3,7 @@ import styled from '@emotion/styled'
 import { Link } from 'gatsby'
 import { StyledLink } from './Wrappers'
 import { theme } from '../styles'
+import { getFirstCategory } from '../utils'
 import clarisightsLogo from '../assets/white-logo.svg'
 
 const { breakpoints } = theme
@@ -23,6 +24,7 @@ const StyledFooter = styled.footer`
   @media (max-width: ${breakpoints.s}) {
     flex-direction: column;
     align-items: start;
+    height: 33rem;
     padding: 2.6rem 2.6rem 5rem 2.6rem;
   }
 `
@@ -50,7 +52,7 @@ const CategoriesWrapper = styled.span`
   font-size: 1.4rem;
   line-height: 2rem;
   color: #a6a6a6;
-  span {
+  a {
     margin-top: 1rem;
     color: #fff;
   }
@@ -65,7 +67,20 @@ const SpacedFlex = styled.div`
   width: 100%;
 `
 
-const Footer = ({ categories, path }) => (
+const CarersLink = styled.a`
+  text-decoration: none;
+  color: #fff;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 20px;
+  height: fit-content;
+  &:hover {
+    text-decoration: none;
+  }
+`
+
+const Footer = ({ categories, path, allPosts }) => (
   <StyledFooter path={path}>
     <Section left path={path}>
       {typeof window !== 'undefined' && window.innerWidth < 600 ? (
@@ -78,15 +93,17 @@ const Footer = ({ categories, path }) => (
           </Link>
         </SpacedFlex>
       ) : (
-        <StyledLink underline={true} to="/careers">
+        <CarersLink target="_blank" href="https://clarisights.com/careers">
           Careers
-        </StyledLink>
+        </CarersLink>
       )}
       {path !== '/' && (
         <CategoriesWrapper>
           Journal
           {categories.map(cat => (
-            <span key={cat.data.title.text}>/ {cat.data.title.text}</span>
+            <StyledLink to={getFirstCategory(allPosts, cat.uid)}>
+              <span key={cat.data.title.text}>/ {cat.data.title.text}</span>
+            </StyledLink>
           ))}
         </CategoriesWrapper>
       )}
