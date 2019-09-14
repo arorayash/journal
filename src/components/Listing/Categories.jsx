@@ -12,8 +12,11 @@ const CategoriesWrapper = styled.div`
   flex-wrap: wrap;
 `
 
+const categoriesOrder = ['engineering', 'product--design', 'business--growth']
+
 const Categories = ({ categories, allPosts }) => {
-  console.log({ allPosts, categories })
+  // Fix the order of catrgories since prismic sends them unordered
+  categories.sort((a, b) => categoriesOrder.indexOf(a.uid) - categoriesOrder.indexOf(b.uid))
 
   return (
     <>
