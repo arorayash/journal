@@ -1,6 +1,15 @@
 import React from 'react'
 import styled from '@emotion/styled'
-import { TwitterShareButton, TwitterIcon, LinkedinShareButton, LinkedinIcon, PocketShareButton, PocketIcon } from 'react-share'
+import {
+  TwitterShareButton,
+  TwitterIcon,
+  LinkedinShareButton,
+  LinkedinIcon,
+  FacebookShareButton,
+  FacebookIcon,
+  PocketShareButton,
+  PocketIcon,
+} from 'react-share'
 import { theme } from '../styles'
 
 const { breakpoints } = theme
@@ -26,21 +35,22 @@ const ShareWrapper = styled.div`
   }
 `
 
-const SocialShare = ({ title, url  }) => {
-  return (
-    <ShareWrapper>
-      <span>Share</span>
-      <TwitterShareButton url={url} title={title}>
-        <TwitterIcon size={20} />
-      </TwitterShareButton>
-      <LinkedinShareButton url={url}>
-        <LinkedinIcon size={20} />
-      </LinkedinShareButton>
-      <PocketShareButton url={url} title={title}>
-        <PocketIcon size={20} />
-      </PocketShareButton>
-    </ShareWrapper>
-  )
-}
+const SocialShare = ({ title, url }) => (
+  <ShareWrapper>
+    <span>Share</span>
+    <TwitterShareButton url={url} title={title}>
+      <TwitterIcon size={20} />
+    </TwitterShareButton>
+    <LinkedinShareButton url={url}>
+      <LinkedinIcon size={20} />
+    </LinkedinShareButton>
+    <FacebookShareButton quote={title} hashtag="clarisights" url={url}>
+      <FacebookIcon size={20} />
+    </FacebookShareButton>
+    <PocketShareButton url={url} title={title}>
+      <PocketIcon size={20} />
+    </PocketShareButton>
+  </ShareWrapper>
+)
 
 export default SocialShare

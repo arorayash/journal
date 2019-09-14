@@ -30,7 +30,7 @@ const BlogInfoWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-self: center;
-  margin-top: -3.6rem;
+  margin-top: -6.8rem;
   .author-image {
     border-radius: 50%;
     height: 2.8rem;
