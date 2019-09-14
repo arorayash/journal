@@ -1,20 +1,20 @@
 /* eslint no-unused-expressions: 0 */
 /* eslint react/destructuring-assignment: 0 */
 
-import React, { Component } from 'react'
-import PropTypes from 'prop-types'
-import { StaticQuery, graphql } from 'gatsby'
-import { Global, css } from '@emotion/core'
-import { ThemeProvider } from 'emotion-theming'
-import '@reach/skip-nav/styles.css'
+import React, { Component } from "react";
+import PropTypes from "prop-types";
+import { StaticQuery, graphql } from "gatsby";
+import { Global, css } from "@emotion/core";
+import { ThemeProvider } from "emotion-theming";
+import "@reach/skip-nav/styles.css";
 
-import Footer from './Footer'
-import SEO from './SEO'
-import SkipNavLink from './SkipNavLink'
-import { theme, reset } from '../styles'
+import Footer from "./Footer";
+import SEO from "./SEO";
+import SkipNavLink from "./SkipNavLink";
+import { theme, reset } from "../styles";
 
-import 'typeface-inter'
-import 'typeface-source-code-pro'
+import "typeface-inter";
+import "typeface-source-code-pro";
 
 const globalStyle = css`
   ${reset}
@@ -66,7 +66,7 @@ const globalStyle = css`
       font-size: 0.563rem !important;
     }
   }
-`
+`;
 
 const PureLayout = ({ children, data, customSEO, path }) => (
   <ThemeProvider theme={theme}>
@@ -75,10 +75,14 @@ const PureLayout = ({ children, data, customSEO, path }) => (
       <SkipNavLink />
       {!customSEO && <SEO />}
       {children}
-      <Footer path={path} categories={data.allPrismicCategory.nodes} allPosts={data.allPosts} />
+      <Footer
+        path={path}
+        categories={data.allPrismicCategory.nodes}
+        allPosts={data.allPosts}
+      />
     </>
   </ThemeProvider>
-)
+);
 
 class Layout extends Component {
   render() {
@@ -97,7 +101,9 @@ class Layout extends Component {
                 }
               }
             }
-            allPosts: allPrismicBlogPost(sort: { order: ASC, fields: first_publication_date }) {
+            allPosts: allPrismicBlogPost(
+              sort: { order: ASC, fields: first_publication_date }
+            ) {
               nodes {
                 slugs
                 data {
@@ -118,22 +124,22 @@ class Layout extends Component {
           </PureLayout>
         )}
       />
-    )
+    );
   }
 }
 
-export default Layout
+export default Layout;
 
 Layout.propTypes = {
-  children: PropTypes.oneOfType([PropTypes.array, PropTypes.node]).isRequired,
-}
+  children: PropTypes.oneOfType([PropTypes.array, PropTypes.node]).isRequired
+};
 
 PureLayout.propTypes = {
   children: PropTypes.oneOfType([PropTypes.array, PropTypes.node]).isRequired,
   data: PropTypes.object.isRequired,
-  customSEO: PropTypes.bool,
-}
+  customSEO: PropTypes.bool
+};
 
 PureLayout.defaultProps = {
-  customSEO: false,
-}
+  customSEO: false
+};

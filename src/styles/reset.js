@@ -1,4 +1,4 @@
-import { css } from '@emotion/core'
+import { css } from "@emotion/core";
 
 const reset = css`
   *,
@@ -13,7 +13,7 @@ const reset = css`
     -ms-overflow-style: scrollbar;
     -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
   }
-  [tabindex='-1']:focus {
+  [tabindex="-1"]:focus {
     outline: none !important;
   }
   pre {
@@ -27,13 +27,13 @@ const reset = css`
   img {
     vertical-align: middle;
   }
-  [role='button'] {
+  [role="button"] {
     cursor: pointer;
   }
   a,
   area,
   button,
-  [role='button'],
+  [role="button"],
   input,
   label,
   select,
@@ -69,10 +69,10 @@ const reset = css`
   textarea {
     line-height: inherit;
   }
-  input[type='date'],
-  input[type='time'],
-  input[type='datetime-local'],
-  input[type='month'] {
+  input[type="date"],
+  input[type="time"],
+  input[type="datetime-local"],
+  input[type="month"] {
     -webkit-appearance: listbox;
   }
   textarea {
@@ -92,7 +92,7 @@ const reset = css`
     font-size: 1.5rem;
     line-height: inherit;
   }
-  input[type='search'] {
+  input[type="search"] {
     -webkit-appearance: none;
   }
   output {
@@ -105,6 +105,6 @@ const reset = css`
   [hidden] {
     display: none !important;
   }
-`
+`;
 
-export default reset
+export default reset;

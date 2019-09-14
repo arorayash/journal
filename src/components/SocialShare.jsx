@@ -1,5 +1,5 @@
-import React from 'react'
-import styled from '@emotion/styled'
+import React from "react";
+import styled from "@emotion/styled";
 import {
   TwitterShareButton,
   TwitterIcon,
@@ -8,11 +8,11 @@ import {
   FacebookShareButton,
   FacebookIcon,
   PocketShareButton,
-  PocketIcon,
-} from 'react-share'
-import { theme } from '../styles'
+  PocketIcon
+} from "react-share";
+import { theme } from "../styles";
 
-const { breakpoints } = theme
+const { breakpoints } = theme;
 
 const ShareWrapper = styled.div`
   position: sticky;
@@ -33,7 +33,7 @@ const ShareWrapper = styled.div`
     width: fit-content;
     margin-top: 1.2rem;
   }
-`
+`;
 
 const SocialShare = ({ title, url }) => (
   <ShareWrapper>
@@ -51,6 +51,6 @@ const SocialShare = ({ title, url }) => (
       <PocketIcon size={20} />
     </PocketShareButton>
   </ShareWrapper>
-)
+);
 
-export default SocialShare
+export default SocialShare;

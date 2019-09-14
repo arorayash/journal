@@ -1,36 +1,36 @@
-import React from 'react'
-import styled from '@emotion/styled'
-import { blogReadTime } from '../../utils'
-import { StyledLink } from '../Wrappers'
-import { theme } from '../../styles'
-import fallbackImage from '../../assets/bg_fallback.svg'
+import React from "react";
+import styled from "@emotion/styled";
+import { blogReadTime } from "../../utils";
+import { StyledLink } from "../Wrappers";
+import { theme } from "../../styles";
+import fallbackImage from "../../assets/bg_fallback.svg";
 
-const { breakpoints } = theme
+const { breakpoints } = theme;
 
 const CardWrapper = styled.div`
   display: flex;
   text-decoration: none;
   flex-wrap: wrap;
   flex: 1 0 48%;
-  margin-bottom: ${props => props.sidebar ? '2': '0'}rem;
+  margin-bottom: ${props => (props.sidebar ? "2" : "0")}rem;
   @media (max-width: ${breakpoints.md}) {
     flex: 1 0 100%;
     flex-direction: column;
     max-width: 100%;
   }
-  max-width: ${props => (props.sidebar ? '100': '50')}%;
-`
+  max-width: ${props => (props.sidebar ? "100" : "50")}%;
+`;
 
 const CardContent = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
-  padding: ${props => props.sidebar ? '0': '4'}rem;
+  padding: ${props => (props.sidebar ? "0" : "4")}rem;
   .post-title {
-    font-size: ${props => props.sidebar ? '2': '2.4'}rem;
+    font-size: ${props => (props.sidebar ? "2" : "2.4")}rem;
     line-height: 2.9rem;
     font-weight: 600;
-    margin-top: ${props => props.sidebar ? '0': '2'}rem;
+    margin-top: ${props => (props.sidebar ? "0" : "2")}rem;
     color: #1a1a1a;
     width: fit-content;
     text-decoration: underline;
@@ -50,14 +50,14 @@ const CardContent = styled.div`
       text-decoration-color: #1a1a1a;
     }
   }
-`
+`;
 
 const ImageWrapper = styled.span`
   position: relative;
   display: flex;
   justify-content: center;
   img {
-    height: ${props => props.sidebar ? '16': '28'}rem;
+    height: ${props => (props.sidebar ? "16" : "28")}rem;
     object-fit: cover;
     width: 100%;
   }
@@ -78,34 +78,33 @@ const ImageWrapper = styled.span`
       opacity: 0.6;
     }
   }
-`
+`;
 
 const BlogLink = styled(StyledLink)`
   width: 100%;
-`
+`;
 
 const categoryColors = {
-  'engineering': {
-    bg: '#FCD06E',
-    text: '#1a1a1a',
+  engineering: {
+    bg: "#FCD06E",
+    text: "#1a1a1a"
   },
-  'business--growth': {
-    bg: '#025C52',
-    text: '#f7f7f7',
+  "business--growth": {
+    bg: "#025C52",
+    text: "#f7f7f7"
   },
-  'product--design': {
-    bg: '#813A4C',
-    text: '#ffffff',
-  },
-}
-
+  "product--design": {
+    bg: "#813A4C",
+    text: "#ffffff"
+  }
+};
 
 const BlogCard = ({ post, sidebar = false }) => {
-  const slug = post.slugs[0]
-  const { title, published_on, blog_image } = post.data
-  const { author_name } = post.data.author.document[0].data
-  const category = post.data.category.document[0].data.title.text
-  const categorySlug = post.data.category.document[0].slugs[0]
+  const slug = post.slugs[0];
+  const { title, published_on, blog_image } = post.data;
+  const { author_name } = post.data.author.document[0].data;
+  const category = post.data.category.document[0].data.title.text;
+  const categorySlug = post.data.category.document[0].slugs[0];
   return (
     <CardWrapper sidebar={sidebar}>
       <BlogLink to={slug}>
@@ -126,7 +125,7 @@ const BlogCard = ({ post, sidebar = false }) => {
         </CardContent>
       </BlogLink>
     </CardWrapper>
-  )
-}
+  );
+};
 
-export default BlogCard
+export default BlogCard;

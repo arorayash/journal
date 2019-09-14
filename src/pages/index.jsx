@@ -1,16 +1,16 @@
-import React, { useState } from 'react'
-import PropTypes from 'prop-types'
-import styled from '@emotion/styled'
-import { graphql } from 'gatsby'
-import { Input, Icon, Button } from 'knit-ui'
-import { Layout, Listing, Wrapper, Title } from '../components'
-import { Categories, Featured } from '../components/Listing'
-import { theme } from '../styles'
-import { searchBlogs } from '../utils'
-import { StyledLink } from '../components/Wrappers'
+import React, { useState } from "react";
+import PropTypes from "prop-types";
+import styled from "@emotion/styled";
+import { graphql } from "gatsby";
+import { Input, Icon, Button } from "knit-ui";
+import { Layout, Listing, Wrapper, Title } from "../components";
+import { Categories, Featured } from "../components/Listing";
+import { theme } from "../styles";
+import { searchBlogs } from "../utils";
+import { StyledLink } from "../components/Wrappers";
 // import website from '../../config/website'
 
-const { breakpoints } = theme
+const { breakpoints } = theme;
 
 const HomepageHeader = styled.div`
   display: flex;
@@ -45,24 +45,24 @@ const HomepageHeader = styled.div`
   @media (max-width: ${breakpoints.s}) {
     width: 100%;
   }
-`
+`;
 
 const Underline = styled.span`
   text-decoration-line: underline;
-`
+`;
 
 const ColumnWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-end;
-`
+`;
 
 const SectionTitle = styled.div`
   margin: 10rem 0 2rem 0;
   font-size: 2.4rem;
   line-height: 2.8rem;
   color: #4c4c4c;
-`
+`;
 
 const EventsWrapper = styled.div`
   width: 50%;
@@ -84,7 +84,7 @@ const EventsWrapper = styled.div`
   @media (max-width: ${breakpoints.md}) {
     width: 100%;
   }
-`
+`;
 
 const IndexWrapper = styled.div`
   padding: 12.5rem;
@@ -95,7 +95,7 @@ const IndexWrapper = styled.div`
     padding: 2.6rem;
     margin-top: 7.5rem;
   }
-`
+`;
 
 const NewsletterWrapper = styled.div`
   width: 40vw;
@@ -127,7 +127,7 @@ const NewsletterWrapper = styled.div`
   @media (max-width: ${breakpoints.md}) {
     width: 100%;
   }
-`
+`;
 
 const SearchResults = styled.div`
   display: flex;
@@ -144,19 +144,19 @@ const SearchResults = styled.div`
     cursor: pointer;
     margin-bottom: 2rem;
   }
-`
+`;
 
 const ContentWrapper = styled.div`
   filter: blur(${props => (props.blur ? 1 : 0)}rem);
-`
+`;
 
 const Index = props => {
   const {
     data: { homepage, categories, events, featured_posts, allPosts },
-    path,
-  } = props
-  const [search, setSearch] = useState('')
-  const filteredPosts = searchBlogs(allPosts.nodes, search)
+    path
+  } = props;
+  const [search, setSearch] = useState("");
+  const filteredPosts = searchBlogs(allPosts.nodes, search);
 
   const featuredBlogs = featured_posts.nodes[0].data.featured_blogs;
   return (
@@ -168,9 +168,10 @@ const Index = props => {
             <img src={homepage.data.journal.url} alt="" />
           </span>
           <span className="about">
-            A space where our team’s thoughts and explorations are logged in. We regularly jot down about our projects,
-            product updates, business; breaking down our processes and findings to share them with you. - your friends
-            at Clarisights
+            A space where our team’s thoughts and explorations are logged in. We
+            regularly jot down about our projects, product updates, business;
+            breaking down our processes and findings to share them with you. -
+            your friends at Clarisights
           </span>
           <span className="search-wrapper">
             <Input
@@ -178,21 +179,24 @@ const Index = props => {
               placeholder="Search for a post"
               addonBefore={<Icon type="oSearch" />}
             />
-            {search !== '' && (
+            {search !== "" && (
               <SearchResults>
                 {filteredPosts.map(post => (
-                  <StyledLink to={post.slugs[0]}>{post.data.title.text}</StyledLink>
+                  <StyledLink to={post.slugs[0]}>
+                    {post.data.title.text}
+                  </StyledLink>
                 ))}
               </SearchResults>
             )}
           </span>
         </HomepageHeader>
-        <ContentWrapper blur={search !== ''}>
+        <ContentWrapper blur={search !== ""}>
           <Categories allPosts={allPosts} categories={categories.nodes} />
           <SectionTitle>Featured Topics</SectionTitle>
           <Featured featured={featuredBlogs} />
           <NewsletterWrapper>
-            Get the latest news and views from Clarisights delivered to your inbox. No spam, only quality content.
+            Get the latest news and views from Clarisights delivered to your
+            inbox. No spam, only quality content.
             <span>
               <Input placeholder="Your Email address" size="large" />
               <button>Subscribe</button>
@@ -202,7 +206,9 @@ const Index = props => {
           <EventsWrapper>
             {events.nodes.map(event => (
               <span key={event.data.title.text} className="event-card">
-                <span className="event-card-title">{event.data.title.text}</span>
+                <span className="event-card-title">
+                  {event.data.title.text}
+                </span>
                 <ColumnWrapper>
                   <span>
                     <Icon type="oLocationOn" />
@@ -216,34 +222,34 @@ const Index = props => {
         </ContentWrapper>
       </IndexWrapper>
     </Layout>
-  )
-}
+  );
+};
 
-export default Index
+export default Index;
 
 Index.propTypes = {
   data: PropTypes.shape({
     homepage: PropTypes.shape({
       data: PropTypes.shape({
         title: PropTypes.shape({
-          text: PropTypes.string.isRequired,
+          text: PropTypes.string.isRequired
         }),
         content: PropTypes.shape({
-          html: PropTypes.string.isRequired,
-        }),
-      }),
+          html: PropTypes.string.isRequired
+        })
+      })
     }),
     social: PropTypes.shape({
-      nodes: PropTypes.array.isRequired,
+      nodes: PropTypes.array.isRequired
     }),
     posts: PropTypes.shape({
-      nodes: PropTypes.array.isRequired,
+      nodes: PropTypes.array.isRequired
     }),
     projects: PropTypes.shape({
-      nodes: PropTypes.array.isRequired,
-    }),
-  }).isRequired,
-}
+      nodes: PropTypes.array.isRequired
+    })
+  }).isRequired
+};
 
 export const pageQuery = graphql`
   query {
@@ -286,7 +292,9 @@ export const pageQuery = graphql`
         }
       }
     }
-    allPosts: allPrismicBlogPost(sort: { order: ASC, fields: first_publication_date }) {
+    allPosts: allPrismicBlogPost(
+      sort: { order: ASC, fields: first_publication_date }
+    ) {
       nodes {
         slugs
         data {
@@ -345,4 +353,4 @@ export const pageQuery = graphql`
       }
     }
   }
-`
+`;

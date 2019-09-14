@@ -1,4 +1,4 @@
-import styled from '@emotion/styled'
+import styled from "@emotion/styled";
 
 const Wrapper = styled.div`
   max-width: ${props => props.theme.maxWidth};
@@ -11,6 +11,6 @@ const Wrapper = styled.div`
     width: 100%;
     max-width: 100%;
   }
-`
+`;
 
-export default Wrapper
+export default Wrapper;

@@ -1,13 +1,13 @@
-import React, { Component } from 'react'
-import PropTypes from 'prop-types'
-import styled from '@emotion/styled'
-import { Link } from 'gatsby'
-import BlogCard from './BlogCard.jsx'
+import React, { Component } from "react";
+import PropTypes from "prop-types";
+import styled from "@emotion/styled";
+import { Link } from "gatsby";
+import BlogCard from "./BlogCard.jsx";
 
 const FeaturedWrapper = styled.div`
   display: flex;
   margin-top: 10rem;
-`
+`;
 
 const FeaturedTopics = ({ featured }) => (
   <>
@@ -17,10 +17,10 @@ const FeaturedTopics = ({ featured }) => (
       ))}
     </FeaturedWrapper>
   </>
-)
+);
 
 FeaturedTopics.propTypes = {
-  featured: PropTypes.array.isRequired,
-}
+  featured: PropTypes.array.isRequired
+};
 
-export default FeaturedTopics
+export default FeaturedTopics;
