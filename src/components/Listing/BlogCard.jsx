@@ -1,5 +1,6 @@
 import React from 'react'
 import styled from '@emotion/styled'
+import { blogReadTime } from '../../utils'
 import { StyledLink } from '../Wrappers'
 import { theme } from '../../styles'
 import fallbackImage from '../../assets/bg_fallback.svg'
@@ -31,18 +32,22 @@ const CardContent = styled.div`
     font-weight: 600;
     margin-top: ${props => props.sidebar ? '0': '2'}rem;
     color: #1a1a1a;
-    border-bottom: 0.2rem solid #e5e5e5;
     width: fit-content;
+    text-decoration: underline;
+    text-decoration-color: #e5e5e5;
+    text-underline-position: under;
   }
   .post-info {
     color: #808080;
     font-size: 1.4rem;
     line-height: 2rem;
     margin-top: 0.5rem;
+    display: flex;
+    justify-content: space-between;
   }
   &:hover {
     .post-title {
-      border-bottom: 0.2rem solid #1a1a1a;
+      text-decoration-color: #1a1a1a;
     }
   }
 `
@@ -94,8 +99,9 @@ const categoryColors = {
   },
 }
 
+
 const BlogCard = ({ post, sidebar = false }) => {
-  console.log(post)
+  console.log(post, blogReadTime(post))
   const slug = post.slugs[0]
   const { title, published_on, blog_image } = post.data
   const { author_name } = post.data.author.document[0].data
@@ -113,7 +119,10 @@ const BlogCard = ({ post, sidebar = false }) => {
           </ImageWrapper>
           <span className="post-title">{title.text}</span>
           <span className="post-info">
-            By {author_name.text} | {published_on}
+            <span>
+              By {author_name.text} | {published_on}
+            </span>
+            <span>{`${blogReadTime(post)} min read`}</span>
           </span>
         </CardContent>
       </BlogLink>

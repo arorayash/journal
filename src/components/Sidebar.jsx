@@ -4,8 +4,11 @@ import styled from '@emotion/styled'
 import { Input, Icon } from 'knit-ui'
 import { Link } from 'gatsby'
 import clarisightsLogo from '../assets/logo.svg'
+import { theme } from '../styles'
 import BlogCard from './Listing/BlogCard'
-import { searchBlogs } from '../utils/search'
+import { searchBlogs } from '../utils'
+
+const { breakpoints } = theme;
 
 const SidebarWrapper = styled.div`
   width: 50vw;
@@ -14,6 +17,9 @@ const SidebarWrapper = styled.div`
   height: 100%;
   display: flex;
   justify-content: space-between;
+  @media (max-width: ${breakpoints.l}) {
+    width: 70vw;
+  }
 `
 
 const VertFlex = styled.div`
@@ -56,7 +62,6 @@ const SidebarContent = ({ allPosts }) => {
   const [search, setSearch] = useState('')
   const categories = ['All', 'Engineering', 'Business & Growth', 'Product & Design', 'Archives'] // mock, swap this from gql data
   const filteredPosts = searchBlogs(posts, search)
-
   return (
     <SidebarWrapper>
       <VertFlex categories>

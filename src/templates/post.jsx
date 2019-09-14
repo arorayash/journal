@@ -289,6 +289,9 @@ export const pageQuery = graphql`
         slugs
         data {
           published_on
+          body {
+            text
+          }
           author {
             document {
               data {

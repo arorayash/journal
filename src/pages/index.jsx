@@ -6,7 +6,7 @@ import { Input, Icon, Button } from 'knit-ui'
 import { Layout, Listing, Wrapper, Title } from '../components'
 import { Categories, Featured } from '../components/Listing'
 import { theme } from '../styles'
-import { searchBlogs } from '../utils/search'
+import { searchBlogs } from '../utils'
 import { StyledLink } from '../components/Wrappers'
 // import website from '../../config/website'
 
@@ -321,6 +321,9 @@ export const pageQuery = graphql`
                     url
                   }
                   title {
+                    text
+                  }
+                  body {
                     text
                   }
                   category {
