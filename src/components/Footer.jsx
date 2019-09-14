@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from '@emotion/styled'
 import { Link } from 'gatsby'
-import { StyledLink } from './Wrappers'
+import { StyledLink, ExternLink } from './Wrappers'
 import { theme } from '../styles'
 import { getFirstCategory } from '../utils'
 import clarisightsLogo from '../assets/white-logo.svg'
@@ -72,24 +72,6 @@ const Column = styled.div`
   flex-direction: column;
   &:last-child {
     margin-top: 3rem;
-  }
-`
-
-const ExternLink = styled.a`
-  text-decoration: none;
-  color: #fff;
-  font-style: normal;
-  font-weight: normal;
-  font-size: 14px;
-  line-height: 20px;
-  margin-bottom: 0.5rem;
-  height: fit-content;
-  width: fit-content;
-  &:hover,
-  &:active,
-  &:visited,
-  &:focus {
-    text-decoration: none;
   }
 `
 

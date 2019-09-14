@@ -7,6 +7,8 @@ import website from '../../config/website'
 import drawer from '../assets/drawer.svg'
 import Sidebar from '../components/Sidebar'
 import { theme } from '../styles'
+import { ExternLink } from '../components/Wrappers'
+import fallbackImage from '../assets/bg_fallback.svg'
 
 const { breakpoints } = theme
 
@@ -67,6 +69,8 @@ const BlogContent = styled.div`
   font-size: 1.8rem;
   line-height: 2.6rem;
   color: #333333;
+  border-bottom: 2px solid #cccccc;
+  padding-bottom: 4rem;
   @media (max-width: ${breakpoints.s}) {
     width: 100%;
   }
@@ -140,10 +144,28 @@ const DrawerIcon = styled.span`
   }
 `
 
+const AuthorBio = styled.div`
+  display: flex;
+  margin-top: 4rem;
+  align-items: center;
+  a {
+    margin-right: 1.5rem;
+  }
+  img {
+    height: 3.2rem;
+    max-width: 7.2rem;
+    border-radius: 50%;
+  }
+  width: 47vw;
+  @media (max-width: ${breakpoints.s}) {
+    width: 100%;
+  }
+`
+
 const Post = ({ data: { prismicPost, allPosts }, location, path }) => {
   const [showSidebar, setShowSidebar] = useState(false)
   const { author, blog_image, body, published_on, title, category } = prismicPost.data
-  const { author_image, author_name, author_position } = author.document[0].data
+  const { author_image, author_name, author_position, bio, linkedin } = author.document[0].data
   const categorySlug = category.document[0].slugs[0]
   // useEffect(() => {
   //   document.addEventListener('click', e => {
@@ -173,7 +195,7 @@ const Post = ({ data: { prismicPost, allPosts }, location, path }) => {
               categorySlug={categorySlug}
               hideTag={typeof window !== 'undefined' && window.innerWidth < 600}
             >
-              <img className="blog-image" src={blog_image.url} alt={blog_image.alt} />
+              <img className="blog-image" src={blog_image.url || fallbackImage} alt={blog_image.alt} />
               <span className="tag-wrapper">
                 <span>#{category.document[0].data.title.text}</span>
               </span>
@@ -185,6 +207,12 @@ const Post = ({ data: { prismicPost, allPosts }, location, path }) => {
             <span className="blog-meta">{`${author_name.text}, ${author_position.text}`}</span>
             <span className="blog-meta">{published_on}</span>
             <BlogContent dangerouslySetInnerHTML={{ __html: body.html }} />
+            <AuthorBio>
+              <ExternLink target="_blank" href={linkedin.url}>
+                <img src={author_image.url} alt={author_name.text} />
+              </ExternLink>
+              <span className="blog-meta">{bio.text || `${author_name.text}, ${author_position.text}`}</span>
+            </AuthorBio>
           </BlogInfoWrapper>
         </PostWrapper>
       </Layout>
@@ -244,6 +272,12 @@ export const pageQuery = graphql`
               }
               author_position {
                 text
+              }
+              bio {
+                text
+              }
+              linkedin {
+                url
               }
             }
           }

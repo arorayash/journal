@@ -2,6 +2,7 @@ import React from 'react'
 import styled from '@emotion/styled'
 import { StyledLink } from '../Wrappers'
 import { theme } from '../../styles'
+import fallbackImage from '../../assets/bg_fallback.svg'
 
 const { breakpoints } = theme
 
@@ -105,7 +106,7 @@ const BlogCard = ({ post, sidebar = false }) => {
       <BlogLink to={slug}>
         <CardContent sidebar={sidebar}>
           <ImageWrapper categorySlug={categorySlug} sidebar={sidebar}>
-            <img alt={blog_image.alt} src={blog_image.url} />
+            <img alt={blog_image.alt} src={blog_image.url || fallbackImage} />
             <span className="tag-wrapper">
               <span>#{category}</span>
             </span>
