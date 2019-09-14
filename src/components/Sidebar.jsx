@@ -45,8 +45,22 @@ const VertFlex = styled.div`
 
 const CategoryItem = styled.span`
   width: fit-content;
+  cursor: pointer;
+  position: relative;
   &:not(:last-child) {
     margin-bottom: 1.4rem;
+  }
+  .active-category {
+    &:before {
+      content: '';
+      position: absolute;
+      width: 3rem;
+      height: 0.1rem;
+      background: black;
+      left: -4rem;
+      top: 50%;
+      transform: translateY(-50%);
+    }
   }
 `
 
@@ -57,16 +71,22 @@ const BlogsList = styled.div`
   }
 `
 
+const filterPosts = (allPosts, category) => {
+  if (category === 'All') return allPosts
+  return allPosts.filter(post => post.data.category.document[0].data.title.text === category)
+}
+
 const SidebarContent = ({ allPosts }) => {
   const posts = allPosts.nodes
   const [search, setSearch] = useState('')
+  const [category, setCategory] = useState('All')
   const categories = ['All', 'Engineering', 'Business & Growth', 'Product & Design', 'Archives'] // mock, swap this from gql data
-  const filteredPosts = searchBlogs(posts, search)
+  const filteredPosts = searchBlogs(filterPosts(posts, category), search)
   return (
     <SidebarWrapper>
       <VertFlex categories>
         {categories.map(cat => (
-          <CategoryItem>{cat}</CategoryItem>
+          <CategoryItem onClick={() => setCategory(cat)}><span className={category === cat ? 'active-category': ''}>{cat}</span></CategoryItem>
         ))}
         <Link to="/" className="logo">
           <img src={clarisightsLogo} alt="Clarisights logo" />

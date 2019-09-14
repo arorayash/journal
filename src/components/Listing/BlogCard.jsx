@@ -101,7 +101,6 @@ const categoryColors = {
 
 
 const BlogCard = ({ post, sidebar = false }) => {
-  console.log(post, blogReadTime(post))
   const slug = post.slugs[0]
   const { title, published_on, blog_image } = post.data
   const { author_name } = post.data.author.document[0].data

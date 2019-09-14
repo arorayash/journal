@@ -4,7 +4,7 @@ import BlogCard from './BlogCard'
 
 const ArticlesWrapper = styled.div`
   display: flex;
-  margin: 8rem 0 8rem 0;
+  margin: 0 0 8rem 0;
   border-bottom: 1px solid #c4c4c4;
   flex-wrap: wrap;
 `
