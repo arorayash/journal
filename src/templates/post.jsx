@@ -179,7 +179,7 @@ const Post = ({ data: { prismicPost, allPosts }, location, path }) => {
   //   };
   // }, [])
   return (
-    <Sidebar allPosts={allPosts} open={showSidebar} onSetOpen={open => console.log(open)}>
+    <Sidebar allPosts={allPosts} open={showSidebar} onSetOpen={open => setShowSidebar(open)}>
       <Layout customSEO path={path}>
         <SEO
           title={`${title.text} | ${website.titleAlt}`}

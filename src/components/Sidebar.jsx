@@ -114,6 +114,7 @@ const Drawer = props => (
     sidebar={<SidebarContent allPosts={props.allPosts} />}
     open={props.open}
     styles={{ sidebar: { background: '#f4f2ee', zIndex: 3 } }}
+    onSetOpen={props.onSetOpen}
   >
     {props.children}
   </Sidebar>
