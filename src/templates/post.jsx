@@ -1,19 +1,19 @@
-import React, { useState, useEffect } from "react";
-import PropTypes from "prop-types";
-import { graphql } from "gatsby";
-import styled from "@emotion/styled";
-import { Layout, Wrapper, SliceZone, Title, SEO } from "../components";
-import website from "../../config/website";
-import drawer from "../assets/drawer.svg";
-import Sidebar from "../components/Sidebar";
-import { theme } from "../styles";
-import { ExternLink } from "../components/Wrappers";
-import SocialShare from "../components/SocialShare";
-import fallbackImage from "../assets/bg_fallback.svg";
+import React, { useState, useEffect } from 'react'
+import PropTypes from 'prop-types'
+import { graphql } from 'gatsby'
+import styled from '@emotion/styled'
+import { Layout, Wrapper, SliceZone, Title, SEO } from '../components'
+import website from '../../config/website'
+import drawer from '../assets/drawer.svg'
+import Sidebar from '../components/Sidebar'
+import { theme } from '../styles'
+import { ExternLink } from '../components/Wrappers'
+import SocialShare from '../components/SocialShare'
+import fallbackImage from '../assets/bg_fallback.svg'
 
-const { breakpoints } = theme;
+const { breakpoints } = theme
 
-const PostWrapper = styled(Wrapper.withComponent("main"))`
+const PostWrapper = styled(Wrapper.withComponent('main'))`
   display: flex;
   justify-content: center;
   flex-direction: column;
@@ -24,7 +24,7 @@ const PostWrapper = styled(Wrapper.withComponent("main"))`
       height: 30rem;
     }
   }
-`;
+`
 
 const BlogInfoWrapper = styled.div`
   display: flex;
@@ -46,7 +46,7 @@ const BlogInfoWrapper = styled.div`
     width: 100%;
     margin-top: 6rem;
   }
-`;
+`
 
 const BlogHeader = styled.div`
   height: 38rem;
@@ -56,14 +56,14 @@ const BlogHeader = styled.div`
   @media (max-width: ${breakpoints.s}) {
     height: 30rem;
   }
-`;
+`
 
 const StyledTitle = styled.h1`
   line-height: 3.4rem;
   font-weight: 600;
   font-size: 2.4rem;
   margin-bottom: 1rem;
-`;
+`
 
 const BlogContent = styled.div`
   width: 47vw;
@@ -93,7 +93,7 @@ const BlogContent = styled.div`
     font-family: Source Code Pro;
     line-height: 2rem;
   }
-`;
+`
 
 const ImageWrapper = styled.span`
   position: relative;
@@ -103,7 +103,7 @@ const ImageWrapper = styled.span`
   justify-content: center;
   object-fit: cover;
   .tag-wrapper {
-    display: ${props => (props.hideTag ? "none" : "block")};
+    display: ${props => (props.hideTag ? 'none' : 'block')};
     float: left;
     position: absolute;
     line-height: 2rem;
@@ -119,22 +119,22 @@ const ImageWrapper = styled.span`
       opacity: 0.6;
     }
   }
-`;
+`
 
 const categoryColors = {
   engineering: {
-    bg: "#FCD06E",
-    text: "#1a1a1a"
+    bg: '#FCD06E',
+    text: '#1a1a1a',
   },
-  "business--growth": {
-    bg: "#025C52",
-    text: "#f7f7f7"
+  'business--growth': {
+    bg: '#025C52',
+    text: '#f7f7f7',
   },
-  "product--design": {
-    bg: "#813A4C",
-    text: "#ffffff"
-  }
-};
+  'product--design': {
+    bg: '#813A4C',
+    text: '#ffffff',
+  },
+}
 
 const DrawerIcon = styled.span`
   position: fixed;
@@ -144,7 +144,7 @@ const DrawerIcon = styled.span`
   @media (max-width: ${breakpoints.s}) {
     display: 30rem;
   }
-`;
+`
 
 const AuthorBio = styled.div`
   display: flex;
@@ -162,26 +162,13 @@ const AuthorBio = styled.div`
   @media (max-width: ${breakpoints.s}) {
     width: 100%;
   }
-`;
+`
 
 const Post = ({ data: { prismicPost, allPosts }, location, path }) => {
-  const [showSidebar, setShowSidebar] = useState(false);
-  const {
-    author,
-    blog_image,
-    body,
-    published_on,
-    title,
-    category
-  } = prismicPost.data;
-  const {
-    author_image,
-    author_name,
-    author_position,
-    bio,
-    linkedin
-  } = author.document[0].data;
-  const categorySlug = category.document[0].slugs[0];
+  const [showSidebar, setShowSidebar] = useState(false)
+  const { author, blog_image, body, published_on, title, category } = prismicPost.data
+  const { author_image, author_name, author_position, bio, linkedin } = author.document[0].data
+  const categorySlug = category.document[0].slugs[0]
   // useEffect(() => {
   //   document.addEventListener('click', e => {
   //     e.stopImmediatePropagation()
@@ -192,11 +179,7 @@ const Post = ({ data: { prismicPost, allPosts }, location, path }) => {
   //   };
   // }, [])
   return (
-    <Sidebar
-      allPosts={allPosts}
-      open={showSidebar}
-      onSetOpen={open => setShowSidebar(open)}
-    >
+    <Sidebar allPosts={allPosts} open={showSidebar} onSetOpen={open => setShowSidebar(open)}>
       <Layout customSEO path={path}>
         <SEO
           title={`${title.text} | ${website.titleAlt}`}
@@ -212,13 +195,9 @@ const Post = ({ data: { prismicPost, allPosts }, location, path }) => {
           <BlogHeader>
             <ImageWrapper
               categorySlug={categorySlug}
-              hideTag={typeof window !== "undefined" && window.innerWidth < 600}
+              hideTag={typeof window !== 'undefined' && window.innerWidth < 600}
             >
-              <img
-                className="blog-image"
-                src={blog_image.url || fallbackImage}
-                alt={blog_image.alt}
-              />
+              <img className="blog-image" src={blog_image.url || fallbackImage} alt={blog_image.alt} />
               <span className="tag-wrapper">
                 <span>#{category.document[0].data.title.text}</span>
               </span>
@@ -227,11 +206,7 @@ const Post = ({ data: { prismicPost, allPosts }, location, path }) => {
           <SocialShare title={title.text} url={location.href} />
           <BlogInfoWrapper>
             <StyledTitle>{title.text}</StyledTitle>
-            <img
-              className="author-image"
-              src={author_image.url}
-              alt={author_name.text}
-            />
+            <img className="author-image" src={author_image.url} alt={author_name.text} />
             <span className="blog-meta">{`${author_name.text}, ${author_position.text}`}</span>
             <span className="blog-meta">{published_on}</span>
             <BlogContent dangerouslySetInnerHTML={{ __html: body.html }} />
@@ -239,28 +214,26 @@ const Post = ({ data: { prismicPost, allPosts }, location, path }) => {
               <ExternLink target="_blank" href={linkedin.url}>
                 <img src={author_image.url} alt={author_name.text} />
               </ExternLink>
-              <span className="blog-meta">
-                {bio.text || `${author_name.text}, ${author_position.text}`}
-              </span>
+              <span className="blog-meta">{bio.text || `${author_name.text}, ${author_position.text}`}</span>
             </AuthorBio>
           </BlogInfoWrapper>
         </PostWrapper>
       </Layout>
     </Sidebar>
-  );
-};
+  )
+}
 
-export default Post;
+export default Post
 
 Post.propTypes = {
   data: PropTypes.shape({
     prismicPost: PropTypes.object.isRequired,
     posts: PropTypes.shape({
-      nodes: PropTypes.array.isRequired
-    })
+      nodes: PropTypes.array.isRequired,
+    }),
   }).isRequired,
-  location: PropTypes.object.isRequired
-};
+  location: PropTypes.object.isRequired,
+}
 
 // The typenames come from the slice names
 // If this doesn't work for you query for __typename in body {} and GraphiQL will show them to you
@@ -352,4 +325,4 @@ export const pageQuery = graphql`
       }
     }
   }
-`;
+`

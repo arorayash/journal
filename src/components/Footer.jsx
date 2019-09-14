@@ -1,12 +1,12 @@
-import React from "react";
-import styled from "@emotion/styled";
-import { Link } from "gatsby";
-import { StyledLink, ExternLink } from "./Wrappers";
-import { theme } from "../styles";
-import { getFirstCategory } from "../utils";
-import clarisightsLogo from "../assets/white-logo.svg";
+import React from 'react'
+import styled from '@emotion/styled'
+import { Link } from 'gatsby'
+import { StyledLink, ExternLink } from './Wrappers'
+import { theme } from '../styles'
+import { getFirstCategory } from '../utils'
+import clarisightsLogo from '../assets/white-logo.svg'
 
-const { breakpoints } = theme;
+const { breakpoints } = theme
 
 const StyledFooter = styled.footer`
   display: flex;
@@ -27,16 +27,16 @@ const StyledFooter = styled.footer`
     height: 43rem;
     padding: 2.6rem 2.6rem 5rem 2.6rem;
   }
-`;
+`
 
-const isSingle = props => props.left && props.path === "/";
+const isSingle = props => props.left && props.path === '/'
 
 const Section = styled.span`
   flex: 1 0;
   display: flex;
   width: 100%;
-  justify-content: ${props => (isSingle(props) ? "start" : "space-around")};
-  margin-left: ${props => (isSingle(props) ? "14rem" : "0")};
+  justify-content: ${props => (isSingle(props) ? 'start' : 'space-around')};
+  margin-left: ${props => (isSingle(props) ? '14rem' : '0')};
   @media (max-width: ${breakpoints.s}) {
     margin-left: 0;
     flex-direction: column;
@@ -44,7 +44,7 @@ const Section = styled.span`
       padding-bottom: 5rem;
     }
   }
-`;
+`
 
 const CategoriesWrapper = styled.span`
   display: flex;
@@ -59,13 +59,13 @@ const CategoriesWrapper = styled.span`
   @media (max-width: ${breakpoints.s}) {
     margin-top: 2rem;
   }
-`;
+`
 
 const SpacedFlex = styled.div`
   display: flex;
   justify-content: space-between;
   width: 100%;
-`;
+`
 
 const Column = styled.div`
   display: flex;
@@ -73,12 +73,12 @@ const Column = styled.div`
   &:last-child {
     margin-top: 3rem;
   }
-`;
+`
 
 const Footer = ({ categories, path, allPosts }) => (
   <StyledFooter path={path}>
     <Section left path={path}>
-      {typeof window !== "undefined" && window.innerWidth < 600 ? (
+      {typeof window !== 'undefined' && window.innerWidth < 600 ? (
         <SpacedFlex>
           <StyledLink underline to="/careers">
             Careers
@@ -92,7 +92,7 @@ const Footer = ({ categories, path, allPosts }) => (
           Careers
         </ExternLink>
       )}
-      {path !== "/" && (
+      {path !== '/' && (
         <CategoriesWrapper>
           Journal
           {categories.map(cat => (
@@ -111,10 +111,7 @@ const Footer = ({ categories, path, allPosts }) => (
         <ExternLink target="_blank" href="https://twitter.com/clarisights">
           Twitter
         </ExternLink>
-        <ExternLink
-          target="_blank"
-          href="https://www.linkedin.com/company/clarisights/"
-        >
+        <ExternLink target="_blank" href="https://www.linkedin.com/company/clarisights/">
           LinkedIn
         </ExternLink>
         <ExternLink target="_blank" href="https://www.dribble.com/clarisights">
@@ -123,15 +120,12 @@ const Footer = ({ categories, path, allPosts }) => (
       </Column>
       <Column>
         <span>© Clarisights 2019</span>
-        <ExternLink
-          target="_blank"
-          href="https://clarisights.com/privacy-policy"
-        >
+        <ExternLink target="_blank" href="https://clarisights.com/privacy-policy">
           Privacy Policy
         </ExternLink>
       </Column>
     </Section>
   </StyledFooter>
-);
+)
 
-export default Footer;
+export default Footer

@@ -1,7 +1,7 @@
-import React from "react";
-import styled from "@emotion/styled";
-import { Icon } from "knit-ui";
-import { firstCategory, secondCategory, thirdCategory } from "../../assets";
+import React from 'react'
+import styled from '@emotion/styled'
+import { Icon } from 'knit-ui'
+import { firstCategory, secondCategory, thirdCategory } from '../../assets'
 
 const CardWrapper = styled.div`
     position: relative;
@@ -42,7 +42,7 @@ const CardWrapper = styled.div`
       }
     }
   }
-`;
+`
 
 const CardContent = styled.div`
   display: flex;
@@ -65,24 +65,24 @@ const CardContent = styled.div`
     font-size: 1.4rem;
     line-height: 2rem;
   }
-`;
+`
 
 const categoryColors = {
-  engineering: "#FCD06E",
-  "business--growth": "#025C52",
-  "product--design": "#813A4C"
-};
+  engineering: '#FCD06E',
+  'business--growth': '#025C52',
+  'product--design': '#813A4C',
+}
 
 const categoryIndex = {
-  "0": firstCategory,
-  "1": secondCategory,
-  "2": thirdCategory
-};
+  '0': firstCategory,
+  '1': secondCategory,
+  '2': thirdCategory,
+}
 
 const CategoryCard = ({ data, index }) => {
   const {
-    data: { title, description }
-  } = data;
+    data: { title, description },
+  } = data
   return (
     <CardWrapper uid={data.uid}>
       <CardContent>
@@ -96,7 +96,7 @@ const CategoryCard = ({ data, index }) => {
         <span className="desc">{description.text}</span>
       </CardContent>
     </CardWrapper>
-  );
-};
+  )
+}
 
-export default CategoryCard;
+export default CategoryCard

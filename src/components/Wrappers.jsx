@@ -1,5 +1,5 @@
-import styled from "@emotion/styled";
-import { Link } from "gatsby";
+import styled from '@emotion/styled'
+import { Link } from 'gatsby'
 
 export const ImageWrapper = styled.span`
   position: relative;
@@ -23,16 +23,16 @@ export const ImageWrapper = styled.span`
       opacity: 0.6;
     }
   }
-`;
+`
 
 export const StyledLink = styled(Link)`
   text-decoration: none;
   font: inherit;
   color: inherit;
   &:hover {
-    text-decoration: ${props => (props.underline ? "underline" : "none")};
+    text-decoration: ${props => (props.underline ? 'underline' : 'none')};
   }
-`;
+`
 
 export const ExternLink = styled.a`
   text-decoration: none;
@@ -50,4 +50,4 @@ export const ExternLink = styled.a`
   &:focus {
     text-decoration: none;
   }
-`;
+`
