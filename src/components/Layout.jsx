@@ -14,6 +14,7 @@ import SkipNavLink from './SkipNavLink'
 import { theme, reset } from '../styles'
 
 import 'typeface-inter'
+import 'typeface-source-code-pro'
 
 const globalStyle = css`
   ${reset}

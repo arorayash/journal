@@ -13253,6 +13253,11 @@ typeface-inter@^0.0.77:
   resolved "https://registry.yarnpkg.com/typeface-inter/-/typeface-inter-0.0.77.tgz#920b81f9bd78a988e69f5e5cc3109517fe7f7749"
   integrity sha512-U7fcdPsk07v5xIYTbiOF4kpioApUZkIuyW28sxJiez5FKCnN7uaWRyQOaOmZcZvb50VZdw2LBBbshO/aNlxcXA==
 
+typeface-source-code-pro@^0.0.71:
+  version "0.0.71"
+  resolved "https://registry.yarnpkg.com/typeface-source-code-pro/-/typeface-source-code-pro-0.0.71.tgz#30994f73aed203feb7d616937349bccf656c45a5"
+  integrity sha512-lBpRNuC/wLFVjeFpH1qAby5iTG1jggQFBGteB+kDlMDAlpfguGPj8X0ObXK8xKiAl98+WkGbkumc14AckHr0mQ==
+
 typography-normalize@^0.16.19:
   version "0.16.19"
   resolved "https://registry.yarnpkg.com/typography-normalize/-/typography-normalize-0.16.19.tgz#58e0cf12466870c5b27006daa051fe7307780660"

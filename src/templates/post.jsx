@@ -70,6 +70,23 @@ const BlogContent = styled.div`
   @media (max-width: ${breakpoints.s}) {
     width: 100%;
   }
+  div[data-oembed] {
+    width: 100%;
+    height: 60vh;
+    iframe {
+      width: 100%;
+      height: 100%;
+    }
+  }
+  pre {
+    background: #f7f7f7;
+    border-radius: 0.4rem;
+    font-size: 1.6rem;
+    color: #333333;
+    padding: 2rem;
+    font-family: Source Code Pro;
+    line-height: 2rem;
+  }
 `
 
 const ImageWrapper = styled.span`

@@ -54,6 +54,7 @@
     "react-sidebar": "^3.0.2",
     "react-typography": "^0.16.19",
     "typeface-inter": "^0.0.77",
+    "typeface-source-code-pro": "^0.0.71",
     "typography": "^0.16.19"
   },
   "devDependencies": {
