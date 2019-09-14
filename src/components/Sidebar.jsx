@@ -8,7 +8,7 @@ import { theme } from '../styles'
 import BlogCard from './Listing/BlogCard'
 import { searchBlogs } from '../utils'
 
-const { breakpoints } = theme;
+const { breakpoints } = theme
 
 const SidebarWrapper = styled.div`
   width: 50vw;

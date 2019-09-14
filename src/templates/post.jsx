@@ -8,6 +8,7 @@ import drawer from '../assets/drawer.svg'
 import Sidebar from '../components/Sidebar'
 import { theme } from '../styles'
 import { ExternLink } from '../components/Wrappers'
+import SocialShare from '../components/SocialShare'
 import fallbackImage from '../assets/bg_fallback.svg'
 
 const { breakpoints } = theme
@@ -29,7 +30,7 @@ const BlogInfoWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-self: center;
-  margin-top: 6rem;
+  margin-top: -3.6rem;
   .author-image {
     border-radius: 50%;
     height: 2.8rem;
@@ -43,6 +44,7 @@ const BlogInfoWrapper = styled.div`
   }
   @media (max-width: ${breakpoints.s}) {
     width: 100%;
+    margin-top: 6rem;
   }
 `
 
@@ -201,6 +203,7 @@ const Post = ({ data: { prismicPost, allPosts }, location, path }) => {
               </span>
             </ImageWrapper>
           </BlogHeader>
+          <SocialShare title={title.text} url={location.href} />
           <BlogInfoWrapper>
             <StyledTitle>{title.text}</StyledTitle>
             <img className="author-image" src={author_image.url} alt={author_name.text} />
