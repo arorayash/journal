@@ -31,6 +31,18 @@ const BlogInfoWrapper = styled.div`
   flex-direction: column;
   align-self: center;
   margin-top: -6.8rem;
+  @media (min-width: ${breakpoints.l}) {
+    max-width: 55vw;
+  }
+  @media (max-width: ${breakpoints.l}) {
+    max-width: 55vw;
+  }
+  @media (max-width: ${breakpoints.md}) {
+    max-width: 50vw;
+  }
+  @media (max-width: ${breakpoints.s}) {
+    max-width: 100%;
+  }
   .author-image {
     border-radius: 50%;
     height: 2.8rem;
