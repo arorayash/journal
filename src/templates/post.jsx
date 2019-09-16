@@ -105,6 +105,13 @@ const BlogContent = styled.div`
     font-family: Source Code Pro;
     line-height: 2rem;
   }
+  blockquote {
+    margin-left: 0;
+    padding: 2rem 2.2rem;
+    border-left: 0.2rem solid #036600;
+    font-size: 2rem;
+    line-height: 2.8rem;
+  }
 `
 
 const ImageWrapper = styled.span`
