@@ -39,16 +39,16 @@ const SocialShare = ({ title, url }) => (
   <ShareWrapper>
     <span>Share</span>
     <TwitterShareButton url={url} title={title}>
-      <TwitterIcon size={20} />
+      <TwitterIcon size={30} />
     </TwitterShareButton>
     <LinkedinShareButton url={url}>
-      <LinkedinIcon size={20} />
+      <LinkedinIcon size={30} />
     </LinkedinShareButton>
     <FacebookShareButton quote={title} hashtag="clarisights" url={url}>
-      <FacebookIcon size={20} />
+      <FacebookIcon size={30} />
     </FacebookShareButton>
     <PocketShareButton url={url} title={title}>
-      <PocketIcon size={20} />
+      <PocketIcon size={30} />
     </PocketShareButton>
   </ShareWrapper>
 )

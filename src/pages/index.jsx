@@ -286,7 +286,7 @@ export const pageQuery = graphql`
         }
       }
     }
-    allPosts: allPrismicBlogPost(sort: { order: ASC, fields: first_publication_date }) {
+    allPosts: allPrismicBlogPost(sort: { order: DESC, fields: data___published_on }) {
       nodes {
         slugs
         data {

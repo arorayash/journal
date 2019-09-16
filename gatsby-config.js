@@ -35,7 +35,7 @@ module.exports = {
         repositoryName: 'clarisights-journal',
         accessToken: `${process.env.API_KEY}`,
         // Get the correct URLs in blog posts
-        linkResolver: () => post => `/${post.uid}`,
+        linkResolver: () => post => `/${post.slug}`,
         // PrismJS highlighting for labels and slices
         htmlSerializer: () => prismicHtmlSerializer,
         // Remove this config option if you only have one language in your Prismic repository

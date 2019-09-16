@@ -30,7 +30,7 @@ const BlogInfoWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-self: center;
-  margin-top: -6.8rem;
+  margin-top: -10.8rem;
   @media (min-width: ${breakpoints.l}) {
     max-width: 55vw;
   }
@@ -299,7 +299,7 @@ export const pageQuery = graphql`
         }
       }
     }
-    allPosts: allPrismicBlogPost {
+    allPosts: allPrismicBlogPost(sort: { order: DESC, fields: data___published_on }) {
       nodes {
         slugs
         data {
