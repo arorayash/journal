@@ -7,7 +7,7 @@ import { Layout, Listing, Wrapper, Title } from '../components'
 import { Categories, Featured } from '../components/Listing'
 import { theme } from '../styles'
 import { searchBlogs } from '../utils'
-import { StyledLink } from '../components/Wrappers'
+import { StyledLink, ExternLink } from '../components/Wrappers'
 // import website from '../../config/website'
 
 const { breakpoints } = theme
@@ -81,6 +81,9 @@ const EventsWrapper = styled.div`
       border-bottom: 1px solid #c4c4c4;
     }
   }
+  @media (max-width: ${breakpoints.m}) {
+    width: 60%;
+  }
   @media (max-width: ${breakpoints.md}) {
     width: 100%;
   }
@@ -146,6 +149,10 @@ const SearchResults = styled.div`
   }
 `
 
+const EventLinkWrapper = styled(ExternLink)`
+  color: #4c4c4c;
+`
+
 const ContentWrapper = styled.div`
   filter: blur(${props => (props.blur ? 1 : 0)}rem);
 `
@@ -202,11 +209,15 @@ const Index = props => {
           <EventsWrapper>
             {events.nodes.map(event => (
               <span key={event.data.title.text} className="event-card">
-                <span className="event-card-title">{event.data.title.text}</span>
+                <EventLinkWrapper href={event.data.meetup_link.url} target={event.data.meetup_link.target}>
+                  <span className="event-card-title">{event.data.title.text}</span>
+                </EventLinkWrapper>
                 <ColumnWrapper>
                   <span>
                     <Icon type="oLocationOn" />
-                    <Underline>{event.data.location.text}</Underline>
+                    <EventLinkWrapper href={event.data.location_link.url} target={event.data.location_link.target}>
+                      <Underline>{event.data.location.text}</Underline>
+                    </EventLinkWrapper>
                   </span>
                   <span>{event.data.time}</span>
                 </ColumnWrapper>
@@ -281,6 +292,14 @@ export const pageQuery = graphql`
           }
           location {
             text
+          }
+          location_link {
+            url
+            target
+          }
+          meetup_link {
+            url
+            target
           }
           time(formatString: "Do MMMM, YYYY")
         }

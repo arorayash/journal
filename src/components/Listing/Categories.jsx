@@ -17,14 +17,11 @@ const categoriesOrder = ['engineering', 'product--design', 'business--growth']
 const Categories = ({ categories, allPosts }) => {
   // Fix the order of catrgories since prismic sends them unordered
   categories.sort((a, b) => categoriesOrder.indexOf(a.uid) - categoriesOrder.indexOf(b.uid))
-
   return (
     <>
       <CategoriesWrapper>
         {categories.map((category, index) => (
-          <StyledLink to={getFirstCategory(allPosts, category.uid)}>
-            <CategoryCard key={category.data.title.text} data={category} index={index} />
-          </StyledLink>
+            <CategoryCard cardLink={getFirstCategory(allPosts, category.uid)} key={category.data.title.text} data={category} index={index} />
         ))}
       </CategoriesWrapper>
     </>

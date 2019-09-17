@@ -3,10 +3,11 @@ import Sidebar from 'react-sidebar'
 import styled from '@emotion/styled'
 import { Input, Icon } from 'knit-ui'
 import { Link } from 'gatsby'
-import clarisightsLogo from '../assets/logo.svg'
-import { theme } from '../styles'
+import { StyledLink } from './Wrappers'
 import BlogCard from './Listing/BlogCard'
 import { searchBlogs } from '../utils'
+import { theme } from '../styles'
+import clarisightsLogo from '../assets/logo.svg'
 
 const { breakpoints } = theme
 
@@ -71,6 +72,11 @@ const BlogsList = styled.div`
   }
 `
 
+const HomePageLink = styled(StyledLink)`
+  text-decoration: underline;
+  color: #a6a6a6;
+`
+
 const filterPosts = (allPosts, category) => {
   if (category === 'All') return allPosts
   return allPosts.filter(post => post.data.category.document[0].data.title.text === category)
@@ -90,9 +96,10 @@ const SidebarContent = ({ allPosts }) => {
             <span className={category === cat ? 'active-category' : ''}>{cat}</span>
           </CategoryItem>
         ))}
-        <Link to="/" className="logo">
+        <HomePageLink to="/" className="logo">
           <img src={clarisightsLogo} alt="Clarisights logo" />
-        </Link>
+          <span>Go to Journal</span>
+        </HomePageLink>
       </VertFlex>
       <VertFlex>
         <span className="search-wrapper">

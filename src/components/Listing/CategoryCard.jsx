@@ -1,9 +1,14 @@
 import React from 'react'
 import styled from '@emotion/styled'
 import { Icon } from 'knit-ui'
+import { StyledLink } from '../Wrappers'
+import { getFirstCategory } from '../Wrappers'
+import theme from '../../styles/theme'
 import { firstCategory, secondCategory, thirdCategory } from '../../assets'
 
-const CardWrapper = styled.div`
+const { breakpoints } = theme
+
+const CardWrapper = styled(StyledLink)`
     position: relative;
     display: flex;
     max-width: 38rem;
@@ -11,6 +16,10 @@ const CardWrapper = styled.div`
     flex: 1;
     margin-bottom: 4rem;
     margin-right: 2.8rem;
+    @media (max-width: ${breakpoints.s}) {
+      margin-right: 0;
+      max-width: 100%;
+    }
     height: 40rem;
     background: #EBE7E0;
     border-radius: 2px;
@@ -79,12 +88,12 @@ const categoryIndex = {
   '2': thirdCategory,
 }
 
-const CategoryCard = ({ data, index }) => {
+const CategoryCard = ({ data, index, cardLink }) => {
   const {
     data: { title, description },
   } = data
   return (
-    <CardWrapper uid={data.uid}>
+    <CardWrapper to={cardLink} uid={data.uid}>
       <CardContent>
         <span className="num">
           <img src={categoryIndex[index]} alt="" />

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import PropTypes from 'prop-types'
 import { graphql } from 'gatsby'
 import styled from '@emotion/styled'
+import { TwitterIcon, LinkedinIcon } from 'react-share'
 import { Layout, Wrapper, SliceZone, Title, SEO } from '../components'
 import website from '../../config/website'
 import drawer from '../assets/drawer.svg'
@@ -88,6 +89,9 @@ const BlogContent = styled.div`
   @media (max-width: ${breakpoints.s}) {
     width: 100%;
   }
+  img {
+    width: 100%;
+  }
   div[data-oembed] {
     width: 100%;
     height: 60vh;
@@ -111,6 +115,7 @@ const BlogContent = styled.div`
     border-left: 0.2rem solid #036600;
     font-size: 2rem;
     line-height: 2.8rem;
+    color: #666666;
   }
 `
 
@@ -168,16 +173,31 @@ const DrawerIcon = styled.span`
 const AuthorBio = styled.div`
   display: flex;
   margin-top: 4rem;
-  align-items: center;
+  align-items: flex-start;
+  width: 47vw;
+  .social-icons {
+    display: flex;
+    margin-top: 2rem;
+    &:not(:last-child) {
+      margin-right: 0.5rem;
+    }
+  }
+  .author-img {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .blog-meta {
+    padding: 1rem 0 0 0.5rem;
+  }
   a {
-    margin-right: 1.5rem;
+    margin-right: 0.7rem;
   }
   img {
     height: 3.2rem;
     max-width: 7.2rem;
     border-radius: 50%;
   }
-  width: 47vw;
   @media (max-width: ${breakpoints.s}) {
     width: 100%;
   }
@@ -186,7 +206,7 @@ const AuthorBio = styled.div`
 const Post = ({ data: { prismicPost, allPosts }, location, path }) => {
   const [showSidebar, setShowSidebar] = useState(false)
   const { author, blog_image, body, published_on, title, category } = prismicPost.data
-  const { author_image, author_name, author_position, bio, linkedin } = author.document[0].data
+  const { author_image, author_name, author_position, bio, linkedin, twitter } = author.document[0].data
   const categorySlug = category.document[0].slugs[0]
   // useEffect(() => {
   //   document.addEventListener('click', e => {
@@ -230,9 +250,17 @@ const Post = ({ data: { prismicPost, allPosts }, location, path }) => {
             <span className="blog-meta">{published_on}</span>
             <BlogContent dangerouslySetInnerHTML={{ __html: body.html }} />
             <AuthorBio>
-              <ExternLink target="_blank" href={linkedin.url}>
+              <span className="author-img">
                 <img src={author_image.url} alt={author_name.text} />
-              </ExternLink>
+                <span className="social-icons">
+                  <ExternLink target="_blank" href={linkedin.url}>
+                    <LinkedinIcon round size={15} />
+                  </ExternLink>
+                  <ExternLink target="_blank" href={twitter.url}>
+                    <TwitterIcon round size={15} />
+                  </ExternLink>
+                </span>
+              </span>
               <span className="blog-meta">{bio.text || `${author_name.text}, ${author_position.text}`}</span>
             </AuthorBio>
           </BlogInfoWrapper>
@@ -299,6 +327,9 @@ export const pageQuery = graphql`
                 text
               }
               linkedin {
+                url
+              }
+              twitter {
                 url
               }
             }
