@@ -4,6 +4,7 @@ import { graphql } from 'gatsby'
 import styled from '@emotion/styled'
 import { TwitterIcon, LinkedinIcon } from 'react-share'
 import { Layout, Wrapper, SliceZone, Title, SEO } from '../components'
+import prism from '../styles/prism'
 import website from '../../config/website'
 import drawer from '../assets/drawer.svg'
 import Sidebar from '../components/Sidebar'
@@ -79,6 +80,7 @@ const StyledTitle = styled.h1`
 `
 
 const BlogContent = styled.div`
+  ${prism}
   width: 47vw;
   margin-top: 5rem;
   font-size: 1.8rem;
@@ -177,7 +179,7 @@ const AuthorBio = styled.div`
   width: 47vw;
   .social-icons {
     display: flex;
-    margin-top: 2rem;
+    margin-top: 0.75rem;
     &:not(:last-child) {
       margin-right: 0.5rem;
     }
@@ -253,10 +255,10 @@ const Post = ({ data: { prismicPost, allPosts }, location, path }) => {
               <span className="author-img">
                 <img src={author_image.url} alt={author_name.text} />
                 <span className="social-icons">
-                  <ExternLink target="_blank" href={linkedin.url}>
+                  <ExternLink target="_blank" href={linkedin && linkedin.url}>
                     <LinkedinIcon round size={15} />
                   </ExternLink>
-                  <ExternLink target="_blank" href={twitter.url}>
+                  <ExternLink target="_blank" href={twitter && twitter.url}>
                     <TwitterIcon round size={15} />
                   </ExternLink>
                 </span>
