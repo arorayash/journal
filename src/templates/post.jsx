@@ -167,8 +167,13 @@ const DrawerIcon = styled.span`
   top: 2.8rem;
   left: 2.4rem;
   cursor: pointer;
+  padding: 1.1rem 0.8rem;
+  background: #F4F2EE;
+  z-index: 2;
   @media (max-width: ${breakpoints.s}) {
     display: 30rem;
+    left: 1rem;
+    top: 1.5rem;
   }
 `
 
