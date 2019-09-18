@@ -3,11 +3,10 @@ import { css } from '@emotion/core'
 const prism = css`
   code[class*='language-'],
   pre[class*='language-'] {
-    font-family: Consolas, Menlo, Monaco, 'Andale Mono WT', 'Andale Mono', 'Lucida Console', 'Lucida Sans Typewriter',
-      'DejaVu Sans Mono', 'Bitstream Vera Sans Mono', 'Liberation Mono', 'Nimbus Mono L', 'Courier New', Courier,
-      monospace;
-    font-size: 14px;
-    line-height: 1.375;
+    font-family: 'Source Code Pro', monospace;
+    font-size: 1.6rem;
+    line-height: 2rem;
+    border-radius: 0.4rem;
     direction: ltr;
     text-align: left;
     white-space: pre;
@@ -20,8 +19,8 @@ const prism = css`
     -moz-hyphens: none;
     -ms-hyphens: none;
     hyphens: none;
-    background: #f5f7ff;
-    color: #5e6687;
+    background: #f7f4ed;
+    color: #333333;
   }
 
   pre[class*='language-']::-moz-selection,
@@ -42,9 +41,9 @@ const prism = css`
 
   /* Code blocks */
   pre[class*='language-'] {
-    padding: 1em;
-    margin: 0.5em 0;
-    overflow: auto;
+    padding: 2rem;
+    overflow: scroll;
+    max-height: 40rem;
   }
 
   /* Inline code */

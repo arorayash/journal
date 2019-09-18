@@ -38,7 +38,7 @@ const ShareWrapper = styled.div`
 const SocialShare = ({ title, url }) => (
   <ShareWrapper>
     <span>Share</span>
-    <TwitterShareButton url={url} title={title}>
+    <TwitterShareButton url={url} title={`${title} via @clarisights`}>
       <TwitterIcon size={30} />
     </TwitterShareButton>
     <LinkedinShareButton url={url}>

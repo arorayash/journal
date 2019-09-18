@@ -102,15 +102,6 @@ const BlogContent = styled.div`
       height: 100%;
     }
   }
-  pre {
-    background: #f7f7f7;
-    border-radius: 0.4rem;
-    font-size: 1.6rem;
-    color: #333333;
-    padding: 2rem;
-    font-family: Source Code Pro;
-    line-height: 2rem;
-  }
   blockquote {
     margin-left: 0;
     padding: 2rem 2.2rem;
@@ -168,7 +159,7 @@ const DrawerIcon = styled.span`
   left: 2.4rem;
   cursor: pointer;
   padding: 1.1rem 0.8rem;
-  background: #F4F2EE;
+  background: #f4f2ee;
   z-index: 2;
   @media (max-width: ${breakpoints.s}) {
     display: 30rem;
@@ -184,10 +175,6 @@ const AuthorBio = styled.div`
   width: 47vw;
   .social-icons {
     display: flex;
-    margin-top: 0.75rem;
-    &:not(:last-child) {
-      margin-right: 0.5rem;
-    }
   }
   .author-img {
     display: flex;
@@ -198,7 +185,9 @@ const AuthorBio = styled.div`
     padding: 1rem 0 0 0.5rem;
   }
   a {
-    margin-right: 0.7rem;
+    &:not(:last-child) {
+      margin-right: 0.5rem;
+    }
   }
   img {
     height: 3.2rem;
