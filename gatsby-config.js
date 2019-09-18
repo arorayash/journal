@@ -71,6 +71,12 @@ module.exports = {
         icon: website.favicon,
       },
     },
+    {
+      resolve: 'gatsby-plugin-google-analytics',
+      options: {
+        trackingId: 'UA-148226838-1',
+      },
+    },
     // Must be placed at the end
     'gatsby-plugin-offline',
     'gatsby-plugin-netlify',

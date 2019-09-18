@@ -71,7 +71,14 @@ const globalStyle = css`
 const PureLayout = ({ children, data, customSEO, path }) => (
   <ThemeProvider theme={theme}>
     <>
-      <Global styles={globalStyle} />
+      <Global
+        styles={css`
+          ${globalStyle}
+          body {
+            background-color: ${path === '/' ? '#f4f2ed' : theme.colors.bg};
+          }
+        `}
+      />
       <SkipNavLink />
       {!customSEO && <SEO />}
       {children}
