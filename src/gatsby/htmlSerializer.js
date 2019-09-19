@@ -21,6 +21,13 @@ const codeInline = ['text']
 // Labels with these names will become code blocks
 const codeBlock = ['javascript', 'css', 'scss', 'jsx', 'bash', 'json', 'diff', 'markdown', 'graphql', 'ruby', 'yaml']
 
+const renderFigure = element => {
+  if (element.alt) {
+    return `<figure><img src=${element.url} alt=${element.alt}><figcaption>${element.alt}</figcaption></figure>`
+  }
+  return `<figure><img src=${element.url}></figure>`
+}
+
 const htmlSerializer = (type, element, content) => {
   switch (type) {
     // First differentiate between a label and a preformatted field (e.g. the Code Block slice)
@@ -50,6 +57,9 @@ const htmlSerializer = (type, element, content) => {
         )}</code></pre>`
       }
       return null
+    }
+    case 'image': {
+      return renderFigure(element)
     }
     default: {
       return null

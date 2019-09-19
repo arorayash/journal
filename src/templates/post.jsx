@@ -94,6 +94,15 @@ const BlogContent = styled.div`
   img {
     width: 100%;
   }
+  figure {
+    margin-bottom: 2rem;
+  }
+  figcaption {
+    margin-top: 1rem;
+    font-size: 1.4rem;
+    line-height: 1.7rem;
+    color: #666666;
+  }
   div[data-oembed] {
     width: 100%;
     height: 60vh;
