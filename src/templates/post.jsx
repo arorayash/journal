@@ -102,6 +102,15 @@ const BlogContent = styled.div`
       height: 100%;
     }
   }
+  pre {
+    background: #f7f7f7;
+    border-radius: 0.4rem;
+    font-size: 1.6rem;
+    color: #333333;
+    padding: 2rem;
+    font-family: Source Code Pro;
+    line-height: 2rem;
+  }
   blockquote {
     margin-left: 0;
     padding: 2rem 2.2rem;

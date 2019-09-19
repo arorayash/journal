@@ -11,13 +11,15 @@ require('prismjs/components/prism-json')
 require('prismjs/components/prism-diff')
 require('prismjs/components/prism-markdown')
 require('prismjs/components/prism-graphql')
+require('prismjs/components/prism-ruby')
+require('prismjs/components/prism-yaml')
 
 const { Elements } = RichText
 
 // Labels with this name will be inline code
 const codeInline = ['text']
 // Labels with these names will become code blocks
-const codeBlock = ['javascript', 'css', 'scss', 'jsx', 'bash', 'json', 'diff', 'markdown', 'graphql']
+const codeBlock = ['javascript', 'css', 'scss', 'jsx', 'bash', 'json', 'diff', 'markdown', 'graphql', 'ruby', 'yaml']
 
 const htmlSerializer = (type, element, content) => {
   switch (type) {
