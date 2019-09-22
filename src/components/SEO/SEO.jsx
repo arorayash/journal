@@ -1,3 +1,4 @@
+/* eslint-disable prefer-const */
 import React from 'react'
 import Helmet from 'react-helmet'
 import PropTypes from 'prop-types'
@@ -9,8 +10,7 @@ import Twitter from './Twitter'
 
 const SEO = ({ title, desc, banner, pathname, article, node }) => {
   const { site } = useStaticQuery(query)
-
-  const {
+  let {
     buildTime,
     siteMetadata: {
       siteUrl,
@@ -21,25 +21,31 @@ const SEO = ({ title, desc, banner, pathname, article, node }) => {
       siteLanguage,
       ogLanguage,
       author,
+      authorImage,
       twitter,
       facebook,
     },
   } = site
-
+  if (node) {
+    headline = node.data.title.text
+    defaultTitle = node.data.title.text
+    author = node.data.author.document[0].data.author_name.text
+    authorImage = node.data.author.document[0].data.author_image.url
+  }
   const seo = {
     title: title || defaultTitle,
     description: desc || defaultDescription,
-    image: `${siteUrl}${banner || defaultBanner}`,
+    image: `${banner || defaultBanner}`,
     url: `${siteUrl}${pathname || ''}`,
   }
-
+  console.log({ title, desc, banner, pathname, article, node, seo, site })
   // schema.org in JSONLD format
   // https://developers.google.com/search/docs/guides/intro-structured-data
   // You can fill out the 'author', 'creator' with more data or another type (e.g. 'Organization')
 
   const schemaOrgWebPage = {
     '@context': 'http://schema.org',
-    '@type': 'WebPage',
+    '@type': 'Organization',
     url: siteUrl,
     headline,
     inLanguage: siteLanguage,
@@ -47,29 +53,30 @@ const SEO = ({ title, desc, banner, pathname, article, node }) => {
     description: defaultDescription,
     name: defaultTitle,
     author: {
-      '@type': 'Person',
+      '@type': 'Organization',
       name: author,
     },
     copyrightHolder: {
-      '@type': 'Person',
+      '@type': 'Organization',
       name: author,
     },
     copyrightYear: '2019',
     creator: {
-      '@type': 'Person',
+      '@type': 'Organization',
       name: author,
     },
     publisher: {
-      '@type': 'Person',
+      '@type': 'Organization',
       name: author,
     },
     datePublished: '2019-01-18T10:30:00+01:00',
     dateModified: buildTime,
     image: {
       '@type': 'ImageObject',
-      url: `${siteUrl}${defaultBanner}`,
+      url: `${banner || defaultBanner}`,
     },
   }
+
 
   // Initial breadcrumb list
 
@@ -108,10 +115,10 @@ const SEO = ({ title, desc, banner, pathname, article, node }) => {
         name: author,
         logo: {
           '@type': 'ImageObject',
-          url: `${siteUrl}${defaultBanner}`,
+          url: authorImage,
         },
       },
-      datePublished: node.first_publication_date,
+      datePublished: node.data.published_on,
       dateModified: node.last_publication_date,
       description: seo.description,
       headline: seo.title,
@@ -135,6 +142,8 @@ const SEO = ({ title, desc, banner, pathname, article, node }) => {
     })
   }
 
+  console.log({schemaOrgWebPage, schemaArticle})
+
   const breadcrumb = {
     '@context': 'http://schema.org',
     '@type': 'BreadcrumbList',
@@ -149,7 +158,6 @@ const SEO = ({ title, desc, banner, pathname, article, node }) => {
         <html lang={siteLanguage} />
         <meta name="description" content={seo.description} />
         <meta name="image" content={seo.image} />
-        <meta name="gatsby-starter" content="Gatsby Starter Prismic" />
         {/* Insert schema.org data conditionally (webpage/article) + everytime (breadcrumbs) */}
         {!article && <script type="application/ld+json">{JSON.stringify(schemaOrgWebPage)}</script>}
         {article && <script type="application/ld+json">{JSON.stringify(schemaArticle)}</script>}

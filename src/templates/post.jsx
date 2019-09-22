@@ -75,7 +75,7 @@ const BlogHeader = styled.div`
 const StyledTitle = styled.h1`
   line-height: 3.4rem;
   font-weight: 600;
-  font-size: 2.4rem;
+  font-size: 2.8rem;
   margin-bottom: 1rem;
 `
 
@@ -219,25 +219,19 @@ const AuthorBio = styled.div`
 
 const Post = ({ data: { prismicPost, allPosts }, location, path }) => {
   const [showSidebar, setShowSidebar] = useState(false)
-  const { author, blog_image, body, published_on, title, category } = prismicPost.data
+  console.log(prismicPost)
+  const { author, blog_image, preview_image, body, published_on, title, category, description } = prismicPost.data
   const { author_image, author_name, author_position, bio, linkedin, twitter } = author.document[0].data
   const categorySlug = category.document[0].slugs[0]
-  // useEffect(() => {
-  //   document.addEventListener('click', e => {
-  //     e.stopImmediatePropagation()
-  //     console.log(e.target)
-  //   })
-  //   return () => {
-  //     document.removeEventListener('click')
-  //   };
-  // }, [])
+
   return (
     <Sidebar allPosts={allPosts} open={showSidebar} onSetOpen={open => setShowSidebar(open)}>
       <Layout customSEO path={path}>
         <SEO
           title={`${title.text} | ${website.titleAlt}`}
           pathname={location.pathname}
-          desc={title.text}
+          desc={description}
+          banner={preview_image.url || blog_image.url}
           node={prismicPost}
           article
         />
@@ -302,8 +296,11 @@ Post.propTypes = {
 export const pageQuery = graphql`
   query BlogPostBySlug($slug: String!) {
     prismicPost: prismicBlogPost(slugs: { eq: $slug }) {
+      tags
+      last_publication_date
       data {
         published_on(formatString: "MMM D, YYYY")
+        description
         title {
           text
         }
@@ -311,6 +308,10 @@ export const pageQuery = graphql`
           html
         }
         blog_image {
+          alt
+          url
+        }
+        preview_image {
           alt
           url
         }
