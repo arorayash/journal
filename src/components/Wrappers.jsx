@@ -24,30 +24,30 @@ export const ImageWrapper = styled.span`
     }
   }
 `
+const linkStyles = `
+text-decoration: none;
+color: #fff;
+font-style: normal;
+font-weight: normal;
+font-size: 14px;
+line-height: 20px;
+margin-bottom: 0.7rem;
+height: fit-content;
+width: fit-content;
+&:hover,
+&:active,
+&:visited,
+&:focus {
+  text-decoration: underline;
+}`
 
 export const StyledLink = styled(Link)`
-  text-decoration: none;
-  font: inherit;
-  color: inherit;
-  &:hover {
-    text-decoration: ${props => (props.underline ? 'underline' : 'none')};
-  }
+  ${linkStyles}
+  // &:hover {
+  //   text-decoration: ${props => (props.underline ? 'underline' : 'none')};
+  // }
 `
 
 export const ExternLink = styled.a`
-  text-decoration: none;
-  color: #fff;
-  font-style: normal;
-  font-weight: normal;
-  font-size: 14px;
-  line-height: 20px;
-  margin-bottom: 0.5rem;
-  height: fit-content;
-  width: fit-content;
-  &:hover,
-  &:active,
-  &:visited,
-  &:focus {
-    text-decoration: none;
-  }
+  ${linkStyles}
 `

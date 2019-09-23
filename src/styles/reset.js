@@ -4,7 +4,7 @@ const reset = css`
   *,
   *:before,
   *:after {
-    box-sizing: inherit;
+    box-sizing: border-box;
   }
   html {
     text-rendering: optimizeLegibility;
@@ -12,6 +12,7 @@ const reset = css`
     box-sizing: border-box;
     -ms-overflow-style: scrollbar;
     -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    font-size: 10px;
   }
   [tabindex='-1']:focus {
     outline: none !important;

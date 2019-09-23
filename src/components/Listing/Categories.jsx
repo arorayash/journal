@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import styled from '@emotion/styled'
 import { StyledLink } from '../Wrappers'
 import CategoryCard from './CategoryCard.jsx'
-import { getFirstCategory } from '../../utils'
+import { getCategoryFirstPost } from '../../utils'
 
 const CategoriesWrapper = styled.div`
   display: flex;
@@ -16,12 +16,19 @@ const categoriesOrder = ['engineering', 'product--design', 'business--growth']
 
 const Categories = ({ categories, allPosts }) => {
   // Fix the order of catrgories since prismic sends them unordered
-  categories.sort((a, b) => categoriesOrder.indexOf(a.uid) - categoriesOrder.indexOf(b.uid))
+  categories.sort(
+    (a, b) => categoriesOrder.indexOf(a.uid) - categoriesOrder.indexOf(b.uid)
+  )
   return (
     <>
       <CategoriesWrapper>
         {categories.map((category, index) => (
-            <CategoryCard cardLink={getFirstCategory(allPosts, category.uid)} key={category.data.title.text} data={category} index={index} />
+          <CategoryCard
+            cardLink={getCategoryFirstPost(allPosts, category.uid)}
+            key={category.data.title.text}
+            data={category}
+            index={index}
+          />
         ))}
       </CategoriesWrapper>
     </>

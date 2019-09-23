@@ -2,7 +2,7 @@ import React from 'react'
 import styled from '@emotion/styled'
 import { Icon } from 'knit-ui'
 import { StyledLink } from '../Wrappers'
-import { getFirstCategory } from '../Wrappers'
+import { getCategoryFirstPost } from '../Wrappers'
 import theme from '../../styles/theme'
 import { firstCategory, secondCategory, thirdCategory } from '../../assets'
 

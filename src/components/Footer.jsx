@@ -3,40 +3,33 @@ import styled from '@emotion/styled'
 import { Link } from 'gatsby'
 import { StyledLink, ExternLink } from './Wrappers'
 import { theme } from '../styles'
-import { getFirstCategory } from '../utils'
+import { getCategoryFirstPost } from '../utils'
 import clarisightsLogo from '../assets/white-logo.svg'
 
-const { breakpoints } = theme
+const { breakpoints, colors } = theme
 
 const StyledFooter = styled.footer`
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: flex-start;
   font-size: 1.4rem;
   line-height: 2rem;
-  padding: 0 1.4rem 0 1.4rem;
-  height: 26rem;
   color: #fff;
   width: 100vw;
-  margin: 6rem auto 0 auto;
   background-color: black;
-  flex-shrink: 0;
   @media (max-width: ${breakpoints.s}) {
     flex-direction: column;
     align-items: start;
-    height: 43rem;
-    padding: 2.6rem 2.6rem 5rem 2.6rem;
+    padding: 5.6rem 2.8rem 5.6rem 2.8rem;
   }
 `
 
 const isSingle = props => props.left && props.path === '/'
 
 const Section = styled.span`
-  flex: 1 0;
   display: flex;
   width: 100%;
-  justify-content: ${props => (isSingle(props) ? 'start' : 'space-around')};
-  margin-left: ${props => (isSingle(props) ? '14rem' : '0')};
+  justify-content: space-around;
   @media (max-width: ${breakpoints.s}) {
     margin-left: 0;
     flex-direction: column;
@@ -70,40 +63,49 @@ const SpacedFlex = styled.div`
 const Column = styled.div`
   display: flex;
   flex-direction: column;
-  &:last-child {
-    margin-top: 3rem;
+  margin: 7rem 0 10rem 0;
+
+  @media (max-width: ${breakpoints.s}) {
+    margin: 4.2rem 0;
   }
+`
+
+const Title = styled.div`
+  margin-bottom: 0.7rem;
+  color: ${colors.neutral45};
+`
+
+const Logo = styled.img`
+  margin-bottom: 0.7rem;
 `
 
 const Footer = ({ categories, path, allPosts }) => (
   <StyledFooter path={path}>
     <Section left path={path}>
-      {typeof window !== 'undefined' && window.innerWidth < 600 ? (
-        <SpacedFlex>
-          <StyledLink underline to="/careers">
-            Careers
-          </StyledLink>
-          <Link to="/">
-            <img src={clarisightsLogo} alt="" />
-          </Link>
-        </SpacedFlex>
-      ) : (
-        <ExternLink target="_blank" href="https://clarisights.com/careers">
-          Careers
+      <Column>
+        <ExternLink to="/">
+          <Logo src={clarisightsLogo} alt="Journal Home" />
         </ExternLink>
-      )}
-      {path !== '/' && (
-        <CategoriesWrapper>
-          Journal
-          {categories.map(cat => (
-            <StyledLink to={getFirstCategory(allPosts, cat.uid)}>
-              <span key={cat.data.title.text}>/ {cat.data.title.text}</span>
-            </StyledLink>
-          ))}
-        </CategoriesWrapper>
-      )}
-    </Section>
-    <Section>
+        <StyledLink to="/careers">Job listings</StyledLink>
+      </Column>
+      <Column>
+        <Title>Journal</Title>
+        {categories.map(cat => (
+          <StyledLink to={getCategoryFirstPost(allPosts, cat.uid)}>
+            <span key={cat.data.title.text}>
+              / {cat.data.title.text}{' '}
+              <svg
+                width="20"
+                height="20"
+                viewBox="0 0 20 20"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg">
+                <path d="M5 15V4L16 15H5Z" fill="#025C52" />
+              </svg>
+            </span>
+          </StyledLink>
+        ))}
+      </Column>
       <Column>
         <ExternLink target="_blank" href="https://github.com/clarisights">
           GitHub
@@ -111,7 +113,9 @@ const Footer = ({ categories, path, allPosts }) => (
         <ExternLink target="_blank" href="https://twitter.com/clarisights">
           Twitter
         </ExternLink>
-        <ExternLink target="_blank" href="https://www.linkedin.com/company/clarisights/">
+        <ExternLink
+          target="_blank"
+          href="https://www.linkedin.com/company/clarisights/">
           LinkedIn
         </ExternLink>
         <ExternLink target="_blank" href="https://www.dribble.com/clarisights">
@@ -119,8 +123,10 @@ const Footer = ({ categories, path, allPosts }) => (
         </ExternLink>
       </Column>
       <Column>
-        <span>© Clarisights 2019</span>
-        <ExternLink target="_blank" href="https://clarisights.com/privacy-policy">
+        <Title>© Clarisights 2019</Title>
+        <ExternLink
+          target="_blank"
+          href="https://clarisights.com/privacy-policy">
           Privacy Policy
         </ExternLink>
       </Column>
