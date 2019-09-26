@@ -28,6 +28,7 @@ module.exports = {
   /* Plugins */
   plugins: [
     'gatsby-plugin-react-helmet',
+    `gatsby-plugin-sass`,
     'gatsby-plugin-emotion',
     {
       resolve: 'gatsby-source-prismic',

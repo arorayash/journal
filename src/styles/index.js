@@ -1,5 +1,5 @@
 import prism from './prism'
 import theme from './theme'
-import reset from './reset'
+import('./scss/index.scss')
 
-export { theme, reset, prism }
+export { theme, prism }

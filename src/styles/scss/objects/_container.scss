@@ -1,0 +1,30 @@
+// ==========================================================================
+// Objects / Container
+// ==========================================================================
+
+//
+// Page-level constraining and wrapping elements.
+//
+//
+
+/* stylelint-disable */
+@if (type-of($container-width) != number) {
+  @error "`#{$container-width}` needs to be a number.";
+}
+/* stylelint-enable */
+
+.o-container {
+  margin-right: auto;
+  margin-left: auto;
+  max-width: rem($container-width + (100px * 4));
+
+  @media (max-width: $to-small) {
+    padding-right: 20px;
+    padding-left: 20px;
+  }
+
+  @media (min-width: $from-small) {
+    padding-right: rem(40px);
+    padding-left: rem(40px);
+  }
+}

@@ -10,17 +10,12 @@ const { breakpoints } = theme
 
 const CardWrapper = styled(StyledLink)`
     position: relative;
-    display: flex;
-    max-width: 38rem;
-    min-width: 32rem;
-    flex: 1;
-    margin-bottom: 4rem;
-    margin-right: 2.8rem;
-    @media (max-width: ${breakpoints.s}) {
-      margin-right: 0;
-      max-width: 100%;
-    }
-    height: 40rem;
+    display: inline-block;
+    // @media (max-width: ${breakpoints.s}) {
+    //   margin-right: 0;
+    //   max-width: 100%;
+    // }
+    height: 37rem;
     background: #EBE7E0;
     border-radius: 2px;
     cursor: pointer;
@@ -47,7 +42,6 @@ const CardWrapper = styled(StyledLink)`
       display: inline;
       svg {
         transform: rotate(-135deg);
-        fill: #fff;
       }
     }
   }
@@ -58,21 +52,23 @@ const CardContent = styled.div`
   flex-direction: column;
   justify-content: flex-end;
   padding: 4rem;
+  height: 100%;
   .title {
     font-size: 2.4rem;
     line-height: 2.9rem;
     font-weight: bold;
     margin-bottom: 1rem;
+    color: #000;
   }
   .num {
-    width: fit-content;
-    line-height: 9rem;
+    margin-bottom: 1rem;
   }
   .desc {
     color: #666666;
     opacity: 0.8;
     font-size: 1.4rem;
     line-height: 2rem;
+    height: 8rem;
   }
 `
 
@@ -88,12 +84,12 @@ const categoryIndex = {
   '2': thirdCategory,
 }
 
-const CategoryCard = ({ data, index, cardLink }) => {
+const CategoryCard = ({ data, index, cardLink, className }) => {
   const {
     data: { title, description },
   } = data
   return (
-    <CardWrapper to={cardLink} uid={data.uid}>
+    <CardWrapper to={cardLink} uid={data.uid} className={className}>
       <CardContent>
         <span className="num">
           <img src={categoryIndex[index]} alt="" />

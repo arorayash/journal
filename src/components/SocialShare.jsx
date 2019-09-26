@@ -18,7 +18,6 @@ const ShareWrapper = styled.div`
   position: sticky;
   position: -webkit-sticky;
   top: 4rem;
-  width: fit-content;
   color: #808080;
   font-size: 1.4rem;
   line-height: 2rem;
@@ -30,7 +29,6 @@ const ShareWrapper = styled.div`
     padding-left: 0;
   }
   div {
-    width: fit-content;
     margin-top: 1.2rem;
   }
 `

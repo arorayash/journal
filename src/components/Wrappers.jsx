@@ -31,9 +31,6 @@ font-style: normal;
 font-weight: normal;
 font-size: 14px;
 line-height: 20px;
-margin-bottom: 0.7rem;
-height: fit-content;
-width: fit-content;
 &:hover,
 &:active,
 &:visited,

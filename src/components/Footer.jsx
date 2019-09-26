@@ -17,6 +17,9 @@ const StyledFooter = styled.footer`
   color: #fff;
   width: 100vw;
   background-color: black;
+  .social-links {
+    justify-content: space-between;
+  }
   @media (max-width: ${breakpoints.s}) {
     flex-direction: column;
     align-items: start;
@@ -29,7 +32,7 @@ const isSingle = props => props.left && props.path === '/'
 const Section = styled.span`
   display: flex;
   width: 100%;
-  justify-content: space-around;
+  justify-content: space-between;
   @media (max-width: ${breakpoints.s}) {
     margin-left: 0;
     flex-direction: column;
@@ -81,7 +84,7 @@ const Logo = styled.img`
 
 const Footer = ({ categories, path, allPosts }) => (
   <StyledFooter path={path}>
-    <Section left path={path}>
+    <Section left path={path} className="o-container">
       <Column>
         <ExternLink to="/">
           <Logo src={clarisightsLogo} alt="Journal Home" />
@@ -106,7 +109,7 @@ const Footer = ({ categories, path, allPosts }) => (
           </StyledLink>
         ))}
       </Column>
-      <Column>
+      <Column className="social-links">
         <ExternLink target="_blank" href="https://github.com/clarisights">
           GitHub
         </ExternLink>
