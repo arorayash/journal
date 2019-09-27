@@ -18,7 +18,7 @@ const Categories = ({ categories, allPosts }) => {
     <>
       <CategoriesWrapper className="o-layout -gutter">
         {categories.map((category, index) => (
-          <div className="o-layout_item u-1/3@from-medium">
+          <div className="o-layout_item u-1/3@from-medium u-margin-bottom-small">
             <CategoryCard
               cardLink={getCategoryFirstPost(allPosts, category.uid)}
               key={category.data.title.text}
