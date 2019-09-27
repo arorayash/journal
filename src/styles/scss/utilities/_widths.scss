@@ -33,6 +33,12 @@ $widths-fractions: 1 2 3 4 5 6 !default;
   }
 }
 
+.u-1\/6\@from-medium {
+  @media (min-width: $from-medium) {
+    width: span(1/6);
+  }
+}
+
 .u-2\/6\@from-medium {
   @media (min-width: $from-medium) {
     width: span(2/6);
@@ -48,6 +54,12 @@ $widths-fractions: 1 2 3 4 5 6 !default;
 .u-4\/6\@from-medium {
   @media (min-width: $from-medium) {
     width: span(4/6);
+  }
+}
+
+.u-5\/6\@from-medium {
+  @media (min-width: $from-medium) {
+    width: span(5/6);
   }
 }
 

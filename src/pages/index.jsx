@@ -125,7 +125,7 @@ const Index = props => {
     path,
   } = props
   const [search, setSearch] = useState('')
-  const [searchFocus, setSearchFocus] = useState(false);
+  const [searchFocus, setSearchFocus] = useState(false)
   const filteredPosts = searchBlogs(allPosts.nodes, search)
 
   const featuredBlogs = featured_posts.nodes[0].data.featured_blogs
@@ -147,6 +147,7 @@ const Index = props => {
             <div className="search-wrapper u-margin-top-small">
               <Input
                 onChange={e => setSearch(e.target.value)}
+                onFocus={e => setSearchFocus()}
                 placeholder="Search for a post"
                 addonBefore={<Icon type="oSearch" />}
               />
