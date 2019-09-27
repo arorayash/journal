@@ -3,22 +3,23 @@ module.exports = {
   title: 'Clarisights Journal', // Navigation and Site Title
   titleAlt: 'Clarisights Journal', // Title for JSONLD
   description: 'Where throughts from clarisights come alive',
-  headline: 'Clarisights blog platform', // Headline for schema.org JSONLD
-  url: 'https://journal.clarisights.com', // Domain of your site. No trailing slash!
+  headline: 'Clarisights - The decision platform for growth', // Headline for schema.org JSONLD
+  url: 'https://clarisights-journal.netlify.com', // Domain of your site. No trailing slash!
   siteLanguage: 'en', // Language Tag on <html> element
-  logo: '/logos/logo-1024.png', // Used for SEO
+  logo:
+    'https://clarisights-journal.cdn.prismic.io/clarisights-journal%2F06efbb56-8b0f-469e-83f0-6c3acdcb17de_logo.svg', // Used for SEO
   ogLanguage: 'en_US', // Facebook Language
 
   // JSONLD / Manifest
   favicon: 'src/favicon.png', // Used for manifest favicon generation
   shortName: 'Clarisights', // shortname for manifest. MUST be shorter than 12 characters
-  author: 'anshumanv', // Author for schemaORGJSONLD
+  author: 'Clarisights', // Author for schemaORGJSONLD
   themeColor: '#3D63AE',
   backgroundColor: '#F7F7F7',
 
   twitter: '@clarisights', // Twitter Username
   facebook: 'ClarisightsOfficial', // Facebook Site Name
-  googleAnalyticsID: '',
+  googleAnalyticsID: 'UA-148226838-1',
 
   skipNavId: 'reach-skip-nav', // ID for the "Skip to content" a11y feature
 }

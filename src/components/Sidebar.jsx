@@ -2,7 +2,6 @@ import React, { useState } from 'react'
 import Sidebar from 'react-sidebar'
 import styled from '@emotion/styled'
 import { Input, Icon } from 'knit-ui'
-import { Link } from 'gatsby'
 import { StyledLink } from './Wrappers'
 import BlogCard from './Listing/BlogCard'
 import { searchBlogs } from '../utils'
@@ -21,6 +20,13 @@ const SidebarWrapper = styled.div`
   @media (max-width: ${breakpoints.l}) {
     width: 70vw;
   }
+  @media (max-width: ${breakpoints.s}) {
+    flex-direction: column;
+    padding: 2rem 2.7rem 2rem 2.7rem;
+    height: fit-content;
+    max-height: 100%;
+    width: 100%;
+  }
 `
 
 const VertFlex = styled.div`
@@ -37,9 +43,31 @@ const VertFlex = styled.div`
       background: transparent;
       border: 1px solid #1a1a1a;
     }
+    @media (max-width: ${breakpoints.s}) {
+      margin-top: 1.8rem;
+    }
   }
   .logo {
     margin-top: auto;
+    @media (max-width: ${breakpoints.s}) {
+      margin-top: 0;
+    }
+  }
+  .close-icon {
+    display: none;
+    @media (max-width: ${breakpoints.s}) {
+      display: block;
+    }
+  }
+`
+
+const ActionWrapper = styled.span`
+  margin-top: auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  .close-icon {
+    cursor: pointer;
   }
 `
 
@@ -60,6 +88,9 @@ const CategoryItem = styled.span`
       top: 50%;
       transform: translateY(-50%);
     }
+  }
+  @media (max-width: ${breakpoints.s}) {
+    display: none;
   }
 `
 
@@ -82,7 +113,7 @@ const filterPosts = (allPosts, category) => {
   )
 }
 
-const SidebarContent = ({ allPosts }) => {
+const SidebarContent = ({ allPosts, setShowSidebar }) => {
   const posts = allPosts.nodes
   const [search, setSearch] = useState('')
   const [category, setCategory] = useState('All')
@@ -104,10 +135,13 @@ const SidebarContent = ({ allPosts }) => {
             </span>
           </CategoryItem>
         ))}
-        <HomePageLink to="/" className="logo">
-          <img src={clarisightsLogo} alt="Clarisights logo" />
-          <span>Go to Journal</span>
-        </HomePageLink>
+        <ActionWrapper>
+          <Icon className="close-icon" type="oClose" onClick={() => setShowSidebar(false)} />
+          <HomePageLink to="/" className="logo">
+            <img src={clarisightsLogo} alt="Clarisights logo" />
+            <span>Go to Journal</span>
+          </HomePageLink>
+        </ActionWrapper>
       </VertFlex>
       <VertFlex>
         <span className="search-wrapper">
@@ -129,7 +163,7 @@ const SidebarContent = ({ allPosts }) => {
 
 const Drawer = props => (
   <Sidebar
-    sidebar={<SidebarContent allPosts={props.allPosts} />}
+    sidebar={<SidebarContent allPosts={props.allPosts} setShowSidebar={props.setShowSidebar} />}
     open={props.open}
     styles={{ sidebar: { background: '#f4f2ee', zIndex: 3 } }}
     onSetOpen={props.onSetOpen}>

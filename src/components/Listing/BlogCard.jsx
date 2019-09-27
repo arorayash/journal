@@ -46,6 +46,14 @@ const CardContent = styled.div`
       text-decoration-color: #1a1a1a;
     }
   }
+  @media (max-width: ${breakpoints.l}) {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+  @media (max-width: ${breakpoints.s}) {
+    padding-left: 0;
+    padding-right: 0;
+  }
 `
 
 const ImageWrapper = styled.span`

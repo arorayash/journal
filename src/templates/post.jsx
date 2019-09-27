@@ -4,13 +4,16 @@ import { graphql } from 'gatsby'
 import styled from '@emotion/styled'
 import { TwitterIcon, LinkedinIcon } from 'react-share'
 import { Layout, Wrapper, SliceZone, Title, SEO } from '../components'
+import { BlogCard, Featured } from '../components/Listing'
 import prism from '../styles/prism'
 import website from '../../config/website'
 import drawer from '../assets/drawer.svg'
 import Sidebar from '../components/Sidebar'
 import { theme } from '../styles'
-import { ExternLink } from '../components/Wrappers'
+import BlogTag from '../components/Tag'
+import { ExternLink, SectionTitle } from '../components/Wrappers'
 import SocialShare from '../components/SocialShare'
+import SectionNav from '../components/SectionNav'
 import fallbackImage from '../assets/bg_fallback.svg'
 
 const { breakpoints } = theme
@@ -75,7 +78,7 @@ const BlogHeader = styled.div`
 const StyledTitle = styled.h1`
   line-height: 3.4rem;
   font-weight: 600;
-  font-size: 2.4rem;
+  font-size: 2.8rem;
   margin-bottom: 1rem;
 `
 
@@ -86,8 +89,7 @@ const BlogContent = styled.div`
   font-size: 1.8rem;
   line-height: 2.6rem;
   color: #333333;
-  border-bottom: 2px solid #cccccc;
-  padding-bottom: 4rem;
+  margin-bottom: 8rem;
   @media (max-width: ${breakpoints.s}) {
     width: 100%;
   }
@@ -186,11 +188,20 @@ const DrawerIcon = styled.span`
   }
 `
 
+const TagWrapper = styled.div`
+  display: flex;
+  margin-bottom: 4rem;
+  &:empty {
+    display: none;
+  }
+`
+
 const AuthorBio = styled.div`
   display: flex;
-  margin-top: 4rem;
+  padding-top: 4rem;
   align-items: flex-start;
   width: 47vw;
+  border-top: 2px solid #cccccc;
   .social-icons {
     display: flex;
   }
@@ -217,30 +228,65 @@ const AuthorBio = styled.div`
   }
 `
 
+const RelatedWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  margin: 0 15rem;
+  @media (max-width: ${breakpoints.l}) {
+    margin: 0 10rem;
+  }
+  @media (max-width: ${breakpoints.s}) {
+    margin: 0 2rem;
+  }
+  .posts {
+    display: flex;
+    margin: 0 0 8rem 0;
+    flex-wrap: wrap;
+  }
+`
+
+const filterRelatedPosts = (allPosts, categorySlug, blogSlug) => {
+  return allPosts
+    .filter(post => post.data.category.document[0].slugs[0] === categorySlug && post.slugs[0] !== blogSlug)
+    .slice(0, 2)
+}
+
 const Post = ({ data: { prismicPost, allPosts }, location, path }) => {
   const [showSidebar, setShowSidebar] = useState(false)
-  const { author, blog_image, body, published_on, title, category } = prismicPost.data
+  const [headers, setHeaders] = useState([])
+
+  useEffect(() => {
+    const content = document.querySelector('.blog-content')
+    const headings = content.querySelectorAll('h1, h2, h3, h4, h5, h6')
+    setHeaders(headings)
+    console.log(headings)
+  }, [])
+
+  const blogTags = prismicPost.tags
+  const blogSlug = prismicPost.slugs[0]
+  const { author, blog_image, preview_image, body, published_on, title, category, description } = prismicPost.data
   const { author_image, author_name, author_position, bio, linkedin, twitter } = author.document[0].data
   const categorySlug = category.document[0].slugs[0]
-  // useEffect(() => {
-  //   document.addEventListener('click', e => {
-  //     e.stopImmediatePropagation()
-  //     console.log(e.target)
-  //   })
-  //   return () => {
-  //     document.removeEventListener('click')
-  //   };
-  // }, [])
+  const categoryTitle = category.document[0].data.title.text
+  const relatedPosts = filterRelatedPosts(allPosts.nodes, categorySlug, blogSlug)
   return (
-    <Sidebar allPosts={allPosts} open={showSidebar} onSetOpen={open => setShowSidebar(open)}>
+    <Sidebar
+      allPosts={allPosts}
+      open={showSidebar}
+      setShowSidebar={setShowSidebar}
+      onSetOpen={open => setShowSidebar(open)}
+    >
       <Layout customSEO path={path}>
         <SEO
           title={`${title.text} | ${website.titleAlt}`}
           pathname={location.pathname}
-          desc={title.text}
+          desc={description}
+          banner={preview_image.url || blog_image.url}
           node={prismicPost}
           article
         />
+        <SectionNav path={path} headings={[...headers]} />
         <PostWrapper className="posts">
           <DrawerIcon onClick={() => setShowSidebar(!showSidebar)}>
             <img src={drawer} alt="drawer icon" />
@@ -256,13 +302,18 @@ const Post = ({ data: { prismicPost, allPosts }, location, path }) => {
               </span>
             </ImageWrapper>
           </BlogHeader>
-          <SocialShare title={title.text} url={location.href} />
+          <SocialShare title={title.text} url={location.href} authorTwitter={twitter} />
           <BlogInfoWrapper>
             <StyledTitle>{title.text}</StyledTitle>
             <img className="author-image" src={author_image.url} alt={author_name.text} />
             <span className="blog-meta">{`${author_name.text}, ${author_position.text}`}</span>
             <span className="blog-meta">{published_on}</span>
-            <BlogContent dangerouslySetInnerHTML={{ __html: body.html }} />
+            <BlogContent className="blog-content" dangerouslySetInnerHTML={{ __html: body.html }} />
+            <TagWrapper>
+              {blogTags.map(tag => (
+                <BlogTag text={tag} />
+              ))}
+            </TagWrapper>
             <AuthorBio>
               <span className="author-img">
                 <img src={author_image.url} alt={author_name.text} />
@@ -279,6 +330,16 @@ const Post = ({ data: { prismicPost, allPosts }, location, path }) => {
             </AuthorBio>
           </BlogInfoWrapper>
         </PostWrapper>
+        {relatedPosts.length > 0 && (
+          <RelatedWrapper>
+            <SectionTitle>Related in {categoryTitle}</SectionTitle>
+            <div className="posts">
+              {relatedPosts.map(post => (
+                <BlogCard post={post} />
+              ))}
+            </div>
+          </RelatedWrapper>
+        )}
       </Layout>
     </Sidebar>
   )
@@ -302,8 +363,12 @@ Post.propTypes = {
 export const pageQuery = graphql`
   query BlogPostBySlug($slug: String!) {
     prismicPost: prismicBlogPost(slugs: { eq: $slug }) {
+      tags
+      last_publication_date
+      slugs
       data {
         published_on(formatString: "MMM D, YYYY")
+        description
         title {
           text
         }
@@ -311,6 +376,10 @@ export const pageQuery = graphql`
           html
         }
         blog_image {
+          alt
+          url
+        }
+        preview_image {
           alt
           url
         }

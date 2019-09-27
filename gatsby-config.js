@@ -60,6 +60,13 @@ module.exports = {
     },
     'gatsby-plugin-sitemap',
     {
+      resolve: 'gatsby-plugin-robots-txt',
+      options: {
+        host: website.url + website.pathPrefix,
+        sitemap: `${website.url}/sitemap.xml`,
+      },
+    },
+    {
       resolve: 'gatsby-plugin-manifest',
       options: {
         name: website.title,
@@ -70,12 +77,6 @@ module.exports = {
         theme_color: website.themeColor,
         display: 'standalone',
         icon: website.favicon,
-      },
-    },
-    {
-      resolve: 'gatsby-plugin-google-analytics',
-      options: {
-        trackingId: 'UA-148226838-1',
       },
     },
     // Must be placed at the end

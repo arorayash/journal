@@ -32,11 +32,17 @@ const ShareWrapper = styled.div`
     margin-top: 1.2rem;
   }
 `
+const getUsername = url => {
+  return `from @${url.split('/').slice(-1)[0] === '' ? url.split('/').slice(-2)[0] : url.split('/').slice(-1)[0]}`
+}
 
-const SocialShare = ({ title, url }) => (
+const SocialShare = ({ title, url, authorTwitter }) => (
   <ShareWrapper>
     <span>Share</span>
-    <TwitterShareButton url={url} title={`${title} via @clarisights`}>
+    <TwitterShareButton
+      url={url}
+      title={`${title} ${authorTwitter ? getUsername(authorTwitter.url) : ''} via @clarisights`}
+    >
       <TwitterIcon size={30} />
     </TwitterShareButton>
     <LinkedinShareButton url={url}>

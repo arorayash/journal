@@ -3,11 +3,11 @@ import PropTypes from 'prop-types'
 import styled from '@emotion/styled'
 import { graphql } from 'gatsby'
 import { Input, Icon, Button } from 'knit-ui'
-import { Layout, Listing, Wrapper, Title } from '../components'
+import { Layout } from '../components'
 import { Categories, Featured } from '../components/Listing'
 import { theme } from '../styles'
 import { searchBlogs } from '../utils'
-import { StyledLink, ExternLink } from '../components/Wrappers'
+import { StyledLink, ExternLink, SectionTitle } from '../components/Wrappers'
 // import website from '../../config/website'
 
 const { breakpoints } = theme
@@ -42,12 +42,6 @@ const ColumnWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-end;
-`
-
-const SectionTitle = styled.div`
-  font-size: 2.4rem;
-  line-height: 2.8rem;
-  color: #4c4c4c;
 `
 
 const EventsWrapper = styled.div`
@@ -131,6 +125,7 @@ const Index = props => {
     path,
   } = props
   const [search, setSearch] = useState('')
+  const [searchFocus, setSearchFocus] = useState(false);
   const filteredPosts = searchBlogs(allPosts.nodes, search)
 
   const featuredBlogs = featured_posts.nodes[0].data.featured_blogs

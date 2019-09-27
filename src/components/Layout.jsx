@@ -36,15 +36,13 @@ const globalStyle = css`
     background-color: ${theme.colors.bg};
   }
   ::selection {
-    color: ${theme.colors.bg};
-    background-color: ${theme.colors.primary};
+    background-color: #ddeee5;
   }
   a {
     color: ${theme.colors.primary};
     transition: all 0.4s ease-in-out;
     text-decoration: none;
-    font-weight: 700;
-    font-style: italic;
+    font-weight: 600;
     &:hover,
     &:focus {
       text-decoration: underline;
