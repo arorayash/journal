@@ -39,13 +39,11 @@ const VertFlex = styled.div`
     }
   }
   .logo {
-    width: fit-content;
     margin-top: auto;
   }
 `
 
 const CategoryItem = styled.span`
-  width: fit-content;
   cursor: pointer;
   position: relative;
   &:not(:last-child) {
@@ -79,21 +77,31 @@ const HomePageLink = styled(StyledLink)`
 
 const filterPosts = (allPosts, category) => {
   if (category === 'All') return allPosts
-  return allPosts.filter(post => post.data.category.document[0].data.title.text === category)
+  return allPosts.filter(
+    post => post.data.category.document[0].data.title.text === category
+  )
 }
 
 const SidebarContent = ({ allPosts }) => {
   const posts = allPosts.nodes
   const [search, setSearch] = useState('')
   const [category, setCategory] = useState('All')
-  const categories = ['All', 'Engineering', 'Business & Growth', 'Product & Design', 'Archives'] // mock, swap this from gql data
+  const categories = [
+    'All',
+    'Engineering',
+    'Business & Growth',
+    'Product & Design',
+    'Archives',
+  ] // mock, swap this from gql data
   const filteredPosts = searchBlogs(filterPosts(posts, category), search)
   return (
     <SidebarWrapper>
       <VertFlex categories>
         {categories.map(cat => (
           <CategoryItem onClick={() => setCategory(cat)}>
-            <span className={category === cat ? 'active-category' : ''}>{cat}</span>
+            <span className={category === cat ? 'active-category' : ''}>
+              {cat}
+            </span>
           </CategoryItem>
         ))}
         <HomePageLink to="/" className="logo">
@@ -124,8 +132,7 @@ const Drawer = props => (
     sidebar={<SidebarContent allPosts={props.allPosts} />}
     open={props.open}
     styles={{ sidebar: { background: '#f4f2ee', zIndex: 3 } }}
-    onSetOpen={props.onSetOpen}
-  >
+    onSetOpen={props.onSetOpen}>
     {props.children}
   </Sidebar>
 )

@@ -11,14 +11,18 @@ import '@reach/skip-nav/styles.css'
 import Footer from './Footer'
 import SEO from './SEO'
 import SkipNavLink from './SkipNavLink'
-import { theme, reset } from '../styles'
+import { theme } from '../styles'
 
 import 'typeface-inter'
 import 'typeface-source-code-pro'
 
 const globalStyle = css`
-  ${reset}
-  h1, h2, h3, h4, h5, h6 {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
     color: ${theme.colors.title};
   }
   html {
@@ -82,7 +86,11 @@ const PureLayout = ({ children, data, customSEO, path }) => (
       <SkipNavLink />
       {!customSEO && <SEO />}
       {children}
-      <Footer path={path} categories={data.allPrismicCategory.nodes} allPosts={data.allPosts} />
+      <Footer
+        path={path}
+        categories={data.allPrismicCategory.nodes}
+        allPosts={data.allPosts}
+      />
     </>
   </ThemeProvider>
 )
@@ -104,7 +112,9 @@ class Layout extends Component {
                 }
               }
             }
-            allPosts: allPrismicBlogPost(sort: { order: DESC, fields: data___published_on }) {
+            allPosts: allPrismicBlogPost(
+              sort: { order: DESC, fields: data___published_on }
+            ) {
               nodes {
                 slugs
                 data {

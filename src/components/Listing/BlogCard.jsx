@@ -8,31 +8,27 @@ import fallbackImage from '../../assets/bg_fallback.svg'
 const { breakpoints } = theme
 
 const CardWrapper = styled.div`
-  display: flex;
   text-decoration: none;
-  flex-wrap: wrap;
-  flex: 1 0 48%;
   margin-bottom: ${props => (props.sidebar ? '2' : '0')}rem;
-  @media (max-width: ${breakpoints.md}) {
-    flex: 1 0 100%;
-    flex-direction: column;
-    max-width: 100%;
-  }
-  max-width: ${props => (props.sidebar ? '100' : '50')}%;
+  // @media (max-width: ${breakpoints.md}) {
+  //   flex: 1 0 100%;
+  //   flex-direction: column;
+  //   max-width: 100%;
+  // }
+  // max-width: ${props => (props.sidebar ? '100' : '50')}%;
 `
 
 const CardContent = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
-  padding: ${props => (props.sidebar ? '0' : '4')}rem;
+  // padding: ${props => (props.sidebar ? '0' : '4')}rem;
   .post-title {
     font-size: ${props => (props.sidebar ? '2' : '2.4')}rem;
     line-height: 2.9rem;
     font-weight: 600;
     margin-top: ${props => (props.sidebar ? '0' : '2')}rem;
     color: #1a1a1a;
-    width: fit-content;
     text-decoration: underline;
     text-decoration-color: #e5e5e5;
     text-underline-position: under;

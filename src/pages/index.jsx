@@ -13,19 +13,13 @@ import { StyledLink, ExternLink } from '../components/Wrappers'
 const { breakpoints } = theme
 
 const HomepageHeader = styled.div`
-  display: flex;
-  flex-direction: column;
-  width: 35vw;
-  flex: 1 0 auto;
-  align-items: start;
   .topImages {
     display: flex;
     flex-direction: column;
     align-items: end;
-    margin-bottom: 4rem;
-    img:last-child {
-      margin-top: 2rem;
-    }
+  }
+  .home-logo {
+    margin-bottom: 1rem;
   }
   .about {
     font-size: 1.4rem;
@@ -33,17 +27,10 @@ const HomepageHeader = styled.div`
   }
   .search-wrapper {
     width: 100%;
-    margin-top: 40px;
     input {
       background: transparent;
       border: 1px solid #9b8964;
     }
-  }
-  @media (max-width: ${breakpoints.m}) {
-    width: 60%;
-  }
-  @media (max-width: ${breakpoints.s}) {
-    width: 100%;
   }
 `
 
@@ -58,77 +45,58 @@ const ColumnWrapper = styled.div`
 `
 
 const SectionTitle = styled.div`
-  margin: 10rem 0 2rem 0;
   font-size: 2.4rem;
   line-height: 2.8rem;
   color: #4c4c4c;
 `
 
 const EventsWrapper = styled.div`
-  width: 50%;
   color: #4c4c4c;
   .event-card {
-    display: flex;
-    justify-content: space-between;
-    padding: 1rem 0 1rem 0;
     &-title {
       font-weight: normal;
       font-style: normal;
       font-size: 1.6rem;
       line-height: 1.9rem;
     }
-    &:not(:last-child) {
-      border-bottom: 1px solid #c4c4c4;
+
+    .event-date {
+      font-size: 14px;
     }
-  }
-  @media (max-width: ${breakpoints.m}) {
-    width: 60%;
-  }
-  @media (max-width: ${breakpoints.md}) {
-    width: 100%;
   }
 `
 
 const IndexWrapper = styled.div`
-  padding: 12.5rem;
-  @media (max-width: ${breakpoints.m}) {
-    padding: 5rem;
-  }
-  @media (max-width: ${breakpoints.s}) {
-    padding: 2.6rem;
-    margin-top: 7.5rem;
-  }
+  // @media (max-width: ${breakpoints.m}) {
+  //   padding: 5rem;
+  // }
 `
 
 const NewsletterWrapper = styled.div`
-  width: 40vw;
-  font-size: 2.4rem;
-  color: #4c4c4c;
-  margin-top: 4rem;
-  line-height: 2.9rem;
-  span {
-    margin-top: 2rem;
-    height: 3.4rem;
+  div {
     display: flex;
-    font-size: 1.4rem;
-    line-height: 2rem;
+    font-size: 2.4rem;
+    color: #4c4c4c;
+    line-height: 2.9rem;
     input {
+      font-size: 1.4rem;
+      line-height: 2rem;
       height: 3.4rem;
       background: transparent;
       border: 1px solid #1a1a1a;
       margin-right: 0.5rem;
     }
     button {
+      font-size: 1.4rem;
+      line-height: 2rem;
       background-color: #9b8964;
       border-radius: 2px;
       color: white;
+      border: 0;
       &:hover {
         background: #1a1a1a;
       }
     }
-  }
-  @media (max-width: ${breakpoints.md}) {
-    width: 100%;
   }
 `
 
@@ -143,9 +111,9 @@ const SearchResults = styled.div`
   padding-left: 2.8rem;
   margin-top: 1rem;
   a {
-    width: fit-content;
     cursor: pointer;
     margin-bottom: 2rem;
+    color: black;
   }
 `
 
@@ -168,64 +136,95 @@ const Index = props => {
   const featuredBlogs = featured_posts.nodes[0].data.featured_blogs
   return (
     <Layout path={path}>
-      <IndexWrapper>
-        <HomepageHeader>
-          <span className="topImages">
-            <img src={homepage.data.logo.url} alt="" />
-            <img src={homepage.data.journal.url} alt="" />
-          </span>
-          <span className="about">
-            A space where our team’s thoughts and explorations are logged in. We regularly jot down about our projects,
-            product updates, business; breaking down our processes and findings to share them with you. - your friends
-            at Clarisights
-          </span>
-          <span className="search-wrapper">
-            <Input
-              onChange={e => setSearch(e.target.value)}
-              placeholder="Search for a post"
-              addonBefore={<Icon type="oSearch" />}
-            />
-            {search !== '' && (
-              <SearchResults>
-                {filteredPosts.map(post => (
-                  <StyledLink to={post.slugs[0]}>{post.data.title.text}</StyledLink>
-                ))}
-              </SearchResults>
-            )}
-          </span>
-        </HomepageHeader>
-        <ContentWrapper blur={search !== ''}>
-          <Categories allPosts={allPosts} categories={categories.nodes} />
-          <SectionTitle>Featured Topics</SectionTitle>
-          <Featured featured={featuredBlogs} />
-          <NewsletterWrapper>
-            Get the latest news and views from Clarisights delivered to your inbox. No spam, only quality content.
-            <span>
-              <Input placeholder="Your Email address" size="large" />
-              <button>Subscribe</button>
-            </span>
-          </NewsletterWrapper>
-          <SectionTitle>What's on</SectionTitle>
-          <EventsWrapper>
-            {events.nodes.map(event => (
-              <span key={event.data.title.text} className="event-card">
-                <EventLinkWrapper href={event.data.meetup_link.url} target={event.data.meetup_link.target}>
-                  <span className="event-card-title">{event.data.title.text}</span>
-                </EventLinkWrapper>
-                <ColumnWrapper>
-                  <span>
-                    <Icon type="oLocationOn" />
-                    <EventLinkWrapper href={event.data.location_link.url} target={event.data.location_link.target}>
-                      <Underline>{event.data.location.text}</Underline>
+      <div className="o-container">
+        <IndexWrapper className="o-layout -gutter">
+          <HomepageHeader className="o-layout_item u-3/6@from-medium u-margin-vertical-xlarge">
+            <div className="topImages">
+              <img className="home-logo" src={homepage.data.logo.url} alt="" />
+              <img src={homepage.data.journal.url} alt="" />
+            </div>
+            <div className="about u-margin-top-small">
+              A space where our team’s thoughts and explorations are logged in.
+              We regularly jot down about our projects, product updates,
+              business; breaking down our processes and findings to share them
+              with you. - your friends at Clarisights
+            </div>
+            <div className="search-wrapper u-margin-top-small">
+              <Input
+                onChange={e => setSearch(e.target.value)}
+                placeholder="Search for a post"
+                addonBefore={<Icon type="oSearch" />}
+              />
+              {search !== '' && (
+                <SearchResults>
+                  {filteredPosts.map(post => (
+                    <StyledLink to={post.slugs[0]}>
+                      {post.data.title.text}
+                    </StyledLink>
+                  ))}
+                </SearchResults>
+              )}
+            </div>
+          </HomepageHeader>
+          <ContentWrapper
+            blur={search !== ''}
+            className="o-layout_item u-6/6@from-medium">
+            <Categories allPosts={allPosts} categories={categories.nodes} />
+            <SectionTitle className="u-margin-top-xlarge u-margin-bottom-small">
+              Featured Topics
+            </SectionTitle>
+            <Featured featured={featuredBlogs} />
+            <hr />
+          </ContentWrapper>
+          <div className="o-layout_item u-3/6@from-medium">
+            <NewsletterWrapper className="u-margin-top-xlarge">
+              <div className="u-margin-bottom-small">
+                Get the latest news and views from Clarisights delivered to your
+                inbox. No spam, only quality content.
+              </div>
+              <div>
+                <Input placeholder="Your Email address" size="large" />
+                <button>Subscribe</button>
+              </div>
+            </NewsletterWrapper>
+            <SectionTitle className="u-margin-top-xlarge u-margin-bottom-small">
+              What's on
+            </SectionTitle>
+            <EventsWrapper className="u-margin-bottom-xlarge">
+              {events.nodes.map((event, index) => (
+                <>
+                  {index !== 0 ? <hr /> : null}
+                  <div
+                    key={event.data.title.text}
+                    className="event-card o-layout u-margin-vertical-xsmall">
+                    <EventLinkWrapper
+                      href={event.data.meetup_link.url}
+                      target={event.data.meetup_link.target}
+                      className="o-layout_item u-3/6@from-medium">
+                      <span className="event-card-title">
+                        {event.data.title.text}
+                      </span>
                     </EventLinkWrapper>
-                  </span>
-                  <span>{event.data.time}</span>
-                </ColumnWrapper>
-              </span>
-            ))}
-          </EventsWrapper>
-        </ContentWrapper>
-      </IndexWrapper>
+                    <div className="o-layout_item u-3/6@from-medium">
+                      <div className="o-layout -flex -right -col">
+                        <div className="o-layout -flex -right -middle">
+                          <Icon type="oLocationOn" />
+                          <EventLinkWrapper
+                            href={event.data.location_link.url}
+                            target={event.data.location_link.target}>
+                            {event.data.location.text}
+                          </EventLinkWrapper>
+                        </div>
+                        <div className="event-date">{event.data.time}</div>
+                      </div>
+                    </div>
+                  </div>
+                </>
+              ))}
+            </EventsWrapper>
+          </div>
+        </IndexWrapper>
+      </div>
     </Layout>
   )
 }
@@ -305,7 +304,9 @@ export const pageQuery = graphql`
         }
       }
     }
-    allPosts: allPrismicBlogPost(sort: { order: DESC, fields: data___published_on }) {
+    allPosts: allPrismicBlogPost(
+      sort: { order: DESC, fields: data___published_on }
+    ) {
       nodes {
         slugs
         data {
