@@ -77,7 +77,6 @@ const SectionNav = ({ headings, path }) => {
         setActiveHead(headings[0].id)
       }
       const top = headings.find(head => head.getBoundingClientRect().top > 0)
-      console.log({ top, headings })
       if (top && activeHead !== top.id) {
         setActiveHead(top.id)
       }
