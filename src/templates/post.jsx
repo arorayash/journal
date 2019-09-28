@@ -203,9 +203,8 @@ const Post = ({ data: { prismicPost, allPosts }, location, path }) => {
 
   useEffect(() => {
     const content = document.querySelector('.blog-content')
-    const headings = content.querySelectorAll('h1, h2, h3, h4, h5, h6')
+    const headings = content.querySelectorAll('h1')
     setHeaders(headings)
-    console.log(headings)
   }, [])
 
   const blogTags = prismicPost.tags
