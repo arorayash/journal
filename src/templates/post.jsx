@@ -248,7 +248,11 @@ const RelatedWrapper = styled.div`
 
 const filterRelatedPosts = (allPosts, categorySlug, blogSlug) => {
   return allPosts
-    .filter(post => post.data.category.document[0].slugs[0] === categorySlug && post.slugs[0] !== blogSlug)
+    .filter(
+      post =>
+        post.data.category.document[0].slugs[0] === categorySlug &&
+        post.slugs[0] !== blogSlug
+    )
     .slice(0, 2)
 }
 
@@ -258,25 +262,44 @@ const Post = ({ data: { prismicPost, allPosts }, location, path }) => {
 
   useEffect(() => {
     const content = document.querySelector('.blog-content')
-    const headings = content.querySelectorAll('h1, h2, h3, h4, h5, h6')
+    const headings = content.querySelectorAll('h1')
     setHeaders(headings)
     console.log(headings)
   }, [])
 
   const blogTags = prismicPost.tags
   const blogSlug = prismicPost.slugs[0]
-  const { author, blog_image, preview_image, body, published_on, title, category, description } = prismicPost.data
-  const { author_image, author_name, author_position, bio, linkedin, twitter } = author.document[0].data
+  const {
+    author,
+    blog_image,
+    preview_image,
+    body,
+    published_on,
+    title,
+    category,
+    description,
+  } = prismicPost.data
+  const {
+    author_image,
+    author_name,
+    author_position,
+    bio,
+    linkedin,
+    twitter,
+  } = author.document[0].data
   const categorySlug = category.document[0].slugs[0]
   const categoryTitle = category.document[0].data.title.text
-  const relatedPosts = filterRelatedPosts(allPosts.nodes, categorySlug, blogSlug)
+  const relatedPosts = filterRelatedPosts(
+    allPosts.nodes,
+    categorySlug,
+    blogSlug
+  )
   return (
     <Sidebar
       allPosts={allPosts}
       open={showSidebar}
       setShowSidebar={setShowSidebar}
-      onSetOpen={open => setShowSidebar(open)}
-    >
+      onSetOpen={open => setShowSidebar(open)}>
       <Layout customSEO path={path}>
         <SEO
           title={`${title.text} | ${website.titleAlt}`}
@@ -294,21 +317,37 @@ const Post = ({ data: { prismicPost, allPosts }, location, path }) => {
           <BlogHeader>
             <ImageWrapper
               categorySlug={categorySlug}
-              hideTag={typeof window !== 'undefined' && window.innerWidth < 600}
-            >
-              <img className="blog-image" src={blog_image.url || fallbackImage} alt={blog_image.alt} />
+              hideTag={
+                typeof window !== 'undefined' && window.innerWidth < 600
+              }>
+              <img
+                className="blog-image"
+                src={blog_image.url || fallbackImage}
+                alt={blog_image.alt}
+              />
               <span className="tag-wrapper">
                 <span>#{category.document[0].data.title.text}</span>
               </span>
             </ImageWrapper>
           </BlogHeader>
-          <SocialShare title={title.text} url={location.href} authorTwitter={twitter} />
+          <SocialShare
+            title={title.text}
+            url={location.href}
+            authorTwitter={twitter}
+          />
           <BlogInfoWrapper>
             <StyledTitle>{title.text}</StyledTitle>
-            <img className="author-image" src={author_image.url} alt={author_name.text} />
+            <img
+              className="author-image"
+              src={author_image.url}
+              alt={author_name.text}
+            />
             <span className="blog-meta">{`${author_name.text}, ${author_position.text}`}</span>
             <span className="blog-meta">{published_on}</span>
-            <BlogContent className="blog-content" dangerouslySetInnerHTML={{ __html: body.html }} />
+            <BlogContent
+              className="blog-content"
+              dangerouslySetInnerHTML={{ __html: body.html }}
+            />
             <TagWrapper>
               {blogTags.map(tag => (
                 <BlogTag text={tag} />
@@ -326,7 +365,9 @@ const Post = ({ data: { prismicPost, allPosts }, location, path }) => {
                   </ExternLink>
                 </span>
               </span>
-              <span className="blog-meta">{bio.text || `${author_name.text}, ${author_position.text}`}</span>
+              <span className="blog-meta">
+                {bio.text || `${author_name.text}, ${author_position.text}`}
+              </span>
             </AuthorBio>
           </BlogInfoWrapper>
         </PostWrapper>
@@ -420,7 +461,9 @@ export const pageQuery = graphql`
         }
       }
     }
-    allPosts: allPrismicBlogPost(sort: { order: DESC, fields: data___published_on }) {
+    allPosts: allPrismicBlogPost(
+      sort: { order: DESC, fields: data___published_on }
+    ) {
       nodes {
         slugs
         data {
