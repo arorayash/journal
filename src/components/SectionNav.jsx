@@ -84,7 +84,7 @@ const SectionNav = ({ headings, path }) => {
     }
     window.addEventListener('scroll', getActive, true)
     return () => {
-      window.removeEventListener('scroll', getActive)
+      window.removeEventListener('scroll', getActive, true)
     }
   }, [headings])
 
