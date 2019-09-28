@@ -11,10 +11,6 @@ const { breakpoints } = theme
 const CardWrapper = styled(StyledLink)`
     position: relative;
     display: inline-block;
-    // @media (max-width: ${breakpoints.s}) {
-    //   margin-right: 0;
-    //   max-width: 100%;
-    // }
     height: 37rem;
     background: #EBE7E0;
     border-radius: 2px;

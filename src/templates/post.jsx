@@ -19,9 +19,6 @@ import fallbackImage from '../assets/bg_fallback.svg'
 const { breakpoints } = theme
 
 const PostWrapper = styled(Wrapper.withComponent('main'))`
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
   .blog-image {
     height: 38rem;
     object-fit: cover;
@@ -29,35 +26,20 @@ const PostWrapper = styled(Wrapper.withComponent('main'))`
       height: 30rem;
     }
   }
+
+  .blog-meta {
+    font-size: 1.4rem;
+    line-height: 2rem;
+    color: #808080;
+  }
 `
 
 const BlogInfoWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-self: center;
-  margin-top: -10.8rem;
-  @media (min-width: ${breakpoints.l}) {
-    max-width: 55vw;
-  }
-  @media (max-width: ${breakpoints.l}) {
-    max-width: 55vw;
-  }
-  @media (max-width: ${breakpoints.md}) {
-    max-width: 50vw;
-  }
-  @media (max-width: ${breakpoints.s}) {
-    max-width: 100%;
-  }
   .author-image {
     border-radius: 50%;
     height: 2.8rem;
     width: 2.8rem;
     margin-bottom: 1rem;
-  }
-  .blog-meta {
-    font-size: 1.4rem;
-    line-height: 2rem;
-    color: #808080;
   }
   @media (max-width: ${breakpoints.s}) {
     width: 100%;
@@ -68,31 +50,19 @@ const BlogInfoWrapper = styled.div`
 const BlogHeader = styled.div`
   height: 38rem;
   widht: 100%;
-  display: flex;
-  justify-content: center;
   @media (max-width: ${breakpoints.s}) {
     height: 30rem;
   }
 `
 
 const StyledTitle = styled.h1`
-  line-height: 3.4rem;
-  font-weight: 600;
-  font-size: 2.8rem;
-  margin-bottom: 1rem;
+  margin-bottom: 0;
 `
 
 const BlogContent = styled.div`
   ${prism}
-  width: 47vw;
-  margin-top: 5rem;
   font-size: 1.8rem;
   line-height: 2.6rem;
-  color: #333333;
-  margin-bottom: 8rem;
-  @media (max-width: ${breakpoints.s}) {
-    width: 100%;
-  }
   img {
     width: 100%;
   }
@@ -182,7 +152,6 @@ const DrawerIcon = styled.span`
   background: #f4f2ee;
   z-index: 2;
   @media (max-width: ${breakpoints.s}) {
-    display: 30rem;
     left: 1rem;
     top: 1.5rem;
   }
@@ -190,7 +159,6 @@ const DrawerIcon = styled.span`
 
 const TagWrapper = styled.div`
   display: flex;
-  margin-bottom: 4rem;
   &:empty {
     display: none;
   }
@@ -198,53 +166,26 @@ const TagWrapper = styled.div`
 
 const AuthorBio = styled.div`
   display: flex;
-  padding-top: 4rem;
-  align-items: flex-start;
-  width: 47vw;
-  border-top: 2px solid #cccccc;
-  .social-icons {
-    display: flex;
-  }
   .author-img {
     display: flex;
     flex-direction: column;
     align-items: center;
+
+    &:hover {
+      border: 1px solid black;
+    }
   }
   .blog-meta {
     padding: 1rem 0 0 0.5rem;
-  }
-  a {
-    &:not(:last-child) {
-      margin-right: 0.5rem;
-    }
   }
   img {
     height: 3.2rem;
     max-width: 7.2rem;
     border-radius: 50%;
   }
-  @media (max-width: ${breakpoints.s}) {
-    width: 100%;
-  }
 `
 
-const RelatedWrapper = styled.div`
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-  margin: 0 15rem;
-  @media (max-width: ${breakpoints.l}) {
-    margin: 0 10rem;
-  }
-  @media (max-width: ${breakpoints.s}) {
-    margin: 0 2rem;
-  }
-  .posts {
-    display: flex;
-    margin: 0 0 8rem 0;
-    flex-wrap: wrap;
-  }
-`
+const RelatedWrapper = styled.div``
 
 const filterRelatedPosts = (allPosts, categorySlug, blogSlug) => {
   return allPosts
@@ -264,7 +205,6 @@ const Post = ({ data: { prismicPost, allPosts }, location, path }) => {
     const content = document.querySelector('.blog-content')
     const headings = content.querySelectorAll('h1')
     setHeaders(headings)
-    console.log(headings)
   }, [])
 
   const blogTags = prismicPost.tags
@@ -309,78 +249,89 @@ const Post = ({ data: { prismicPost, allPosts }, location, path }) => {
           node={prismicPost}
           article
         />
+        <DrawerIcon onClick={() => setShowSidebar(!showSidebar)}>
+          <img src={drawer} alt="drawer icon" />
+        </DrawerIcon>
         <SectionNav path={path} headings={[...headers]} />
-        <PostWrapper className="posts">
-          <DrawerIcon onClick={() => setShowSidebar(!showSidebar)}>
-            <img src={drawer} alt="drawer icon" />
-          </DrawerIcon>
-          <BlogHeader>
-            <ImageWrapper
-              categorySlug={categorySlug}
-              hideTag={
-                typeof window !== 'undefined' && window.innerWidth < 600
-              }>
-              <img
-                className="blog-image"
-                src={blog_image.url || fallbackImage}
-                alt={blog_image.alt}
-              />
-              <span className="tag-wrapper">
-                <span>#{category.document[0].data.title.text}</span>
-              </span>
-            </ImageWrapper>
-          </BlogHeader>
-          <SocialShare
-            title={title.text}
-            url={location.href}
-            authorTwitter={twitter}
-          />
-          <BlogInfoWrapper>
-            <StyledTitle>{title.text}</StyledTitle>
-            <img
-              className="author-image"
-              src={author_image.url}
-              alt={author_name.text}
-            />
-            <span className="blog-meta">{`${author_name.text}, ${author_position.text}`}</span>
-            <span className="blog-meta">{published_on}</span>
-            <BlogContent
-              className="blog-content"
-              dangerouslySetInnerHTML={{ __html: body.html }}
-            />
-            <TagWrapper>
-              {blogTags.map(tag => (
-                <BlogTag text={tag} />
-              ))}
-            </TagWrapper>
-            <AuthorBio>
-              <span className="author-img">
-                <img src={author_image.url} alt={author_name.text} />
-                <span className="social-icons">
-                  <ExternLink target="_blank" href={linkedin && linkedin.url}>
-                    <LinkedinIcon round size={15} />
-                  </ExternLink>
-                  <ExternLink target="_blank" href={twitter && twitter.url}>
-                    <TwitterIcon round size={15} />
-                  </ExternLink>
-                </span>
-              </span>
-              <span className="blog-meta">
-                {bio.text || `${author_name.text}, ${author_position.text}`}
-              </span>
-            </AuthorBio>
-          </BlogInfoWrapper>
-        </PostWrapper>
-        {relatedPosts.length > 0 && (
-          <RelatedWrapper>
-            <SectionTitle>Related in {categoryTitle}</SectionTitle>
-            <div className="posts">
-              {relatedPosts.map(post => (
-                <BlogCard post={post} />
-              ))}
+        <div className="o-container u-margin-bottom-xlarge">
+          <PostWrapper className="posts o-layout">
+            <BlogHeader className="o-layout_item u-6/6@from-medium">
+              <ImageWrapper
+                categorySlug={categorySlug}
+                hideTag={
+                  typeof window !== 'undefined' && window.innerWidth < 600
+                }>
+                <img
+                  className="blog-image"
+                  src={blog_image.url || fallbackImage}
+                  alt={blog_image.alt}
+                />
+              </ImageWrapper>
+            </BlogHeader>
+            <div className="o-layout">
+              <div className="o-layout_item u-1/6@from-medium u-margin-vertical-large">
+                <div className="blog-meta">{author_name.text}</div>
+                <div className="blog-meta">{published_on}</div>
+              </div>
+              <StyledTitle className="o-layout_item u-4/6@from-medium u-margin-vertical-large">
+                {title.text}
+              </StyledTitle>
             </div>
-          </RelatedWrapper>
-        )}
+
+            <BlogInfoWrapper className="o-layout u-margin-bottom-large">
+              <SocialShare
+                className="o-layout_item u-1/6@from-medium u-margin-bottom-large"
+                title={title.text}
+                url={location.href}
+                authorTwitter={twitter}
+              />
+              <BlogContent
+                className="blog-content o-layout_item u-4/6@from-medium u-margin-bottom-large"
+                dangerouslySetInnerHTML={{ __html: body.html }}
+              />
+              <div className="o-layout -flex -center">
+                <div className="o-layout_item -middle u-4/6@from-medium">
+                  <TagWrapper>
+                    {blogTags.map(tag => (
+                      <BlogTag text={tag} />
+                    ))}
+                  </TagWrapper>
+                  <hr className="u-margin-vertical-small" />
+                  <AuthorBio>
+                    <span className="author-img">
+                      <span className="social-icons">
+                        <ExternLink
+                          target="_blank"
+                          href={linkedin && linkedin.url}>
+                          <img src={author_image.url} alt={author_name.text} />
+                        </ExternLink>
+                      </span>
+                    </span>
+                    <span className="blog-meta">
+                      {bio.text ||
+                        `${author_name.text}, ${author_position.text}`}
+                    </span>
+                  </AuthorBio>
+                </div>
+              </div>
+            </BlogInfoWrapper>
+          </PostWrapper>
+          {relatedPosts.length > 0 && (
+            <RelatedWrapper className="o-layout_item u-6/6@from-medium u-margin-top-large">
+              <SectionTitle className="u-margin-bottom-small">
+                Related in {categoryTitle}
+              </SectionTitle>
+              <div className="posts o-layout -gutter">
+                {relatedPosts.map(post => (
+                  <BlogCard
+                    post={post}
+                    className="o-layout_item u-3/6@from-medium"
+                  />
+                ))}
+              </div>
+            </RelatedWrapper>
+          )}
+        </div>
       </Layout>
     </Sidebar>
   )

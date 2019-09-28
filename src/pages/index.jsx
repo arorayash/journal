@@ -150,6 +150,7 @@ const Index = props => {
               onBlur={() => setSearchFocus(false)}>
               <Input
                 onChange={e => setSearch(e.target.value)}
+                onFocus={e => setSearchFocus()}
                 placeholder="Search for a post"
                 addonBefore={<Icon type="oSearch" />}
               />

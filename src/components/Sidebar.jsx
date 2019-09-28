@@ -66,6 +66,10 @@ const ActionWrapper = styled.span`
   display: flex;
   justify-content: space-between;
   align-items: center;
+
+  span {
+    display: inline-block;
+  }
   .close-icon {
     cursor: pointer;
   }
@@ -104,6 +108,8 @@ const BlogsList = styled.div`
 const HomePageLink = styled(StyledLink)`
   text-decoration: underline;
   color: #a6a6a6;
+  display: flex;
+  align-items: center;
 `
 
 const filterPosts = (allPosts, category) => {
@@ -136,7 +142,11 @@ const SidebarContent = ({ allPosts, setShowSidebar }) => {
           </CategoryItem>
         ))}
         <ActionWrapper>
-          <Icon className="close-icon" type="oClose" onClick={() => setShowSidebar(false)} />
+          {/* <Icon
+            className="close-icon"
+            type="oClose"
+            onClick={() => setShowSidebar(false)}
+          /> */}
           <HomePageLink to="/" className="logo">
             <img src={clarisightsLogo} alt="Clarisights logo" />
             <span>Go to Journal</span>
@@ -163,7 +173,12 @@ const SidebarContent = ({ allPosts, setShowSidebar }) => {
 
 const Drawer = props => (
   <Sidebar
-    sidebar={<SidebarContent allPosts={props.allPosts} setShowSidebar={props.setShowSidebar} />}
+    sidebar={
+      <SidebarContent
+        allPosts={props.allPosts}
+        setShowSidebar={props.setShowSidebar}
+      />
+    }
     open={props.open}
     styles={{ sidebar: { background: '#f4f2ee', zIndex: 3 } }}
     onSetOpen={props.onSetOpen}>

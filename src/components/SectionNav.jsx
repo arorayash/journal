@@ -18,7 +18,7 @@ const NavWrapper = styled.div`
   font-size: 1.4rem;
   line-height: 2rem;
   margin-left: 2rem;
-  max-width: 20vw;
+  max-width: 10vw;
   .heading-text {
     visibility: hidden;
     transition: visibility 0.3s linear, opacity 0.3s linear;
@@ -34,8 +34,15 @@ const NavWrapper = styled.div`
     }
   }
   .heading {
-    color: black;
+    display: inline-block;
+    width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  a {
     position: relative;
+    display: flex;
     &:before {
       content: '';
       position: absolute;
@@ -66,7 +73,7 @@ const SectionNav = ({ headings, path }) => {
 
   useEffect(() => {
     const getActive = () => {
-      if (headings && headings[0]) {
+      if (headings && headings[0] && activeHead === '') {
         setActiveHead(headings[0].id)
       }
       const top = headings.find(head => head.getBoundingClientRect().top > 0)
