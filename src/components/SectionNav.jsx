@@ -3,7 +3,7 @@ import styled from '@emotion/styled'
 import { StyledLink } from './Wrappers'
 import { theme } from '../styles'
 
-const { breakpoints } = theme;
+const { breakpoints } = theme
 
 const NavWrapper = styled.div`
   position: fixed;
@@ -18,9 +18,17 @@ const NavWrapper = styled.div`
   font-size: 1.4rem;
   line-height: 2rem;
   margin-left: 2rem;
-  max-width: 20vw;
+  max-width: 10vw;
   .heading {
+    display: inline-block;
+    width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  a {
     position: relative;
+    display: flex;
     &:before {
       content: '';
       position: absolute;

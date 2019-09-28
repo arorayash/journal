@@ -58,9 +58,19 @@ a {
     }
   }
 
-  color: $link-color;
+  color: $link-color !important;
+
+  &:hover {
+    color: $link-hover-color;
+  }
 
   &.-underline {
     text-decoration: underline;
+  }
+}
+
+.footer {
+  a {
+    color: $white !important;
   }
 }

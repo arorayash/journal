@@ -103,14 +103,14 @@ const categoryColors = {
   },
 }
 
-const BlogCard = ({ post, sidebar = false }) => {
+const BlogCard = ({ post, sidebar = false, className }) => {
   const slug = post.slugs[0]
   const { title, published_on, blog_image } = post.data
   const { author_name } = post.data.author.document[0].data
   const category = post.data.category.document[0].data.title.text
   const categorySlug = post.data.category.document[0].slugs[0]
   return (
-    <CardWrapper sidebar={sidebar}>
+    <CardWrapper sidebar={sidebar} className={className}>
       <BlogLink to={slug}>
         <CardContent sidebar={sidebar}>
           <ImageWrapper categorySlug={categorySlug} sidebar={sidebar}>

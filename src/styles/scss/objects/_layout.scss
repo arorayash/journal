@@ -84,6 +84,9 @@
     &.-right {
       justify-content: flex-end;
     }
+    &.-center {
+      justify-content: center;
+    }
   }
   &.-stretch {
     align-items: stretch;
@@ -122,6 +125,11 @@
 
   .o-layout.-reverse > & {
     direction: ltr;
+  }
+
+  &.-sticky {
+    position: sticky;
+    top: $unit;
   }
 }
 

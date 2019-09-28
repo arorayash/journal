@@ -50,7 +50,6 @@ export const ExternLink = styled.a`
 `
 
 export const SectionTitle = styled.div`
-  margin: 10rem 0 2rem 0;
   font-size: 2.4rem;
   line-height: 2.8rem;
   color: #4c4c4c;

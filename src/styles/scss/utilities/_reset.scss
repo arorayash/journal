@@ -44,8 +44,7 @@ main {
    */
 
 h1 {
-  font-size: 2em;
-  margin: 0.67em 0;
+  font-size: 2.8rem;
 }
 
 /* Grouping content
@@ -59,7 +58,7 @@ h1 {
 hr {
   box-sizing: content-box; /* 1 */
   height: 1px; /* 1 */
-  background: black;
+  background: #a6a6a6;
   overflow: visible; /* 2 */
 }
 

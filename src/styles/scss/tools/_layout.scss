@@ -49,9 +49,9 @@
   width: 100%; // [4]
   vertical-align: top; // [3]
 
-  @if ($fix-whitespace) {
-    font-size: 1rem;
-  }
+  // @if ($fix-whitespace) {
+  //   font-size: 1rem;
+  // }
 
   @if (type-of($gutter) == number) {
     padding-left: $gutter; // [5]
