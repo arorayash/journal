@@ -125,7 +125,7 @@ const Index = props => {
     path,
   } = props
   const [search, setSearch] = useState('')
-  const [searchFocus, setSearchFocus] = useState(false);
+  const [searchFocus, setSearchFocus] = useState(false)
   const filteredPosts = searchBlogs(allPosts.nodes, search)
 
   const featuredBlogs = featured_posts.nodes[0].data.featured_blogs
@@ -144,13 +144,16 @@ const Index = props => {
               business; breaking down our processes and findings to share them
               with you. - your friends at Clarisights
             </div>
-            <div className="search-wrapper u-margin-top-small">
+            <div
+              className="search-wrapper u-margin-top-small"
+              onFocus={() => setSearchFocus(true)}
+              onBlur={() => setSearchFocus(false)}>
               <Input
                 onChange={e => setSearch(e.target.value)}
                 placeholder="Search for a post"
                 addonBefore={<Icon type="oSearch" />}
               />
-              {search !== '' && (
+              {searchFocus && (
                 <SearchResults>
                   {filteredPosts.map(post => (
                     <StyledLink to={post.slugs[0]}>
@@ -162,7 +165,7 @@ const Index = props => {
             </div>
           </HomepageHeader>
           <ContentWrapper
-            blur={search !== ''}
+            blur={searchFocus}
             className="o-layout_item u-6/6@from-medium">
             <Categories allPosts={allPosts} categories={categories.nodes} />
             <SectionTitle className="u-margin-top-xlarge u-margin-bottom-small">
