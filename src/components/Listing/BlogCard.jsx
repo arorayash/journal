@@ -31,7 +31,7 @@ const CardContent = styled.div`
     color: #1a1a1a;
     text-decoration: underline;
     text-decoration-color: #e5e5e5;
-    text-underline-position: under;
+    text-decoration-skip-ink: auto;
   }
   .post-info {
     color: #808080;
