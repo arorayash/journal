@@ -92,15 +92,20 @@ const Footer = ({ categories, path, allPosts }) => (
   <StyledFooter path={path} className="footer">
     <Section left path={path} className="o-container">
       <Column>
-        <ExternLink to="/">
+        <StyledLink to="/">
           <Logo src={clarisightsLogo} alt="Journal Home" />
+        </StyledLink>
+        <ExternLink
+          href="https://clarisights.com/careers"
+          alt="Careers page"
+          target="_blank">
+          Job listings
         </ExternLink>
-        <StyledLink to="/careers">Job listings</StyledLink>
       </Column>
       <Column className="categories-links">
         <Title>Journal</Title>
         {categories.map(cat => (
-          <div className="o-layout -flex">
+          <div className="o-layout -flex" key={cat.uid}>
             <Slash>/</Slash>
             <StyledLink to={getCategoryFirstPost(allPosts, cat.uid)}>
               <span key={cat.data.title.text}>{cat.data.title.text} </span>

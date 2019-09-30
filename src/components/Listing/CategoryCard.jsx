@@ -12,6 +12,7 @@ const CardWrapper = styled(StyledLink)`
     position: relative;
     display: inline-block;
     height: 37rem;
+    min-width: 35rem;
     background: #EBE7E0;
     border-radius: 2px;
     cursor: pointer;

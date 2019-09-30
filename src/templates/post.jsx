@@ -21,7 +21,7 @@ const { breakpoints } = theme
 const PostWrapper = styled(Wrapper.withComponent('main'))`
   .blog-image {
     height: 38rem;
-    object-fit: cover;
+    object-fit: contain;
     @media (max-width: ${breakpoints.s}) {
       height: 30rem;
     }
@@ -57,12 +57,17 @@ const BlogHeader = styled.div`
 
 const StyledTitle = styled.h1`
   margin-bottom: 0;
+  padding: 0 4vw;
 `
 
 const BlogContent = styled.div`
   ${prism}
-  font-size: 1.8rem;
-  line-height: 2.6rem;
+  font-size: 2.1rem;
+  line-height: 3.3rem;
+  font-family: minion-pro, serif;
+  font-weight: 400;
+  font-style: normal;
+  padding: 0 4vw;
   img {
     width: 100%;
   }
@@ -108,24 +113,7 @@ const ImageWrapper = styled.span`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  object-fit: cover;
-  .tag-wrapper {
-    display: ${props => (props.hideTag ? 'none' : 'block')};
-    float: left;
-    position: absolute;
-    line-height: 2rem;
-    left: 0px;
-    top: 0px;
-    border-radius: 4px;
-    z-index: 2;
-    background-color: ${props => categoryColors[props.categorySlug].bg};
-    font-size: 1.4rem;
-    padding: 0.4rem 1rem;
-    span {
-      color: ${props => categoryColors[props.categorySlug].text};
-      opacity: 0.6;
-    }
-  }
+  background: ${props => props.bannercolor};
 `
 
 const categoryColors = {
@@ -218,6 +206,7 @@ const Post = ({ data: { prismicPost, allPosts }, location, path }) => {
     title,
     category,
     description,
+    bannercolor,
   } = prismicPost.data
   const {
     author_image,
@@ -234,6 +223,7 @@ const Post = ({ data: { prismicPost, allPosts }, location, path }) => {
     categorySlug,
     blogSlug
   )
+  console.log('bannerColor', bannercolor)
   return (
     <Sidebar
       allPosts={allPosts}
@@ -260,7 +250,8 @@ const Post = ({ data: { prismicPost, allPosts }, location, path }) => {
                 categorySlug={categorySlug}
                 hideTag={
                   typeof window !== 'undefined' && window.innerWidth < 600
-                }>
+                }
+                bannercolor={bannercolor}>
                 <img
                   className="blog-image"
                   src={blog_image.url || fallbackImage}
@@ -385,6 +376,7 @@ export const pageQuery = graphql`
             }
           }
         }
+        bannercolor
         author {
           document {
             data {
