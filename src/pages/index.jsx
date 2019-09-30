@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 import styled from '@emotion/styled'
+import { Global, css } from '@emotion/core'
 import { graphql } from 'gatsby'
 import { Input, Icon, Button } from 'knit-ui'
 import { Layout } from '../components'
@@ -28,8 +29,12 @@ const HomepageHeader = styled.div`
   .search-wrapper {
     width: 100%;
     input {
-      background: transparent;
-      border: 1px solid #9b8964;
+      padding: 0.8rem 0 0.6rem 4rem !important;
+    }
+
+    svg {
+      fill: #9b8964;
+      margin-left: 0.7rem;
     }
   }
 `
@@ -73,18 +78,14 @@ const NewsletterWrapper = styled.div`
     color: #4c4c4c;
     line-height: 2.9rem;
     input {
-      font-size: 1.4rem;
-      line-height: 2rem;
-      height: 3.4rem;
-      background: transparent;
-      border: 1px solid #1a1a1a;
       margin-right: 0.5rem;
     }
     button {
       font-size: 1.4rem;
       line-height: 2rem;
       background-color: #9b8964;
-      border-radius: 2px;
+      padding: 0.8rem 2rem 0.7rem;
+      border-radius: 0.4rem;
       color: white;
       border: 0;
       &:hover {
@@ -126,14 +127,24 @@ const Index = props => {
   } = props
   const [search, setSearch] = useState('')
   const [searchFocus, setSearchFocus] = useState(false)
-  const filteredPosts = searchBlogs(allPosts.nodes, search)
-
+  const filteredPosts = searchBlogs(allPosts.nodes, search).slice(0, 8)
+  console.log('filteredPosts', filteredPosts)
   const featuredBlogs = featured_posts.nodes[0].data.featured_blogs
   return (
     <Layout path={path}>
       <div className="o-container">
+        {searchFocus ? (
+          <Global
+            styles={css`
+              body {
+                height: 100vh;
+                overflow: hidden;
+              }
+            `}
+          />
+        ) : null}
         <IndexWrapper className="o-layout -gutter">
-          <HomepageHeader className="o-layout_item u-3/6@from-medium u-margin-vertical-xlarge">
+          <HomepageHeader className="o-layout_item u-3/6@from-medium u-4/6@from-small u-margin-vertical-xlarge">
             <div className="topImages">
               <img className="home-logo" src={homepage.data.logo.url} alt="" />
               <img src={homepage.data.journal.url} alt="" />

@@ -27,7 +27,6 @@ html {
 
 body {
   margin: 0;
-  background: #f4f2ee;
 }
 
 /**
@@ -354,4 +353,44 @@ template {
 
 [hidden] {
   display: none;
+}
+
+/*
+  * Global native styles
+  */
+input {
+  background: transparent;
+  border: 1px solid #9b8964;
+  border-radius: 4px;
+  height: 3.4rem !important;
+  font-size: 1.4rem;
+  line-height: 2rem;
+  padding: 0.8rem 0 0.6rem 1rem !important;
+  transition: border 350ms ease;
+
+  &:hover {
+    border: 1px solid #000;
+  }
+
+  &:active,
+  &:focus {
+    border: 1px solid #000;
+    outline: none;
+    box-shadow: 0px 0px 2px #0066ff;
+  }
+}
+
+button {
+  height: 3.4rem;
+
+  &:hover {
+    border: 1px solid #000;
+  }
+
+  &:active,
+  &:focus {
+    border: 1px solid #000;
+    outline: none;
+    box-shadow: 0px 0px 2px #0066ff;
+  }
 }

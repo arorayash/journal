@@ -46,14 +46,6 @@ const CardContent = styled.div`
       text-decoration-color: #1a1a1a;
     }
   }
-  @media (max-width: ${breakpoints.l}) {
-    padding-left: 2rem;
-    padding-right: 2rem;
-  }
-  @media (max-width: ${breakpoints.s}) {
-    padding-left: 0;
-    padding-right: 0;
-  }
 `
 
 const ImageWrapper = styled.span`
@@ -61,8 +53,8 @@ const ImageWrapper = styled.span`
   display: flex;
   justify-content: center;
   img {
-    height: ${props => (props.sidebar ? '16' : '28')}rem;
-    object-fit: cover;
+    // height: ${props => (props.sidebar ? '16' : '28')}rem;
+    object-fit: contain;
     width: 100%;
   }
   .tag-wrapper {
@@ -70,7 +62,7 @@ const ImageWrapper = styled.span`
     position: absolute;
     left: 0px;
     bottom: 0px;
-    border-radius: 4px;
+    border-radius: 0 4px;
     z-index: 2;
     background-color: ${props => categoryColors[props.categorySlug].bg};
     color: ${props => categoryColors[props.categorySlug].text};
@@ -113,7 +105,10 @@ const BlogCard = ({ post, sidebar = false, className }) => {
     <CardWrapper sidebar={sidebar} className={className}>
       <BlogLink to={slug}>
         <CardContent sidebar={sidebar}>
-          <ImageWrapper categorySlug={categorySlug} sidebar={sidebar}>
+          <ImageWrapper
+            categorySlug={categorySlug}
+            sidebar={sidebar}
+            className="o-ratio u-2:1">
             <img alt={blog_image.alt} src={blog_image.url || fallbackImage} />
             <span className="tag-wrapper">
               <span>#{category}</span>
