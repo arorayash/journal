@@ -98,10 +98,10 @@ const SectionNav = ({ headings, path }) => {
   const [activeHead, setActiveHead] = useState('')
 
   useEffect(() => {
+    if (headings && headings[0] && activeHead === '') {
+      setActiveHead(headings[0].id)
+    }
     const getActive = () => {
-      if (headings && headings[0] && activeHead === '') {
-        setActiveHead(headings[0].id)
-      }
       const top = headings.find(head => head.getBoundingClientRect().top > 0)
       if (top && activeHead !== top.id) {
         setActiveHead(top.id)
