@@ -40,8 +40,14 @@ const VertFlex = styled.div`
     width: 100%;
     margin-bottom: 2.7rem;
     input {
-      background: transparent;
-      border: 1px solid #1a1a1a;
+      padding: 0.7rem 0 0.7rem 4rem !important;
+    }
+    svg {
+      fill: #9b8964;
+      height: 20px;
+      width: 20px;
+      margin-left: 0.7rem;
+      margin-top: 0.4rem;
     }
     @media (max-width: ${breakpoints.s}) {
       margin-top: 1.8rem;

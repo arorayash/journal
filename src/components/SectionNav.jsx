@@ -15,7 +15,7 @@ const NavWrapper = styled.div`
   margin-left: 3.2rem;
   max-width: 10vw;
   top: 50%;
-  z-index: 100;
+  z-index: 2;
 
   .relative-wrapper {
     position: relative;
