@@ -9,6 +9,7 @@ import { Categories, Featured } from '../components/Listing'
 import { theme } from '../styles'
 import { searchBlogs } from '../utils'
 import { StyledLink, ExternLink, SectionTitle } from '../components/Wrappers'
+import '../styles'
 // import website from '../../config/website'
 
 const { breakpoints } = theme

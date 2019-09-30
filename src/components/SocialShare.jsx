@@ -15,9 +15,9 @@ import { theme } from '../styles'
 const { breakpoints } = theme
 
 const ShareWrapper = styled.div`
-  position: sticky;
-  position: -webkit-sticky;
-  top: 4rem;
+  // position: sticky;
+  // position: -webkit-sticky;
+  // top: 4rem;
   color: #808080;
   font-size: 1.4rem;
   line-height: 2rem;

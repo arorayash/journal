@@ -35,6 +35,9 @@ const PostWrapper = styled(Wrapper.withComponent('main'))`
 `
 
 const BlogInfoWrapper = styled.div`
+  .content-footer {
+    padding: 0 4vw;
+  }
   .author-image {
     border-radius: 50%;
     height: 2.8rem;
@@ -154,22 +157,38 @@ const TagWrapper = styled.div`
 
 const AuthorBio = styled.div`
   display: flex;
+  align-items: center;
   .author-img {
     display: flex;
     flex-direction: column;
     align-items: center;
-
-    &:hover {
-      border: 1px solid black;
-    }
   }
   .blog-meta {
-    padding: 1rem 0 0 0.5rem;
+    padding-left: 1.4rem;
+  }
+  .svg-container {
+    position: relative;
+    width: 4.2rem;
+    height: 4.2rem;
   }
   img {
-    height: 3.2rem;
-    max-width: 7.2rem;
     border-radius: 50%;
+    padding: 4px;
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+  .button-outline {
+    stroke-dasharray: 140px;
+    stroke-dashoffset: 140px;
+    fill: transparent;
+    transition: all 0.8s ease-out 0s;
+    stroke-width: 1px;
+  }
+  .svg-container:hover .button-outline {
+    stroke-dasharray: 140px;
+    stroke-dashoffset: 0px;
+    fill: transparent;
   }
 `
 
@@ -281,7 +300,7 @@ const Post = ({ data: { prismicPost, allPosts }, location, path }) => {
                 dangerouslySetInnerHTML={{ __html: body.html }}
               />
               <div className="o-layout -flex -center">
-                <div className="o-layout_item -middle u-4/6@from-medium">
+                <div className="o-layout_item -middle u-4/6@from-medium  content-footer">
                   <TagWrapper>
                     {blogTags.map(tag => (
                       <BlogTag text={tag} />
@@ -290,13 +309,29 @@ const Post = ({ data: { prismicPost, allPosts }, location, path }) => {
                   <hr className="u-margin-vertical-small" />
                   <AuthorBio>
                     <span className="author-img">
-                      <span className="social-icons">
-                        <ExternLink
-                          target="_blank"
-                          href={linkedin && linkedin.url}>
-                          <img src={author_image.url} alt={author_name.text} />
-                        </ExternLink>
-                      </span>
+                      <ExternLink
+                        target="_blank"
+                        href={linkedin && linkedin.url}
+                        className="svg-container">
+                        <svg
+                          width="42"
+                          height="42"
+                          viewBox="0 0 42 42"
+                          fill="none"
+                          xmlns="http://www.w3.org/2000/svg">
+                          <circle
+                            cx="21"
+                            cy="21"
+                            r="20"
+                            stroke={
+                              linkedin && linkedin.url ? '#007fb1' : '#00aced'
+                            }
+                            stroke-width="2"
+                            className="button-outline"
+                          />
+                        </svg>
+                        <img src={author_image.url} alt={author_name.text} />
+                      </ExternLink>
                     </span>
                     <span className="blog-meta">
                       {bio.text ||
