@@ -41,8 +41,10 @@ const VertFlex = styled.div`
   font-size: 1.4rem;
   line-height: 2rem;
   height: 100%;
+
   .search-wrapper {
     width: 100%;
+    padding: 0 10px;
     margin-bottom: 2.7rem;
     input {
       padding: 0.7rem 0 0.7rem 4rem !important;
@@ -120,6 +122,7 @@ const BlogsList = styled.div`
   overflow: scroll;
   .blog {
     margin-bottom: 2rem;
+    padding: 0 10px;
   }
 `
 
@@ -181,7 +184,7 @@ const SidebarContent = ({ allPosts, setShowSidebar }) => {
         </span>
         <BlogsList>
           {filteredPosts.map(post => (
-            <BlogCard className="blog" sidebar post={post} />
+            <BlogCard className="blog u-margin-bottom" sidebar post={post} />
           ))}
         </BlogsList>
       </VertFlex>

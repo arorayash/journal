@@ -10,19 +10,16 @@ const { breakpoints } = theme
 const CardWrapper = styled.div`
   text-decoration: none;
   margin-bottom: ${props => (props.sidebar ? '2' : '0')}rem;
-  // @media (max-width: ${breakpoints.md}) {
-  //   flex: 1 0 100%;
-  //   flex-direction: column;
-  //   max-width: 100%;
-  // }
-  // max-width: ${props => (props.sidebar ? '100' : '50')}%;
+
+  a:hover {
+    text-decoration: none !important;
+  }
 `
 
 const CardContent = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
-  // padding: ${props => (props.sidebar ? '0' : '4')}rem;
   .post-title {
     font-size: ${props => (props.sidebar ? '2' : '2.4')}rem;
     line-height: 2.9rem;
@@ -56,6 +53,7 @@ const ImageWrapper = styled.span`
     // height: ${props => (props.sidebar ? '16' : '28')}rem;
     object-fit: contain;
     width: 100%;
+    border-radius: 4px;
   }
   .tag-wrapper {
     float: left;
@@ -119,7 +117,7 @@ const BlogCard = ({ post, sidebar = false, className }) => {
             <span>
               By {author_name.text} | {published_on}
             </span>
-            <span>{`${blogReadTime(post)} min read`}</span>
+            <span className="time">{`${blogReadTime(post)} min read`}</span>
           </span>
         </CardContent>
       </BlogLink>
