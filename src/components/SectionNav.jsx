@@ -57,7 +57,7 @@ const NavWrapper = styled.div`
       left: -1rem;
       visibility: hidden;
       opacity: 0;
-      background: #f4f2ee;
+      background: white;
       z-index: 100;
       transition: all 250ms linear;
       padding: 1rem 0;
