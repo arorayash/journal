@@ -16,6 +16,8 @@ import { theme } from '../styles'
 import 'typeface-inter'
 import 'typeface-source-code-pro'
 
+import '../styles/scss/index.scss'
+
 const globalStyle = css`
   h1,
   h2,
@@ -36,6 +38,7 @@ const globalStyle = css`
     background-color: ${theme.colors.bg};
   }
   ::selection {
+    color: inherit;
     background-color: #ddeee5;
   }
 `
