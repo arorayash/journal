@@ -12,7 +12,7 @@ import { StyledLink, ExternLink, SectionTitle } from '../components/Wrappers'
 import '../styles'
 // import website from '../../config/website'
 
-const { breakpoints } = theme
+const { breakpoints, colors } = theme
 
 const HomepageHeader = styled.div`
   .topImages {
@@ -37,6 +37,10 @@ const HomepageHeader = styled.div`
       fill: #9b8964;
       margin-left: 0.7rem;
     }
+  }
+
+  .signature {
+    color: ${colors.neutral50};
   }
 `
 
@@ -158,7 +162,8 @@ const Index = props => {
               A space where our team’s thoughts and explorations are logged in.
               We regularly jot down about our projects, product updates,
               business; breaking down our processes and findings to share them
-              with you. - your friends at Clarisights
+              with you. <br />
+              <i className="signature">- your friends at Clarisights</i>
             </div>
             <div
               className="search-wrapper u-margin-top-small"

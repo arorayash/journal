@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import PropTypes from 'prop-types'
 import { graphql } from 'gatsby'
 import styled from '@emotion/styled'
+import { Global, css } from '@emotion/core'
 import { TwitterIcon, LinkedinIcon } from 'react-share'
 import { Layout, Wrapper, SliceZone, Title, SEO } from '../components'
 import { BlogCard, Featured } from '../components/Listing'
@@ -180,11 +181,11 @@ const DrawerIcon = styled.span`
   left: 2.4rem;
   cursor: pointer;
   padding: 1.1rem 0.8rem;
-  background: #f4f2ee;
   z-index: 2;
   @media (max-width: ${breakpoints.s}) {
     left: 1rem;
     top: 1.5rem;
+    background: #fff;
   }
 `
 
@@ -198,6 +199,12 @@ const TagWrapper = styled.div`
 const AuthorBio = styled.div`
   display: flex;
   align-items: center;
+
+  h1,
+  h2,
+  h3 {
+    margin-bottom: 1rem;
+  }
   .author-img {
     display: flex;
     flex-direction: column;
@@ -289,6 +296,14 @@ const Post = ({ data: { prismicPost, allPosts }, location, path }) => {
       setShowSidebar={setShowSidebar}
       onSetOpen={open => setShowSidebar(open)}>
       <Layout customSEO path={path}>
+        <Global
+          styles={css`
+            html,
+            body {
+              background: white;
+            }
+          `}
+        />
         <SEO
           title={`${title.text} | ${website.titleAlt}`}
           pathname={location.pathname}

@@ -15,6 +15,7 @@ const CardWrapper = styled(StyledLink)`
   background: #ebe7e0;
   border-radius: 2px;
   cursor: pointer;
+  transition: all 0.5s ease;
 
   @media (max-width: ${breakpoints.mx}) {
     border-width: 0 8rem 8rem 0;
@@ -54,14 +55,21 @@ const CardWrapper = styled(StyledLink)`
   }
   &:hover {
     background-color: #e1dbd1;
+    text-decoration: none !important;
     &:before {
       border-width: 0 11rem 11rem 0;
-      transition: all 0.5s;
+      transition: all 0.5s ease;
     }
     .arrow-icon {
-      display: inline;
+      display: inline-block;
+      margin-left: 1rem;
+      margin-bottom: -0.7rem;
+      width: 2.8rem;
+      height: 2.8rem;
       svg {
-        transform: rotate(-135deg);
+        transform: translateY(5px) rotate(-135deg);
+        width: 2.8rem;
+        height: 2.8rem;
       }
     }
   }
@@ -101,6 +109,7 @@ const CardContent = styled.div`
     -webkit-line-clamp: 4;
     -webkit-box-orient: vertical;
     overflow: hidden;
+    text-decoration: none;
   }
 `
 
@@ -125,11 +134,9 @@ const CategoryCard = ({ data, index, cardLink, className }) => {
       <CardContent>
         <span className="num">
           <img src={categoryIndex[index]} alt="" />
-        </span>
-        <span className="title">
-          {title.text}
           <Icon height="20px" type="oArrowDownward" className="arrow-icon" />
         </span>
+        <span className="title">{title.text}</span>
         <span className="desc">{description.text}</span>
       </CardContent>
     </CardWrapper>
