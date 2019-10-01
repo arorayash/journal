@@ -9,28 +9,51 @@ import { firstCategory, secondCategory, thirdCategory } from '../../assets'
 const { breakpoints } = theme
 
 const CardWrapper = styled(StyledLink)`
-    position: relative;
-    display: inline-block;
-    height: 37rem;
-    min-width: 35rem;
-    background: #EBE7E0;
-    border-radius: 2px;
-    cursor: pointer;
+  position: relative;
+  display: inline-block;
+  height: 37rem;
+  background: #ebe7e0;
+  border-radius: 2px;
+  cursor: pointer;
+
+  @media (max-width: ${breakpoints.mx}) {
+    border-width: 0 8rem 8rem 0;
   }
+
+  @media (max-width: ${breakpoints.m}) {
+    height: 34rem;
+  }
+
+  @media (max-width: ${breakpoints.s}) {
+    height: 30rem;
+  }
+
   &:before {
-    content: "";
+    content: '';
     position: absolute;
     top: 0;
     right: 0;
     border-width: 0 13rem 13rem 0;
     border-style: solid;
     border-color: ${props => categoryColors[props.uid]} #f4f2ed;
+
+    @media (max-width: ${breakpoints.mx}) {
+      border-width: 0 8rem 8rem 0;
+    }
+
+    @media (max-width: ${breakpoints.m}) {
+      border-width: 0 14rem 14rem 0;
+    }
+
+    @media (max-width: ${breakpoints.s}) {
+      border-width: 0 10rem 10rem 0;
+    }
   }
   .arrow-icon {
     display: none;
   }
   &:hover {
-    background-color: #E1DBD1;
+    background-color: #e1dbd1;
     &:before {
       border-width: 0 11rem 11rem 0;
       transition: all 0.5s;
@@ -50,6 +73,10 @@ const CardContent = styled.div`
   justify-content: flex-end;
   padding: 4rem;
   height: 100%;
+
+  @media (max-width: ${breakpoints.s}) {
+    padding: 2rem;
+  }
   .title {
     font-size: 2.4rem;
     line-height: 2.9rem;
@@ -59,6 +86,10 @@ const CardContent = styled.div`
   }
   .num {
     margin-bottom: 1rem;
+
+    @media (max-width: ${breakpoints.mx}) {
+      width: 4rem;
+    }
   }
   .desc {
     color: #666666;
@@ -66,6 +97,10 @@ const CardContent = styled.div`
     font-size: 1.4rem;
     line-height: 2rem;
     height: 8rem;
+    display: -webkit-box;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
   }
 `
 

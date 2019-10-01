@@ -4,12 +4,11 @@ import BlogCard from './BlogCard'
 
 const ArticlesWrapper = styled.div`
   display: flex;
-  margin: 0 0 8rem 0;
   flex-wrap: wrap;
 `
 
 const Featured = ({ featured }) => (
-  <ArticlesWrapper className="o-layout -gutter">
+  <ArticlesWrapper className="o-layout -gutter u-margin-bottom-large">
     {featured.map(post => (
       <div className="o-layout_item u-3/6@from-medium u-margin-bottom">
         <BlogCard

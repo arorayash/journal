@@ -40,10 +40,6 @@ const HomepageHeader = styled.div`
   }
 `
 
-const Underline = styled.span`
-  text-decoration-line: underline;
-`
-
 const ColumnWrapper = styled.div`
   display: flex;
   flex-direction: column;
@@ -62,15 +58,24 @@ const EventsWrapper = styled.div`
 
     .event-date {
       font-size: 14px;
+      padding: 0.7rem 0;
+    }
+  }
+
+  @media (max-width: ${breakpoints.m}) {
+    .location-wrapper,
+    .location-wrapper > div {
+      justify-content: flex-start !important;
+      text-align: left;
+    }
+
+    .location-wrapper {
+      padding: 2rem 0;
     }
   }
 `
 
-const IndexWrapper = styled.div`
-  // @media (max-width: ${breakpoints.m}) {
-  //   padding: 5rem;
-  // }
-`
+const IndexWrapper = styled.div``
 
 const NewsletterWrapper = styled.div`
   div {
@@ -129,7 +134,6 @@ const Index = props => {
   const [search, setSearch] = useState('')
   const [searchFocus, setSearchFocus] = useState(false)
   const filteredPosts = searchBlogs(allPosts.nodes, search).slice(0, 8)
-  console.log('filteredPosts', filteredPosts)
   const featuredBlogs = featured_posts.nodes[0].data.featured_blogs
   return (
     <Layout path={path}>
@@ -217,7 +221,7 @@ const Index = props => {
                       </span>
                     </EventLinkWrapper>
                     <div className="o-layout_item u-3/6@from-medium">
-                      <div className="o-layout -flex -right -col">
+                      <div className="o-layout -flex -right -col location-wrapper">
                         <div className="o-layout -flex -right -middle">
                           <Icon type="oLocationOn" />
                           <EventLinkWrapper
