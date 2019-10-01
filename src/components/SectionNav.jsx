@@ -37,6 +37,10 @@ const NavWrapper = styled.div`
         width: 4rem;
         background: black;
       }
+
+      @media (max-width: ${breakpoints.mx}) {
+        width: 0.8rem;
+      }
     }
 
     &:hover ~ .on-hover {

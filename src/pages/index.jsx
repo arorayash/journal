@@ -12,7 +12,7 @@ import { StyledLink, ExternLink, SectionTitle } from '../components/Wrappers'
 import '../styles'
 // import website from '../../config/website'
 
-const { breakpoints } = theme
+const { breakpoints, colors } = theme
 
 const HomepageHeader = styled.div`
   .topImages {
@@ -38,10 +38,10 @@ const HomepageHeader = styled.div`
       margin-left: 0.7rem;
     }
   }
-`
 
-const Underline = styled.span`
-  text-decoration-line: underline;
+  .signature {
+    color: ${colors.neutral50};
+  }
 `
 
 const ColumnWrapper = styled.div`
@@ -62,15 +62,24 @@ const EventsWrapper = styled.div`
 
     .event-date {
       font-size: 14px;
+      padding: 0.7rem 0;
+    }
+  }
+
+  @media (max-width: ${breakpoints.m}) {
+    .location-wrapper,
+    .location-wrapper > div {
+      justify-content: flex-start !important;
+      text-align: left;
+    }
+
+    .location-wrapper {
+      padding: 2rem 0;
     }
   }
 `
 
-const IndexWrapper = styled.div`
-  // @media (max-width: ${breakpoints.m}) {
-  //   padding: 5rem;
-  // }
-`
+const IndexWrapper = styled.div``
 
 const NewsletterWrapper = styled.div`
   div {
@@ -129,7 +138,6 @@ const Index = props => {
   const [search, setSearch] = useState('')
   const [searchFocus, setSearchFocus] = useState(false)
   const filteredPosts = searchBlogs(allPosts.nodes, search).slice(0, 8)
-  console.log('filteredPosts', filteredPosts)
   const featuredBlogs = featured_posts.nodes[0].data.featured_blogs
   return (
     <Layout path={path}>
@@ -154,7 +162,8 @@ const Index = props => {
               A space where our team’s thoughts and explorations are logged in.
               We regularly jot down about our projects, product updates,
               business; breaking down our processes and findings to share them
-              with you. - your friends at Clarisights
+              with you. <br />
+              <i className="signature">- your friends at Clarisights</i>
             </div>
             <div
               className="search-wrapper u-margin-top-small"
@@ -217,7 +226,7 @@ const Index = props => {
                       </span>
                     </EventLinkWrapper>
                     <div className="o-layout_item u-3/6@from-medium">
-                      <div className="o-layout -flex -right -col">
+                      <div className="o-layout -flex -right -col location-wrapper">
                         <div className="o-layout -flex -right -middle">
                           <Icon type="oLocationOn" />
                           <EventLinkWrapper

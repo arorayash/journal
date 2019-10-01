@@ -17,6 +17,11 @@ const SidebarWrapper = styled.div`
   height: 100%;
   display: flex;
   justify-content: space-between;
+
+  .home-link {
+    padding-left: 0.7rem;
+  }
+
   @media (max-width: ${breakpoints.l}) {
     width: 70vw;
   }
@@ -25,7 +30,7 @@ const SidebarWrapper = styled.div`
     padding: 2rem 2.7rem 2rem 2.7rem;
     height: fit-content;
     max-height: 100%;
-    width: 100%;
+    width: 100vw;
   }
 `
 
@@ -61,8 +66,15 @@ const VertFlex = styled.div`
   }
   .close-icon {
     display: none;
+
+    svg {
+      height: 2.4rem;
+      width: 2.4rem;
+    }
     @media (max-width: ${breakpoints.s}) {
       display: block;
+      height: 2.4rem;
+      width: 2.4rem;
     }
   }
 `
@@ -148,14 +160,14 @@ const SidebarContent = ({ allPosts, setShowSidebar }) => {
           </CategoryItem>
         ))}
         <ActionWrapper>
-          {/* <Icon
+          <Icon
             className="close-icon"
             type="oClose"
             onClick={() => setShowSidebar(false)}
-          /> */}
+          />
           <HomePageLink to="/" className="logo">
             <img src={clarisightsLogo} alt="Clarisights logo" />
-            <span>Go to Journal</span>
+            <span className="home-link">Go to Journal</span>
           </HomePageLink>
         </ActionWrapper>
       </VertFlex>
