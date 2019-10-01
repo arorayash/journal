@@ -111,7 +111,7 @@ const BlogCard = ({ post, sidebar = false, className }) => {
             className="o-ratio u-2:1">
             <img alt={blog_image.alt} src={blog_image.url || fallbackImage} />
             <span className="tag-wrapper">
-              <span>#{category}</span>
+              <span>{category}</span>
             </span>
           </ImageWrapper>
           <span className="post-title">{title.text}</span>

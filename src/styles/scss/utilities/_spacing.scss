@@ -55,4 +55,27 @@ $spacing-sizes: (
   }
 }
 
+@media (max-width: $to-medium) {
+  $spacing-sizes: (
+    null: $unit,
+    '-xsmall': $unit-xsmall,
+    '-small': $unit-small,
+    '-large': $unit-small,
+    '-xlarge': $unit-large,
+    '-none': 0,
+  );
+
+  @each $property-namespace, $property in $spacing-properties {
+    @each $direction-namespace, $direction-rules in $spacing-directions {
+      @each $size-namespace, $size in $spacing-sizes {
+        .u-#{$property-namespace}#{$direction-namespace}#{$size-namespace} {
+          @each $direction in $direction-rules {
+            #{$property}#{$direction}: $size !important;
+          }
+        }
+      }
+    }
+  }
+}
+
 /* stylelint-enable string-quotes */

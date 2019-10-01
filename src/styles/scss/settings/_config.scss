@@ -70,9 +70,9 @@ $padding: $unit;
 
 // Breakpoints
 // =============================================================================
-$from-tiny: 500px !default;
+$from-tiny: 400px !default;
 $to-tiny: $from-tiny - 1 !default;
-$from-small: 700px !default;
+$from-small: 600px !default;
 $to-small: $from-small - 1 !default;
 $from-medium: 800px !default;
 $to-medium: $from-medium - 1 !default;

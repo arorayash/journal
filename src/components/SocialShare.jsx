@@ -21,18 +21,43 @@ const ShareWrapper = styled.div`
   color: #808080;
   font-size: 1.4rem;
   line-height: 2rem;
+
+  .hide-on-medium {
+    @media (max-width: ${breakpoints.m}) {
+      display: none;
+    }
+  }
+
+  @media (max-width: ${breakpoints.m}) {
+    padding: 0 4vw;
+  }
+
   textarea {
     opacity: 0;
     height: 0;
     width: 0;
   }
-  div {
+
+  form {
+    @media (max-width: ${breakpoints.m}) {
+      margin-bottom: 0;
+    }
+  }
+
+  > div {
     margin-top: 1.8rem;
     width: 30px;
     height: 30px;
     cursor: pointer;
     opacity: 0.8;
     transition: opacity 250ms ease;
+
+    @media (max-width: ${breakpoints.m}) {
+      display: flex;
+      display: inline-block;
+      margin-right: 10px;
+      margin-top: 0;
+    }
 
     :active,
     :hover,
@@ -82,8 +107,8 @@ const CopyExample = props => {
 }
 
 const SocialShare = ({ title, url, authorTwitter, className }) => (
-  <ShareWrapper className={className}>
-    <span>Share</span>
+  <ShareWrapper className={`${className}`}>
+    <span className="hide-on-medium">Share</span>
     <TwitterShareButton
       url={url}
       title={`${title} ${

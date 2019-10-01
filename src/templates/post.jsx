@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import PropTypes from 'prop-types'
 import { graphql } from 'gatsby'
 import styled from '@emotion/styled'
+import { Global, css } from '@emotion/core'
 import { TwitterIcon, LinkedinIcon } from 'react-share'
 import { Layout, Wrapper, SliceZone, Title, SEO } from '../components'
 import { BlogCard, Featured } from '../components/Listing'
@@ -22,8 +23,12 @@ const PostWrapper = styled(Wrapper.withComponent('main'))`
   .blog-image {
     height: 38rem;
     object-fit: contain;
-    @media (max-width: ${breakpoints.s}) {
+
+    @media (max-width: ${breakpoints.m}) {
       height: 30rem;
+    }
+    @media (max-width: ${breakpoints.s}) {
+      height: 20rem;
     }
   }
 
@@ -31,6 +36,20 @@ const PostWrapper = styled(Wrapper.withComponent('main'))`
     font-size: 1.4rem;
     line-height: 2rem;
     color: #808080;
+  }
+
+  .author-info-inline {
+    display: none;
+  }
+
+  @media (max-width: ${breakpoints.m}) {
+    .author-info-side {
+      display: none;
+    }
+    .author-info-inline {
+      display: block;
+      padding: 0 4vw;
+    }
   }
 `
 
@@ -53,14 +72,26 @@ const BlogInfoWrapper = styled.div`
 const BlogHeader = styled.div`
   height: 38rem;
   widht: 100%;
-  @media (max-width: ${breakpoints.s}) {
+  @media (max-width: ${breakpoints.m}) {
     height: 30rem;
+  }
+  @media (max-width: ${breakpoints.s}) {
+    height: 20rem;
   }
 `
 
 const StyledTitle = styled.h1`
   margin-bottom: 0;
   padding: 0 4vw;
+  font-size: 3.2rem;
+
+  @media (max-width: ${breakpoints.m}) {
+    font-size: 3.2rem;
+  }
+
+  @media (max-width: ${breakpoints.s}) {
+    font-size: 2.8rem;
+  }
 `
 
 const BlogContent = styled.div`
@@ -71,11 +102,21 @@ const BlogContent = styled.div`
   font-weight: 400;
   font-style: normal;
   padding: 0 4vw;
+
+  @media (max-width: ${breakpoints.s}) {
+    font-size: 1.8rem;
+    line-height: 3.1rem;
+  }
+
   img {
     width: 100%;
   }
   figure {
     margin-bottom: 2rem;
+  }
+  ol,
+  ul {
+    margin-left: 0;
   }
   figcaption {
     margin-top: 1rem;
@@ -92,7 +133,7 @@ const BlogContent = styled.div`
     }
   }
   pre {
-    background: #f7f7f7;
+    background: #fff;
     border-radius: 0.4rem;
     font-size: 1.6rem;
     color: #333333;
@@ -140,11 +181,11 @@ const DrawerIcon = styled.span`
   left: 2.4rem;
   cursor: pointer;
   padding: 1.1rem 0.8rem;
-  background: #f4f2ee;
   z-index: 2;
   @media (max-width: ${breakpoints.s}) {
     left: 1rem;
     top: 1.5rem;
+    background: #fff;
   }
 `
 
@@ -158,6 +199,12 @@ const TagWrapper = styled.div`
 const AuthorBio = styled.div`
   display: flex;
   align-items: center;
+
+  h1,
+  h2,
+  h3 {
+    margin-bottom: 1rem;
+  }
   .author-img {
     display: flex;
     flex-direction: column;
@@ -242,7 +289,6 @@ const Post = ({ data: { prismicPost, allPosts }, location, path }) => {
     categorySlug,
     blogSlug
   )
-  console.log('bannerColor', bannercolor)
   return (
     <Sidebar
       allPosts={allPosts}
@@ -250,6 +296,14 @@ const Post = ({ data: { prismicPost, allPosts }, location, path }) => {
       setShowSidebar={setShowSidebar}
       onSetOpen={open => setShowSidebar(open)}>
       <Layout customSEO path={path}>
+        <Global
+          styles={css`
+            html,
+            body {
+              background: white;
+            }
+          `}
+        />
         <SEO
           title={`${title.text} | ${website.titleAlt}`}
           pathname={location.pathname}
@@ -279,13 +333,17 @@ const Post = ({ data: { prismicPost, allPosts }, location, path }) => {
               </ImageWrapper>
             </BlogHeader>
             <div className="o-layout">
-              <div className="o-layout_item u-1/6@from-medium u-margin-vertical-large">
+              <div className="author-info-side o-layout_item u-1/6@from-medium u-margin-vertical-large">
                 <div className="blog-meta">{author_name.text}</div>
                 <div className="blog-meta">{published_on}</div>
               </div>
               <StyledTitle className="o-layout_item u-4/6@from-medium u-margin-vertical-large">
                 {title.text}
               </StyledTitle>
+              <div className="author-info-inline o-layout_item u-1/6@from-medium u-margin-vertical-xsmall">
+                <div className="blog-meta">{author_name.text}</div>
+                <div className="blog-meta">{published_on}</div>
+              </div>
             </div>
 
             <BlogInfoWrapper className="o-layout u-margin-bottom-large">
@@ -351,7 +409,7 @@ const Post = ({ data: { prismicPost, allPosts }, location, path }) => {
                 {relatedPosts.map(post => (
                   <BlogCard
                     post={post}
-                    className="o-layout_item u-3/6@from-medium"
+                    className="o-layout_item u-3/6@from-medium u-margin-bottom-small"
                   />
                 ))}
               </div>
