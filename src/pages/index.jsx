@@ -170,7 +170,7 @@ const Index = props => {
               onBlur={() =>
                 setTimeout(() => {
                   setSearchFocus(false)
-                }, 1)
+                }, 50)
               }>
               <Input
                 onChange={e => setSearch(e.target.value)}
@@ -179,11 +179,15 @@ const Index = props => {
               />
               {searchFocus && (
                 <SearchResults>
-                  {filteredPosts.map(post => (
-                    <StyledLink to={post.slugs[0]}>
-                      {post.data.title.text}
-                    </StyledLink>
-                  ))}
+                  {filteredPosts.length > 0 ? (
+                    filteredPosts.map(post => (
+                      <StyledLink to={post.slugs[0]}>
+                        {post.data.title.text}
+                      </StyledLink>
+                    ))
+                  ) : (
+                    <span>No results found</span>
+                  )}
                 </SearchResults>
               )}
             </div>
