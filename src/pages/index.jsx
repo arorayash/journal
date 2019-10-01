@@ -9,7 +9,6 @@ import { Categories, Featured } from '../components/Listing'
 import { theme } from '../styles'
 import { searchBlogs } from '../utils'
 import { StyledLink, ExternLink, SectionTitle } from '../components/Wrappers'
-import '../styles'
 // import website from '../../config/website'
 
 const { breakpoints, colors } = theme
@@ -168,10 +167,13 @@ const Index = props => {
             <div
               className="search-wrapper u-margin-top-small"
               onFocus={() => setSearchFocus(true)}
-              onBlur={() => setSearchFocus(false)}>
+              onBlur={() =>
+                setTimeout(() => {
+                  setSearchFocus(false)
+                }, 1)
+              }>
               <Input
                 onChange={e => setSearch(e.target.value)}
-                onFocus={e => setSearchFocus()}
                 placeholder="Search for a post"
                 addonBefore={<Icon type="oSearch" />}
               />
