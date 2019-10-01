@@ -140,6 +140,7 @@ const BlogContent = styled.div`
     padding: 2rem;
     font-family: Source Code Pro;
     line-height: 2rem;
+    overflow: scroll;
   }
   blockquote {
     margin-left: 0;
@@ -252,7 +253,10 @@ const filterRelatedPosts = (allPosts, categorySlug, blogSlug) => {
 }
 
 const Post = ({ data: { prismicPost, allPosts }, location, path }) => {
-  const [showSidebar, setShowSidebar] = useState(false)
+  const { state } = location
+  const [showSidebar, setShowSidebar] = useState(
+    (state && state.sidebar) || false
+  )
   const [headers, setHeaders] = useState([])
 
   useEffect(() => {
