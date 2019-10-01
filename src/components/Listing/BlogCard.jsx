@@ -53,6 +53,7 @@ const ImageWrapper = styled.span`
     // height: ${props => (props.sidebar ? '16' : '28')}rem;
     object-fit: contain;
     width: 100%;
+    border-radius: 4px;
   }
   .tag-wrapper {
     float: left;
