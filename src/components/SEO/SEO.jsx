@@ -77,7 +77,6 @@ const SEO = ({ title, desc, banner, pathname, article, node }) => {
     },
   }
 
-
   // Initial breadcrumb list
 
   const itemListElement = [
@@ -156,11 +155,20 @@ const SEO = ({ title, desc, banner, pathname, article, node }) => {
     <>
       <Helmet title={seo.title}>
         <html lang={siteLanguage} />
+        <meta name="theme-color" content="#E1DBD1" />
         <meta name="description" content={seo.description} />
         <meta name="image" content={seo.image} />
         {/* Insert schema.org data conditionally (webpage/article) + everytime (breadcrumbs) */}
-        {!article && <script type="application/ld+json">{JSON.stringify(schemaOrgWebPage)}</script>}
-        {article && <script type="application/ld+json">{JSON.stringify(schemaArticle)}</script>}
+        {!article && (
+          <script type="application/ld+json">
+            {JSON.stringify(schemaOrgWebPage)}
+          </script>
+        )}
+        {article && (
+          <script type="application/ld+json">
+            {JSON.stringify(schemaArticle)}
+          </script>
+        )}
         <script type="application/ld+json">{JSON.stringify(breadcrumb)}</script>
       </Helmet>
       <Facebook
@@ -172,7 +180,12 @@ const SEO = ({ title, desc, banner, pathname, article, node }) => {
         locale={ogLanguage}
         name={facebook}
       />
-      <Twitter title={seo.title} image={seo.image} desc={seo.description} username={twitter} />
+      <Twitter
+        title={seo.title}
+        image={seo.image}
+        desc={seo.description}
+        username={twitter}
+      />
     </>
   )
 }

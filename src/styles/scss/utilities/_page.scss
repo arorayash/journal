@@ -47,7 +47,7 @@ html {
 
 ::selection {
   background-color: $selection-background-color;
-  color: $selection-text-color;
+  color: inherit;
   text-shadow: none;
 }
 

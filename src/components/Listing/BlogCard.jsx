@@ -24,7 +24,7 @@ const CardContent = styled.div`
     font-size: ${props => (props.sidebar ? '2' : '2.4')}rem;
     line-height: 2.9rem;
     font-weight: 600;
-    margin-top: ${props => (props.sidebar ? '0' : '2')}rem;
+    margin-top: ${props => (props.sidebar ? '1' : '2')}rem;
     color: #1a1a1a;
     text-decoration: underline;
     text-decoration-color: #e5e5e5;

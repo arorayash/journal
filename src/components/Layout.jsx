@@ -37,10 +37,6 @@ const globalStyle = css`
     color: ${theme.colors.greyDarker};
     background-color: ${theme.colors.bg};
   }
-  ::selection {
-    color: inherit;
-    background-color: #ddeee5;
-  }
 `
 
 const PureLayout = ({ children, data, customSEO, path }) => (
