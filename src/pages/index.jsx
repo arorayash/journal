@@ -181,7 +181,7 @@ const Index = props => {
                 <SearchResults>
                   {filteredPosts.length > 0 ? (
                     filteredPosts.map(post => (
-                      <StyledLink to={post.slugs[0]}>
+                      <StyledLink key={post.slugs[0]} to={post.slugs[0]}>
                         {post.data.title.text}
                       </StyledLink>
                     ))
@@ -218,7 +218,7 @@ const Index = props => {
             </SectionTitle>
             <EventsWrapper className="u-margin-bottom-xlarge">
               {events.nodes.map((event, index) => (
-                <>
+                <div key={index}>
                   {index !== 0 ? <hr /> : null}
                   <div
                     key={event.data.title.text}
@@ -245,7 +245,7 @@ const Index = props => {
                       </div>
                     </div>
                   </div>
-                </>
+                </div>
               ))}
             </EventsWrapper>
           </div>

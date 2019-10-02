@@ -100,7 +100,7 @@ const CopyExample = props => {
     <>
       <div onClick={copyToClipboard}>{props.children}</div>
       <form>
-        <textarea ref={textAreaRef} value={props.url} />
+        <textarea readOnly ref={textAreaRef} value={props.url} />
       </form>
     </>
   )

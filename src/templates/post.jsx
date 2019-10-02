@@ -379,6 +379,7 @@ const Post = ({ data: { prismicPost, allPosts }, location, path }) => {
                         setCategory={setSidebarCategory}
                         setShowSidebar={setShowSidebar}
                         text={tag}
+                        key={tag}
                       />
                     ))}
                   </TagWrapper>
@@ -402,7 +403,7 @@ const Post = ({ data: { prismicPost, allPosts }, location, path }) => {
                             stroke={
                               linkedin && linkedin.url ? '#007fb1' : '#00aced'
                             }
-                            stroke-width="2"
+                            strokeWidth={2}
                             className="button-outline"
                           />
                         </svg>
@@ -427,6 +428,7 @@ const Post = ({ data: { prismicPost, allPosts }, location, path }) => {
                 {relatedPosts.map(post => (
                   <BlogCard
                     post={post}
+                    key={post.slugs[0]}
                     className="o-layout_item u-3/6@from-medium u-margin-bottom-small"
                   />
                 ))}

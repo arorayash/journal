@@ -18,7 +18,7 @@ module.exports = {
   backgroundColor: '#F7F7F7',
 
   twitter: '@clarisights', // Twitter Username
-  facebook: 'ClarisightsOfficial', // Facebook Site Name
+  facebook: 'Clarisights Journal', // Facebook Site Name
   googleAnalyticsID: 'UA-148226838-1',
 
   skipNavId: 'reach-skip-nav', // ID for the "Skip to content" a11y feature

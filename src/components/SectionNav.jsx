@@ -123,7 +123,7 @@ const SectionNav = ({ headings, path }) => {
         <NavWrapper>
           <div className="default">
             {headings.map(heading => (
-              <div className="dash-wrapper">
+              <div className="dash-wrapper" key={heading.id}>
                 <div
                   className={`dash ${
                     heading.id === activeHead ? 'active' : ''
@@ -137,6 +137,7 @@ const SectionNav = ({ headings, path }) => {
                 className={`heading ${
                   heading.id === activeHead ? 'active' : ''
                 }`}
+                key={heading.id}
                 to={`${path}#${heading.id}`}>
                 <span className="heading-text">{heading.innerText}</span>
               </StyledLink>

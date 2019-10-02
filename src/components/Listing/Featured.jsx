@@ -10,12 +10,10 @@ const ArticlesWrapper = styled.div`
 const Featured = ({ featured }) => (
   <ArticlesWrapper className="o-layout -gutter u-margin-bottom-large">
     {featured.map(post => (
-      <div className="o-layout_item u-3/6@from-medium u-margin-bottom">
-        <BlogCard
-          sidebar={false}
-          key={post.blog.document[0].slugs[0]}
-          post={post.blog.document[0]}
-        />
+      <div
+        className="o-layout_item u-3/6@from-medium u-margin-bottom"
+        key={post.blog.document[0].slugs[0]}>
+        <BlogCard sidebar={false} post={post.blog.document[0]} />
       </div>
     ))}
   </ArticlesWrapper>

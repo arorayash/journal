@@ -101,7 +101,7 @@ const BlogCard = ({ post, sidebar = false, className }) => {
   const categorySlug = post.data.category.document[0].slugs[0]
   return (
     <CardWrapper sidebar={sidebar} className={className}>
-      <BlogLink to={slug}>
+      <BlogLink to={`/${slug}`}>
         <CardContent sidebar={sidebar}>
           <ImageWrapper
             categorySlug={categorySlug}

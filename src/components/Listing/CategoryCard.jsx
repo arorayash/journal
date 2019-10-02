@@ -138,7 +138,7 @@ const CategoryCard = ({ data, index, cardLink, className }) => {
   return (
     <CardWrapper
       state={{ sidebar: true, sidebarCategory: categoryMap[data.uid] }}
-      to={cardLink}
+      to={`/${cardLink}`}
       uid={data.uid}
       className={className}>
       <CardContent>

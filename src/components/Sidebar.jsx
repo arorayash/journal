@@ -160,7 +160,7 @@ const SidebarContent = ({
     <SidebarWrapper>
       <VertFlex categories>
         {categories.map(cat => (
-          <CategoryItem onClick={() => setCategory(cat)}>
+          <CategoryItem key={cat} onClick={() => setCategory(cat)}>
             <span className={category === cat ? 'active-category' : ''}>
               {cat}
             </span>
@@ -188,7 +188,12 @@ const SidebarContent = ({
         </span>
         <BlogsList>
           {filteredPosts.map(post => (
-            <BlogCard className="blog u-margin-bottom" sidebar post={post} />
+            <BlogCard
+              className="blog u-margin-bottom"
+              sidebar
+              post={post}
+              key={post.slugs[0]}
+            />
           ))}
         </BlogsList>
       </VertFlex>

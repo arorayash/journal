@@ -107,7 +107,7 @@ const Footer = ({ categories, path, allPosts }) => (
         {categories.map(cat => (
           <div className="o-layout -flex" key={cat.uid}>
             <Slash>/</Slash>
-            <StyledLink to={getCategoryFirstPost(allPosts, cat.uid)}>
+            <StyledLink to={`/${getCategoryFirstPost(allPosts, cat.uid)}`}>
               <span key={cat.data.title.text}>{cat.data.title.text} </span>
             </StyledLink>
             <svg
