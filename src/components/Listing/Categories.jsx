@@ -7,7 +7,7 @@ import { getCategoryFirstPost } from '../../utils'
 
 const CategoriesWrapper = styled.div``
 
-const categoriesOrder = ['engineering', 'product--design', 'business--growth']
+const categoriesOrder = ['engineering', 'business--growth', 'product--design']
 
 const Categories = ({ categories, allPosts }) => {
   // Fix the order of catrgories since prismic sends them unordered

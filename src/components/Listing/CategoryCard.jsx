@@ -1,8 +1,8 @@
 import React from 'react'
 import styled from '@emotion/styled'
 import { Icon } from 'knit-ui'
+
 import { StyledLink } from '../Wrappers'
-import { getCategoryFirstPost } from '../Wrappers'
 import theme from '../../styles/theme'
 import { firstCategory, secondCategory, thirdCategory } from '../../assets'
 
@@ -119,6 +119,12 @@ const categoryColors = {
   'product--design': '#813A4C',
 }
 
+const categoryMap = {
+  engineering: 'Engineering',
+  'business--growth': 'Business & Growth',
+  'product--design': 'Product & Design',
+}
+
 const categoryIndex = {
   '0': firstCategory,
   '1': secondCategory,
@@ -131,7 +137,7 @@ const CategoryCard = ({ data, index, cardLink, className }) => {
   } = data
   return (
     <CardWrapper
-      state={{ sidebar: true }}
+      state={{ sidebar: true, sidebarCategory: categoryMap[data.uid] }}
       to={cardLink}
       uid={data.uid}
       className={className}>

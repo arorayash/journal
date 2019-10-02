@@ -140,10 +140,14 @@ const filterPosts = (allPosts, category) => {
   )
 }
 
-const SidebarContent = ({ allPosts, setShowSidebar }) => {
+const SidebarContent = ({
+  allPosts,
+  setShowSidebar,
+  category,
+  setCategory,
+}) => {
   const posts = allPosts.nodes
   const [search, setSearch] = useState('')
-  const [category, setCategory] = useState('All')
   const categories = [
     'All',
     'Engineering',
@@ -192,19 +196,33 @@ const SidebarContent = ({ allPosts, setShowSidebar }) => {
   )
 }
 
-const Drawer = props => (
-  <Sidebar
-    sidebar={
-      <SidebarContent
-        allPosts={props.allPosts}
-        setShowSidebar={props.setShowSidebar}
-      />
-    }
-    open={props.open}
-    styles={{ sidebar: { background: '#f4f2ee', zIndex: 3 } }}
-    onSetOpen={props.onSetOpen}>
-    {props.children}
-  </Sidebar>
-)
+const Drawer = props => {
+  const {
+    allPosts,
+    setShowSidebar,
+    category,
+    setCategory,
+    open,
+    onSetOpen,
+    children,
+  } = props
+
+  return (
+    <Sidebar
+      sidebar={
+        <SidebarContent
+          allPosts={allPosts}
+          setShowSidebar={setShowSidebar}
+          category={category}
+          setCategory={setCategory}
+        />
+      }
+      open={open}
+      styles={{ sidebar: { background: '#f4f2ee', zIndex: 3 } }}
+      onSetOpen={onSetOpen}>
+      {children}
+    </Sidebar>
+  )
+}
 
 export default Drawer

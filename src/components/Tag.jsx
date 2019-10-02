@@ -1,21 +1,24 @@
 import React from 'react'
 import styled from '@emotion/styled'
 
-const categoryColors = {
+const categoryData = {
   engineering: {
     bg: '#FCD06E',
     text: '#1a1a1a',
     opacity: 0.6,
+    category: 'Engineering',
   },
   'business,growth': {
     bg: '#025C52',
     text: '#f7f7f7',
     opacity: 0.8,
+    category: 'Business & Growth',
   },
   'product,design': {
     bg: '#813A4C',
     text: '#ffffff',
     opacity: 0.8,
+    category: 'Product & Design',
   },
 }
 
@@ -26,7 +29,7 @@ const baseTag = {
 }
 
 const getTagProps = tag => {
-  const prop = Object.entries(categoryColors).find(category =>
+  const prop = Object.entries(categoryData).find(category =>
     category[0].split(',').includes(tag.toString().toLowerCase())
   )
   return prop ? prop[1] : baseTag
@@ -43,13 +46,29 @@ const StyledTag = styled.span`
   padding: 0.4rem 1rem;
   display: flex;
   align-items: center;
+  cursor: pointer;
   &:not(:last-child) {
     margin-right: 1rem;
   }
 `
 
-const Tag = ({ text }) => {
-  return <StyledTag tag={text}>{text}</StyledTag>
+const handleTagClick = props => {
+  const { text, setCategory, setShowSidebar } = props
+  const TagData = Object.entries(categoryData).find(category =>
+    category[0].split(',').includes(text.toString().toLowerCase())
+  )
+  if (!TagData) return null
+  setCategory(TagData[1].category)
+  setShowSidebar(true)
 }
 
-export default Tag;
+const Tag = props => {
+  const { text } = props
+  return (
+    <StyledTag onClick={() => handleTagClick(props)} tag={text}>
+      {text}
+    </StyledTag>
+  )
+}
+
+export default Tag

@@ -4,17 +4,21 @@ import { graphql } from 'gatsby'
 import styled from '@emotion/styled'
 import { Global, css } from '@emotion/core'
 import { TwitterIcon, LinkedinIcon } from 'react-share'
+
 import { Layout, Wrapper, SliceZone, Title, SEO } from '../components'
 import { BlogCard, Featured } from '../components/Listing'
-import prism from '../styles/prism'
-import website from '../../config/website'
-import drawer from '../assets/drawer.svg'
-import Sidebar from '../components/Sidebar'
-import { theme } from '../styles'
 import BlogTag from '../components/Tag'
 import { ExternLink, SectionTitle } from '../components/Wrappers'
 import SocialShare from '../components/SocialShare'
 import SectionNav from '../components/SectionNav'
+import Sidebar from '../components/Sidebar'
+
+import prism from '../styles/prism'
+import { theme } from '../styles'
+
+import website from '../../config/website'
+
+import drawer from '../assets/drawer.svg'
 import fallbackImage from '../assets/bg_fallback.svg'
 
 const { breakpoints } = theme
@@ -254,8 +258,12 @@ const filterRelatedPosts = (allPosts, categorySlug, blogSlug) => {
 
 const Post = ({ data: { prismicPost, allPosts }, location, path }) => {
   const { state } = location
+
   const [showSidebar, setShowSidebar] = useState(
     (state && state.sidebar) || false
+  )
+  const [sidebarCategory, setSidebarCategory] = useState(
+    (state && state.sidebarCategory) || 'All'
   )
   const [headers, setHeaders] = useState([])
 
@@ -298,6 +306,8 @@ const Post = ({ data: { prismicPost, allPosts }, location, path }) => {
       allPosts={allPosts}
       open={showSidebar}
       setShowSidebar={setShowSidebar}
+      category={sidebarCategory}
+      setCategory={setSidebarCategory}
       onSetOpen={open => setShowSidebar(open)}>
       <Layout customSEO path={path}>
         <Global
@@ -365,7 +375,11 @@ const Post = ({ data: { prismicPost, allPosts }, location, path }) => {
                 <div className="o-layout_item -middle u-4/6@from-medium  content-footer">
                   <TagWrapper>
                     {blogTags.map(tag => (
-                      <BlogTag text={tag} />
+                      <BlogTag
+                        setCategory={setSidebarCategory}
+                        setShowSidebar={setShowSidebar}
+                        text={tag}
+                      />
                     ))}
                   </TagWrapper>
                   <hr className="u-margin-vertical-small" />
