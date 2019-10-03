@@ -106,7 +106,7 @@ const SectionNav = ({ headings, path }) => {
       setActiveHead(headings[0].id)
     }
     const getActive = () => {
-      const top = headings.find(head => head.getBoundingClientRect().top > 0)
+      const top = headings.find(head => head.getBoundingClientRect().top > -10)
       if (top && activeHead !== top.id) {
         setActiveHead(top.id)
       }
@@ -115,7 +115,7 @@ const SectionNav = ({ headings, path }) => {
     return () => {
       window.removeEventListener('scroll', getActive, true)
     }
-  }, [headings])
+  }, [headings, activeHead])
 
   return (
     <>

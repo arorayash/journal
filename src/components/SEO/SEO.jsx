@@ -47,6 +47,11 @@ const SEO = ({ title, desc, banner, pathname, article, node }) => {
     '@context': 'http://schema.org',
     '@type': 'Organization',
     url: siteUrl,
+    sameAs: [
+      'https://www.facebook.com/ClarisightsOfficial/',
+      'https://twitter.com/clarisights',
+      'https://www.linkedin.com/company/clarisights/',
+    ],
     headline,
     inLanguage: siteLanguage,
     mainEntityOfPage: siteUrl,
@@ -96,6 +101,11 @@ const SEO = ({ title, desc, banner, pathname, article, node }) => {
     schemaArticle = {
       '@context': 'http://schema.org',
       '@type': 'Article',
+      sameAs: [
+        'https://www.facebook.com/ClarisightsOfficial/',
+        'https://twitter.com/clarisights',
+        'https://www.linkedin.com/company/clarisights/',
+      ],
       author: {
         '@type': 'Person',
         name: author,
