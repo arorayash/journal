@@ -94,7 +94,8 @@ const categoryColors = {
 }
 
 const BlogCard = ({ post, sidebar = false, className }) => {
-  const slug = post.slugs[0]
+  const slug = post.uid
+  console.log(post)
   const { title, published_on, blog_image } = post.data
   const { author_name } = post.data.author.document[0].data
   const category = post.data.category.document[0].data.title.text

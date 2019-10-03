@@ -134,10 +134,12 @@ const Index = props => {
     data: { homepage, categories, events, featured_posts, allPosts },
     path,
   } = props
+
   const [search, setSearch] = useState('')
   const [searchFocus, setSearchFocus] = useState(false)
   const filteredPosts = searchBlogs(allPosts.nodes, search).slice(0, 8)
   const featuredBlogs = featured_posts.nodes[0].data.featured_blogs
+
   return (
     <Layout path={path}>
       <div className="o-container">
@@ -181,7 +183,7 @@ const Index = props => {
                 <SearchResults>
                   {filteredPosts.length > 0 ? (
                     filteredPosts.map(post => (
-                      <StyledLink key={post.slugs[0]} to={post.slugs[0]}>
+                      <StyledLink key={post.slugs[0]} to={post.uid}>
                         {post.data.title.text}
                       </StyledLink>
                     ))
@@ -335,6 +337,7 @@ export const pageQuery = graphql`
     ) {
       nodes {
         slugs
+        uid
         data {
           title {
             text
@@ -384,6 +387,7 @@ export const pageQuery = graphql`
                   }
                 }
                 slugs
+                uid
               }
             }
           }

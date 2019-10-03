@@ -301,6 +301,7 @@ const Post = ({ data: { prismicPost, allPosts }, location, path }) => {
     categorySlug,
     blogSlug
   )
+
   return (
     <Sidebar
       allPosts={allPosts}
@@ -522,6 +523,7 @@ export const pageQuery = graphql`
     ) {
       nodes {
         slugs
+        uid
         data {
           published_on
           body {

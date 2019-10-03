@@ -84,6 +84,7 @@ class Layout extends Component {
             ) {
               nodes {
                 slugs
+                uid
                 data {
                   title {
                     text

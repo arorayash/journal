@@ -1,5 +1,5 @@
 export const getCategoryFirstPost = (allPosts, category) =>
-  allPosts.nodes.find(post => post.data.category.slug === category).slugs[0]
+  allPosts.nodes.find(post => post.data.category.slug === category).uid
 
 export const blogReadTime = post =>
   Math.ceil(post.data.body.text.split(' ').length / 200)
