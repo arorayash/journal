@@ -8,7 +8,7 @@ import { searchBlogs } from '../utils'
 import { theme } from '../styles'
 import clarisightsLogo from '../assets/logo.svg'
 
-const { breakpoints } = theme
+const { breakpoints, colors } = theme
 
 const SidebarWrapper = styled.div`
   width: 50vw;
@@ -133,6 +133,11 @@ const HomePageLink = styled(StyledLink)`
   align-items: center;
 `
 
+const NotFound = styled.div`
+  text-align: center;
+  color: ${colors.neutral45};
+`
+
 const filterPosts = (allPosts, category) => {
   if (category === 'All') return allPosts
   return allPosts.filter(
@@ -187,14 +192,18 @@ const SidebarContent = ({
           />
         </span>
         <BlogsList>
-          {filteredPosts.map(post => (
-            <BlogCard
-              className="blog u-margin-bottom"
-              sidebar
-              post={post}
-              key={post.slugs[0]}
-            />
-          ))}
+          {filteredPosts.length > 0 ? (
+            filteredPosts.map(post => (
+              <BlogCard
+                className="blog u-margin-bottom"
+                sidebar
+                post={post}
+                key={post.slugs[0]}
+              />
+            ))
+          ) : (
+            <NotFound>No related posts found</NotFound>
+          )}
         </BlogsList>
       </VertFlex>
     </SidebarWrapper>
