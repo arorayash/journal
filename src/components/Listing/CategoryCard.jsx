@@ -146,7 +146,7 @@ const CategoryCard = ({ data, index, cardLink, className }) => {
           <img src={categoryIndex[index]} alt="" />
           <Icon height="20px" type="oArrowDownward" className="arrow-icon" />
         </span>
-        <span className="title">{title.text}</span>
+        <h1 className="title">{title.text}</h1>
         <span className="desc">{description.text}</span>
       </CardContent>
     </CardWrapper>

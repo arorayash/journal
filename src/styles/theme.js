@@ -11,6 +11,7 @@ const theme = {
     greyDarker: '#1c252b',
     neutral45: '#a6a6a6',
     neutral50: '#808080',
+    neutral90: '#1A1A1A',
   },
   maxWidth: '80vw',
   maxWidthText: '720px',

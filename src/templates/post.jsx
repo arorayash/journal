@@ -21,7 +21,7 @@ import website from '../../config/website'
 import drawer from '../assets/drawer.svg'
 import fallbackImage from '../assets/bg_fallback.svg'
 
-const { breakpoints } = theme
+const { breakpoints, colors } = theme
 
 const PostWrapper = styled(Wrapper.withComponent('main'))`
   .blog-image {
@@ -44,6 +44,10 @@ const PostWrapper = styled(Wrapper.withComponent('main'))`
 
   .author-info-inline {
     display: none;
+  }
+
+  .author-info-side {
+    padding-top: 0.8rem;
   }
 
   @media (max-width: ${breakpoints.m}) {
@@ -88,6 +92,7 @@ const StyledTitle = styled.h1`
   margin-bottom: 0;
   padding: 0 4vw;
   font-size: 3.2rem;
+  line-height: 4.2rem;
 
   @media (max-width: ${breakpoints.m}) {
     font-size: 3.2rem;
@@ -106,17 +111,29 @@ const BlogContent = styled.div`
   font-weight: 400;
   font-style: normal;
   padding: 0 4vw;
+  text-decoration-skip-ink: auto;
 
-  @media (max-width: ${breakpoints.s}) {
-    font-size: 1.8rem;
-    line-height: 3.1rem;
+  h1 {
+    margin-top: 8rem;
+  }
+
+  h2 {
+    margin-top: 6rem;
   }
 
   img {
     width: 100%;
   }
+  a {
+    text-decoration-color: ${colors.neutral45};
+
+    :hover {
+      text-decoration-color: ${colors.neutral90};
+    }
+  }
   figure {
-    margin-bottom: 2rem;
+    margin-top: 6rem;
+    margin-bottom: 8rem;
   }
   ol,
   ul {
@@ -127,6 +144,8 @@ const BlogContent = styled.div`
     font-size: 1.4rem;
     line-height: 1.7rem;
     color: #666666;
+    text-align: center;
+    font-family: Inter, serif;
   }
   div[data-oembed] {
     width: 100%;
@@ -153,6 +172,19 @@ const BlogContent = styled.div`
     font-size: 2rem;
     line-height: 2.8rem;
     color: #666666;
+  }
+
+  @media (max-width: ${breakpoints.s}) {
+    font-size: 1.8rem;
+    line-height: 3.1rem;
+
+    h1 {
+      margin-top: 4rem;
+    }
+
+    h2 {
+      margin-top: 2rem;
+    }
   }
 `
 
@@ -222,6 +254,7 @@ const AuthorBio = styled.div`
     position: relative;
     width: 4.2rem;
     height: 4.2rem;
+    transform: rotate(-90deg);
   }
   img {
     border-radius: 50%;
@@ -229,12 +262,13 @@ const AuthorBio = styled.div`
     position: absolute;
     top: 0;
     left: 0;
+    transform: rotate(90deg);
   }
   .button-outline {
     stroke-dasharray: 140px;
     stroke-dashoffset: 140px;
     fill: transparent;
-    transition: all 0.8s ease-out 0s;
+    transition: all 0.2s ease-out 0s;
     stroke-width: 1px;
   }
   .svg-container:hover .button-outline {

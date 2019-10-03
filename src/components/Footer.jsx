@@ -103,7 +103,9 @@ const Footer = ({ categories, path, allPosts }) => (
         </ExternLink>
       </Column>
       <Column className="categories-links">
-        <Title>Journal</Title>
+        <StyledLink to="/">
+          <Title style={{ marginBottom: 0 }}>Journal</Title>
+        </StyledLink>
         {categories.map(cat => (
           <div className="o-layout -flex" key={cat.uid}>
             <Slash>/</Slash>
