@@ -37,6 +37,10 @@ const CardContent = styled.div`
     margin-top: 0.5rem;
     display: flex;
     justify-content: space-between;
+
+    @media (max-width: ${breakpoints.m}) {
+      flex-direction: column;
+    }
   }
   &:hover {
     .post-title {
