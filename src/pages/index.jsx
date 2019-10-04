@@ -160,9 +160,9 @@ const Index = props => {
               <img src={homepage.data.journal.url} alt="" />
             </div>
             <div className="about u-margin-top-small">
-              A space for our team to log and explore thoughts.
-              We regularly write about our projects, product updates,
-              business, culture and process teardowns. <br />
+              A space for our team to explore and log thoughts. We regularly
+              write about our projects, product updates, business, culture and
+              process teardowns. <br />
               <i className="signature">- your friends at Clarisights</i>
             </div>
             <div
@@ -204,16 +204,20 @@ const Index = props => {
             <hr />
           </ContentWrapper>
           <div className="o-layout_item u-3/6@from-medium">
-            <NewsletterWrapper className="u-margin-top-xlarge">
+            {/* <NewsletterWrapper className="u-margin-top-xlarge">
               <div className="u-margin-bottom-small">
                 Get the latest news and views from Clarisights delivered to your
                 inbox. No spam, only quality content.
               </div>
               <div>
-                <Input placeholder="Your Email address" size="large" />
+                <Input
+                  placeholder="Your Email address"
+                  size="large"
+                  type="email"
+                />
                 <button>Subscribe</button>
               </div>
-            </NewsletterWrapper>
+            </NewsletterWrapper> */}
             <SectionTitle className="u-margin-top-xlarge u-margin-bottom-small">
               What's on
             </SectionTitle>
@@ -226,7 +230,7 @@ const Index = props => {
                     className="event-card o-layout u-margin-vertical-xsmall">
                     <EventLinkWrapper
                       href={event.data.meetup_link.url}
-                      target={event.data.meetup_link.target}
+                      target={event.data.meetup_link.target || '_blank'}
                       className="o-layout_item u-3/6@from-medium">
                       <span className="event-card-title">
                         {event.data.title.text}
