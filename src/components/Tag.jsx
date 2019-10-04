@@ -41,6 +41,7 @@ const StyledTag = styled.span`
   font-size: 1.4rem;
   line-height: 2rem;
   border-radius: 0.4rem;
+  margin-bottom: 1rem;
   background-color: ${props => getTagProps(props.tag).bg};
   opacity: ${props => getTagProps(props.tag).opacity};
   padding: 0.4rem 1rem;
