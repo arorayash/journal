@@ -195,6 +195,7 @@ const SidebarContent = ({
           {filteredPosts.length > 0 ? (
             filteredPosts.map(post => (
               <BlogCard
+                setShowSidebar={setShowSidebar}
                 className="blog u-margin-bottom"
                 sidebar
                 post={post}
