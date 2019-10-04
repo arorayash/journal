@@ -228,6 +228,7 @@ const DrawerIcon = styled.span`
 
 const TagWrapper = styled.div`
   display: flex;
+  flex-wrap: wrap;
   &:empty {
     display: none;
   }
