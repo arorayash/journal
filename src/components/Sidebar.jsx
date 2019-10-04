@@ -25,9 +25,12 @@ const SidebarWrapper = styled.div`
   @media (max-width: ${breakpoints.l}) {
     width: 70vw;
   }
+  @media (max-width: ${breakpoints.m}) {
+    padding: 2rem 2.7rem 2rem 2.7rem;
+  }
   @media (max-width: ${breakpoints.s}) {
     flex-direction: column;
-    padding: 2rem 2.7rem 2rem 2.7rem;
+    padding: 2rem;
     height: fit-content;
     max-height: 100%;
     width: 100vw;
@@ -86,6 +89,7 @@ const ActionWrapper = styled.span`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  margin-bottom: 1.5rem;
 
   span {
     display: inline-block;
