@@ -38,7 +38,6 @@ const SEO = ({ title, desc, banner, pathname, article, node }) => {
     image: `${banner || defaultBanner}`,
     url: `${siteUrl}${pathname || ''}`,
   }
-  // console.log({ title, desc, banner, pathname, article, node, seo, site })
   // schema.org in JSONLD format
   // https://developers.google.com/search/docs/guides/intro-structured-data
   // You can fill out the 'author', 'creator' with more data or another type (e.g. 'Organization')
@@ -150,8 +149,6 @@ const SEO = ({ title, desc, banner, pathname, article, node }) => {
       position: 2,
     })
   }
-
-  // console.log({schemaOrgWebPage, schemaArticle})
 
   const breadcrumb = {
     '@context': 'http://schema.org',

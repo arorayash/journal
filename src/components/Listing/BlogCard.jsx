@@ -93,16 +93,20 @@ const categoryColors = {
   },
 }
 
-const BlogCard = ({ post, sidebar = false, className }) => {
+const BlogCard = ({ post, sidebar = false, className, setShowSidebar }) => {
   const slug = post.uid
-  console.log(post)
   const { title, published_on, blog_image } = post.data
   const { author_name } = post.data.author.document[0].data
   const category = post.data.category.document[0].data.title.text
   const categorySlug = post.data.category.document[0].slugs[0]
+
+  const handleCardClick = () => {
+    setShowSidebar && setShowSidebar(false)
+  }
+
   return (
     <CardWrapper sidebar={sidebar} className={className}>
-      <BlogLink to={`/${slug}`}>
+      <BlogLink to={`/${slug}`} onClick={handleCardClick}>
         <CardContent sidebar={sidebar}>
           <ImageWrapper
             categorySlug={categorySlug}

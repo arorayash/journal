@@ -312,7 +312,6 @@ const Post = ({ data: { prismicPost, allPosts }, location, path }) => {
   const {
     author,
     blog_image,
-    preview_image,
     body,
     published_on,
     title,
@@ -357,7 +356,7 @@ const Post = ({ data: { prismicPost, allPosts }, location, path }) => {
           title={`${title.text} | ${website.titleAlt}`}
           pathname={location.pathname}
           desc={description}
-          banner={preview_image.url || blog_image.url}
+          banner={blog_image.url}
           node={prismicPost}
           article
         />
@@ -507,10 +506,6 @@ export const pageQuery = graphql`
           html
         }
         blog_image {
-          alt
-          url
-        }
-        preview_image {
           alt
           url
         }

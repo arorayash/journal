@@ -345,6 +345,15 @@ export const pageQuery = graphql`
           category {
             slug
           }
+          author {
+            document {
+              data {
+                author_name {
+                  text
+                }
+              }
+            }
+          }
         }
       }
     }
